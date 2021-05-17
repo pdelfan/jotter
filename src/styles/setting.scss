@@ -1,0 +1,40 @@
+:root {
+    --border: 1px solid var(--color-border);
+    --san-serif: "Poppins", system-ui, sans-serif;
+  
+    // general
+    --font: var(--san-serif);
+    --background: #f1f1f1;
+    --paragraph-color: #303030;
+    --speed: 500ms;
+    --nav-size: 60px;
+  
+    //   Colors
+    --white: white;
+    --light-gray: #cfd4d8;
+    --mid-gray: #7F8B99;
+    --gray: #727272;
+    --dark-gray: #15171a;
+    --dark-blue: #212138;
+    --light-pink: #f0f0fe;
+    --mid-pink: #d1d1e4;
+    --purple: #8551f6;
+    --green: #6acb58;
+    --red: #DE4535;
+  
+    // borders
+    --book-border: 1px solid #c4c4c4;
+    --note-border: 1px solid #cacaca;
+    --round: 15px;
+  
+    // shadows
+    --book-shadow: 0px 0px 17px -5px rgba(0, 0, 0, 0.25);
+    --tool-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
+    --note-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
+
+    // book
+    --book-title: #00123F;
+    --book-author: #7A7A7A;
+    --book-date: #E49A00;
+  }
+  
