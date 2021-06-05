@@ -11,6 +11,7 @@ import React from "react";
 import { Link } from "gatsby"
 
 
+
 const Header = styled.header`
   margin: auto;
   background-color: white;
@@ -88,19 +89,19 @@ export default function Menu() {
         <MenuItems>
           <ItemContainer>
             <Item to="/">
-              <img src={LibraryIcon} alt="" />
+              <img src={LibraryIcon} alt="Library icon" />
               Library
             </Item>
           </ItemContainer>
           <ItemContainer>
             <Item to="/to-read">
-              <img src={ToReadIcon} alt="" />
+              <img src={ToReadIcon} alt="To-read icon" />
               To-read
             </Item>
           </ItemContainer>
           <ItemContainer>
             <Item to="/add-book">
-              <img src={AddIcon} alt="" />
+              <img src={AddIcon} alt="Add icon" />
               Add Book
             </Item>
           </ItemContainer>

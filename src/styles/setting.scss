@@ -18,13 +18,13 @@
     --dark-blue: #212138;
     --light-pink: #f0f0fe;
     --mid-pink: #d1d1e4;
-    --purple: #8551f6;
+    --purple: #8551f6;    
     --green: #6acb58;
     --red: #DE4535;
   
     // borders
     --book-border: 1px solid #c4c4c4;
-    --note-border: 1px solid #cacaca;
+    --general-border: 1px solid #cacaca;
     --round: 15px;
   
     // shadows
@@ -36,5 +36,8 @@
     --book-title: #00123F;
     --book-author: #7A7A7A;
     --book-date: #E49A00;
+
+    // button
+    --button-hover: #262A2E;
   }
   

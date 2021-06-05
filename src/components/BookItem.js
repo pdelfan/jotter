@@ -2,14 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "gatsby";
 
-const Book = styled(Link)`
-  transition: 0.2s;
+const Book = styled.div`
+  /* transition: 0.2s; */
   flex: 0 0 17rem;
   margin-bottom: 5rem;
-  img {
+
+  .cover {
     box-shadow: var(--book-shadow);
-    border: var(--book-border);
-    height: 200px;
+    border: var(--general-border);
+    max-height: 200px;
   }
 
   h3 {
@@ -34,26 +35,50 @@ const Book = styled(Link)`
     margin-top: 0;
   }
 
-  &:hover {
+  ${(props) =>
+    props.hover
+      ? `&:hover {
     transform: scale(1.05);
     transition: 0.2s;
-  }
-
+  }`
+      : ""}
 `;
 
 const Info = styled.div`
   max-width: 14rem;
+  word-wrap: break-word;
 `;
 
-export default function BookItem({ cover, title, author, date, url }) {
+const ConditionalLink = ({ children, to, isLink }) =>
+  isLink ? <Link to={to}>{children}</Link> : <>{children}</>;
+
+export default function BookItem({
+  cover,
+  title,
+  author,
+  date,
+  isLink,
+  shouldHover,
+  children,
+}) {
   return (
-    <Book to={url}>
-      <img src={cover} alt='Book cover' />
-      <Info>
-        <h3>{title}</h3>
-        <h4>{author}</h4>
-        <h5>{date}</h5>        
-      </Info>
+    <Book hover={shouldHover}>
+      <ConditionalLink isLink={isLink} to="/library-book">
+        <img src={cover} alt="Book cover" className="cover" />
+        <Info>
+          <h3>{title}</h3>
+          <h4>{author}</h4>
+          <h5>{date}</h5>
+        </Info>
+        {children}
+      </ConditionalLink>
     </Book>
   );
 }
+
+export const BookList = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 5rem;
+`;

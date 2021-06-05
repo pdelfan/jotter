@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Layout from "../components/Layout";
 import JotterLogo from "../assets/jotter-logo.svg";
-import LoadingIcon from "../assets/loading.inline.svg";
-import LoginButton from "../components/LoginButton";
+import LoadingIcon from "../assets/loading.svg";
+import { LoginButton } from "../components/Buttons";
 import { useAuth0 } from "../services/auth";
 import { Heading, SubHeading } from "../components/Headings";
-import BookItem from "../components/BookItem";
+import BookItem, { BookList } from "../components/BookItem";
 import { getLibrary } from "../services/realm/API";
 
 const Wrapper = styled.div`
@@ -23,9 +23,11 @@ const Logo = styled.img`
 
 const Loading = styled.img`
   width: 8rem;
+  margin: 1rem auto 1rem auto;
   -webkit-animation: spin 4s linear infinite;
   -moz-animation: spin 4s linear infinite;
   animation: spin 4s linear infinite;
+  min-height: 60vh;
 `;
 
 const Greeting = styled.h1`
@@ -36,13 +38,6 @@ const Greeting = styled.h1`
   font-weight: 500;
   color: var(--gray);
   text-align: center;
-`;
-
-const BookList = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-top: 5rem;
 `;
 
 const IndexPage = () => {
@@ -72,11 +67,14 @@ const IndexPage = () => {
           {libraryBooks.map((book) => {
             return (
               <BookItem
+                key={book.bookTitle+book.cover}
+                isLink={true}
+                shouldHover={true}
                 cover={book.cover}
                 title={book.bookTitle}
                 author={book.author.join(", ")}
                 date={book.year}
-              ></BookItem>
+              />
             );
           })}
         </BookList>

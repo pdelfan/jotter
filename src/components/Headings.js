@@ -9,6 +9,7 @@ const MainHeader = styled.h1`
 const SubHeader = styled.h2`
     font-weight: 600;   
     margin-top: 0; 
+    margin-bottom: 0;
 `
 
 export function Heading(props) {
