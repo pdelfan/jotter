@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import Layout from "../components/Layout";
 import JotterLogo from "../assets/jotter-logo.svg";
 import LoadingIcon from "../assets/loading.svg";
 import { LoginButton } from "../components/Buttons";
 import { useAuth0 } from "../services/auth";
-import { Heading, SubHeading } from "../components/Headings";
-import BookItem, { BookList } from "../components/BookItem";
-import { getLibrary } from "../services/realm/API";
+import { Router } from "@reach/router";
+import { RedirectToLibrary } from "../components/Routing";
+import Library from "../pages/library";
 
 const Wrapper = styled.div`
   display: flex;
@@ -40,47 +39,10 @@ const Greeting = styled.h1`
   text-align: center;
 `;
 
-const IndexPage = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  const [libraryBooks, setLibraryBooks] = useState([]);
+const Index = () => {
+  const { isAuthenticated, isLoading } = useAuth0();
 
-  useEffect(() => {
-    if (user) {
-      getLibrary(user.nickname)
-        .then((response) => {
-          setLibraryBooks(response);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    }
-  }, [user]);
-
-  if (isAuthenticated && !isLoading) {
-    return (
-      <Layout>
-        <div>
-          <Heading>Library</Heading>
-          <SubHeading>All your books in one place</SubHeading>
-        </div>
-        <BookList>
-          {libraryBooks.map((book) => {
-            return (
-              <BookItem
-                key={book.bookTitle+book.cover}
-                isLink={true}
-                shouldHover={true}
-                cover={book.cover}
-                title={book.bookTitle}
-                author={book.author.join(", ")}
-                date={book.year}
-              />
-            );
-          })}
-        </BookList>
-      </Layout>
-    );
-  } else if (!isAuthenticated && !isLoading) {
+  if (!isAuthenticated && !isLoading) {
     return (
       <Wrapper>
         <Logo src={JotterLogo} alt="Jotter logo" />
@@ -88,13 +50,19 @@ const IndexPage = () => {
         <LoginButton />
       </Wrapper>
     );
-  } else {
+  } else if (isLoading) {
     return (
       <Wrapper>
         <Loading src={LoadingIcon} alt="Loading icon" className="rotating" />
       </Wrapper>
     );
+  } else {
+    return (
+      <Router>
+        <RedirectToLibrary path="/" component={Library} />
+      </Router>
+    );
   }
 };
 
-export default IndexPage;
+export default Index;

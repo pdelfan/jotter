@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "gatsby";
 
 const Book = styled.div`
-  /* transition: 0.2s; */
+  transition: 0.2s;
   flex: 0 0 17rem;
   margin-bottom: 5rem;
 

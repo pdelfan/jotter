@@ -88,7 +88,7 @@ export default function Menu() {
         </DropdownButton>
         <MenuItems>
           <ItemContainer>
-            <Item to="/">
+            <Item to="/library">
               <img src={LibraryIcon} alt="Library icon" />
               Library
             </Item>

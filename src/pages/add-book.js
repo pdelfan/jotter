@@ -9,7 +9,9 @@ import LoadingIcon from "../assets/loading.svg";
 import styled from "styled-components";
 import { addBooktoLibrary } from "../services/realm/API";
 import { useAuth0 } from "../services/auth";
-
+import { Router } from "@reach/router";
+import PrivateRoute from "../components/Routing";
+import Index from "../pages/index";
 
 const TopHeader = styled.div`
   display: flex;
@@ -34,7 +36,7 @@ const Loading = styled.img`
 `;
 
 const AddBook = () => {
-  const { user } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const [books, setBooks] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
@@ -57,69 +59,81 @@ const AddBook = () => {
       })
       .catch((err) => console.log(err.message));
   };
-  return (
-    <Layout>
-      <TopHeader>
-        <div>
-          <Heading>Add Book</Heading>
-          <SubHeading>Find a book and add it to your collection</SubHeading>
-        </div>
-        <SearchBar searchBook={searchBook} handleSearch={handleSearch} />
-      </TopHeader>
-      <BookList>
-        {loading ? (
-          <Loading src={LoadingIcon} alt="Loading icon" className="rotating" />
-        ) : (
-          books.map((book, i) => {
-            let title =
-              book.volumeInfo.title === undefined
-                ? "Unknown Title"
-                : book.volumeInfo.title;
-            let author =
-              book.volumeInfo.authors !== undefined
-                ? book.volumeInfo.authors.join(", ")
-                : "Unknown Author";
+  if (isAuthenticated && !isLoading) {
+    return (
+      <Layout>
+        <TopHeader>
+          <div>
+            <Heading>Add Book</Heading>
+            <SubHeading>Find a book and add it to your collection</SubHeading>
+          </div>
+          <SearchBar searchBook={searchBook} handleSearch={handleSearch} />
+        </TopHeader>
+        <BookList>
+          {loading ? (
+            <Loading
+              src={LoadingIcon}
+              alt="Loading icon"
+              className="rotating"
+            />
+          ) : (
+            books.map((book, i) => {
+              let title =
+                book.volumeInfo.title === undefined
+                  ? "Unknown Title"
+                  : book.volumeInfo.title;
+              let author =
+                book.volumeInfo.authors !== undefined
+                  ? book.volumeInfo.authors.join(", ")
+                  : "Unknown Author";
 
-            let image =
-              book.volumeInfo.imageLinks === undefined
-                ? `${NoCover}`
-                : `${book.volumeInfo.imageLinks.thumbnail}`;
-            let published =
-              book.volumeInfo.publishedDate === undefined
-                ? "Unknown Date"
-                : book.volumeInfo.publishedDate.split("-")[0];
-            let bookID = book.id;
-            return (
-              <BookItem
-                key={i}
-                cover={image}
-                title={title}
-                author={author}
-                date={published}
-              >
-                <BookButtons>
-                  <AddToLibraryButton
-                    handleAddToLibrary={() =>
-                      addBooktoLibrary(
-                        user.nickname,
-                        title,
-                        author,
-                        published,
-                        image,
-                        new Date(),
-                        bookID
-                      )
-                    }
-                  />
-                  <AddToReadButton />
-                </BookButtons>
-              </BookItem>
-            );
-          })
-        )}
-      </BookList>
-    </Layout>
-  );
+              let image =
+                book.volumeInfo.imageLinks === undefined
+                  ? `${NoCover}`
+                  : `${book.volumeInfo.imageLinks.thumbnail}`;
+              let published =
+                book.volumeInfo.publishedDate === undefined
+                  ? "Unknown Date"
+                  : book.volumeInfo.publishedDate.split("-")[0];
+              let bookID = book.id;
+              return (
+                <BookItem
+                  key={i}
+                  cover={image}
+                  title={title}
+                  author={author}
+                  date={published}
+                >
+                  <BookButtons>
+                    <AddToLibraryButton
+                      handleAddToLibrary={() =>
+                        addBooktoLibrary(
+                          user.nickname,
+                          title,
+                          author,
+                          published,
+                          image,
+                          new Date(),
+                          bookID
+                        )
+                      }
+                    />
+                    <AddToReadButton />
+                  </BookButtons>
+                </BookItem>
+              );
+            })
+          )}
+        </BookList>
+      </Layout>
+    );
+  } else {
+    return (
+      <Router>
+        <PrivateRoute path="/add-book" component={Index} />
+      </Router>
+    );
+  }
 };
 
 export default AddBook;

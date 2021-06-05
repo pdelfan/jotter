@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-// import { useAuth0 } from "../services/auth"
 import Menu from "./NavBar/Menu";
 
 const Main = styled.div`
@@ -9,13 +8,7 @@ const Main = styled.div`
   padding: 0 1rem;
 `;
 
-const Layout = ({ children }) => {
-  // const { isLoading } = useAuth0()
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>
-  // }
-
+const Layout = ({ children }) => { 
   return (
     <>
       <Menu />
