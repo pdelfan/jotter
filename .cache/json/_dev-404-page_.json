@@ -1,1 +1,1 @@
-{"data":{"allSiteFunction":{"nodes":[{"apiRoute":"FAKE"}]},"allSitePage":{"nodes":[{"path":"/404/"},{"path":"/add-book/"},{"path":"/"},{"path":"/404.html"},{"path":"/account/"}]}},"pageContext":{}}
+{"data":{"allSiteFunction":{"nodes":[]},"allSitePage":{"nodes":[{"path":"/404.html"},{"path":"/404/"},{"path":"/add-book/"},{"path":"/book/"},{"path":"/"},{"path":"/library/"},{"path":"/to-read/"},{"path":"/account/"}]}},"pageContext":{}}

@@ -72,9 +72,9 @@ const ToReadBtn = styled.button`
   }
 `;
 
-export const AddToReadButton = () => {
+export const AddToReadButton = ({handleAddToToRead}) => {
   return (
-    <ToReadBtn>
+    <ToReadBtn onClick={handleAddToToRead}>
       <AddSign src={PlusIcon} alt="Add icon" />
       To-read
     </ToReadBtn>

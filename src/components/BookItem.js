@@ -38,7 +38,7 @@ const Book = styled.div`
   ${(props) =>
     props.hover
       ? `&:hover {
-    transform: scale(1.05);
+    transform: translateY(-0.5rem);
     transition: 0.2s;
   }`
       : ""}
@@ -49,10 +49,8 @@ const Info = styled.div`
   word-wrap: break-word;
 `;
 
-const ConditionalLink = ({ children, to, isLink }) =>
-  isLink ? <Link to={to}>{children}</Link> : <>{children}</>;
-
 export default function BookItem({
+  isbn,
   cover,
   title,
   author,
@@ -60,10 +58,20 @@ export default function BookItem({
   isLink,
   shouldHover,
   children,
+  to,
 }) {
+  const ConditionalLink = ({ children, to, isLink }) =>
+    isLink ? (
+      <Link to={to} state={{ isbn: isbn }}>
+        {children}
+      </Link>
+    ) : (
+      <>{children}</>
+    );
+
   return (
     <Book hover={shouldHover}>
-      <ConditionalLink isLink={isLink} to="/library-book">
+      <ConditionalLink isLink={isLink} to={to}>
         <img src={cover} alt="Book cover" className="cover" />
         <Info>
           <h3>{title}</h3>

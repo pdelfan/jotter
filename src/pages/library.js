@@ -3,12 +3,13 @@ import styled from "styled-components";
 import Layout from "../components/Layout";
 import LoadingIcon from "../assets/loading.svg";
 import { useAuth0 } from "../services/auth";
-import { Heading, SubHeading } from "../components/Headings";
+import { Heading, SubHeading, TopHeader } from "../components/Headings";
 import BookItem, { BookList } from "../components/BookItem";
 import { getLibrary } from "../services/realm/API";
 import { Router } from "@reach/router";
-import PrivateRoute from "../components/Routing";
-import Index from "../pages/index";
+import { RedirectToLibrary } from "../components/Routing";
+
+//import SearchBar from "../components/SearchBar";
 
 const Wrapper = styled.div`
   display: flex;
@@ -30,6 +31,14 @@ const Loading = styled.img`
 const Library = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [libraryBooks, setLibraryBooks] = useState([]);
+  // const [search, setSearch] = useState("");
+  // const handleSearch = (e) => {
+  //   setSearch(e.target.value);
+  // };
+
+  // const searchBook = (e) => {
+  //   e.preventDefault();
+  // };
 
   useEffect(() => {
     if (user) {
@@ -46,16 +55,45 @@ const Library = () => {
   if (isAuthenticated && !isLoading) {
     return (
       <Layout>
-        <div>
-          <Heading>Library</Heading>
-          <SubHeading>All your books in one place</SubHeading>
-        </div>
+        <TopHeader>
+          <div>
+            <Heading>Library</Heading>
+            <SubHeading>All your books in one place</SubHeading>
+          </div>
+          {/* <SearchBar searchBook={searchBook} handleSearch={handleSearch} /> */}
+        </TopHeader>
         <BookList>
+          {/* {libraryBooks
+            .filter((book) => {
+              if (search === "") {
+                return book;
+              } else if (
+                book.bookTitle.toUpperCase().includes(search.toUpperCase())
+              ) {
+                return book;
+              }
+            })
+            .map((book) => {
+              return (
+                <BookItem
+                  key={book.bookTitle + book.cover}
+                  isLink={true}
+                  to="book"
+                  shouldHover={true}
+                  cover={book.cover}
+                  title={book.bookTitle}
+                  author={book.author.join(", ")}
+                  date={book.year}
+                />
+              );
+            })} */}
           {libraryBooks.map((book) => {
             return (
               <BookItem
                 key={book.bookTitle + book.cover}
                 isLink={true}
+                to="/book/"
+                isbn={book.isbn}
                 shouldHover={true}
                 cover={book.cover}
                 title={book.bookTitle}
@@ -76,7 +114,7 @@ const Library = () => {
   } else {
     return (
       <Router>
-        <PrivateRoute path="/library" component={Index} />
+        <RedirectToLibrary path="/" component={Library} />
       </Router>
     );
   }

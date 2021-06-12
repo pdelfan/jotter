@@ -10,11 +10,11 @@ export const getLibrary = async (username) => {
   }
 };
 
-export const addBooktoLibrary = async (
+export const addBookToLibrary = async (
   username,
   bookTitle,
   author,
-  year,
+  year,  
   cover,
   addDate,
   isbn
@@ -37,3 +37,36 @@ export const addBooktoLibrary = async (
     console.error("error (couldn't add book to library):", error.response);
   }
 };
+
+
+
+
+export const addBookToToRead = async (
+  username,
+  bookTitle,
+  author,
+  year,  
+  cover,
+  addDate,
+  isbn
+) => {
+  try {
+    axios
+      .post(`${baseurl}add-book-to-read`, null, {
+        params: {
+          user: username,
+          title: bookTitle,
+          bookAuthor: author,
+          bookYear: year,
+          bookCover: cover,
+          bookAddedDate: addDate,
+          bookIsbn: isbn,
+        },
+      })
+      .then(console.log("added book to to-read"));
+  } catch (error) {
+    console.error("error (couldn't add book to to-read):", error.response);
+  }
+};
+
+

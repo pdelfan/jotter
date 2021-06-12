@@ -1,6 +1,16 @@
 import React, { useEffect } from "react";
 import { useAuth0 } from "../services/auth";
 import { navigate } from "gatsby";
+import Library from "../pages/library";
+
+// redirect
+
+export const RedirectHome = ({ component: Component, ...rest }) => {
+  navigate("/");
+  return <Library />;
+};
+
+// redirect if user isn't logged in (authenticated)
 
 export const RedirectToLibrary = ({ component: Component, path, ...rest }) => {
   const { loading, isAuthenticated, loginWithRedirect } = useAuth0();

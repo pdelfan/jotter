@@ -12,6 +12,18 @@ const SubHeader = styled.h2`
     margin-bottom: 0;
 `
 
+const Header = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  row-gap: 2rem;
+`;
+
+export function TopHeader(props) {
+    return <Header>{props.children}</Header>
+}
+
 export function Heading(props) {
     return (
        <MainHeader>{props.children}</MainHeader>

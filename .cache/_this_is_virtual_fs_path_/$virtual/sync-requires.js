@@ -8,6 +8,7 @@ exports.components = {
   "component---src-pages-404-js": preferDefault(require("/Users/pouria/Documents/GitHub/jotter/src/pages/404.js")),
   "component---src-pages-account-js": preferDefault(require("/Users/pouria/Documents/GitHub/jotter/src/pages/account.js")),
   "component---src-pages-add-book-js": preferDefault(require("/Users/pouria/Documents/GitHub/jotter/src/pages/add-book.js")),
+  "component---src-pages-book-js": preferDefault(require("/Users/pouria/Documents/GitHub/jotter/src/pages/book.js")),
   "component---src-pages-index-js": preferDefault(require("/Users/pouria/Documents/GitHub/jotter/src/pages/index.js")),
   "component---src-pages-library-js": preferDefault(require("/Users/pouria/Documents/GitHub/jotter/src/pages/library.js")),
   "component---src-pages-to-read-js": preferDefault(require("/Users/pouria/Documents/GitHub/jotter/src/pages/to-read.js"))
