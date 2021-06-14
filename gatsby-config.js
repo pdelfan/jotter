@@ -2,10 +2,12 @@ module.exports = {
   siteMetadata: {
     title: "Jotter",
   },
-  proxy: {
-    prefix: "/",
-    url: "http://localhost:8000",
-  },
+  proxy: [
+    {
+      prefix: "/",
+      url: "http://localhost:8000",
+    },
+  ],
   plugins: [
     `gatsby-plugin-mdx`,
     "gatsby-plugin-sass",
@@ -13,7 +15,7 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`, // Needed for dynamic images 
+    `gatsby-transformer-sharp`, // Needed for dynamic images
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -34,9 +36,9 @@ module.exports = {
       resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
-          include: /\.inline\.svg$/
-        }
-      }
-    }
+          include: /\.inline\.svg$/,
+        },
+      },
+    },
   ],
 };

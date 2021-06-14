@@ -4,7 +4,7 @@ import SearchIcon from "../assets/search.svg";
 
 const SearchArea = styled.div`
   display: flex;
-  justify-content: flex-end;  
+  justify-content: flex-end;
 `;
 
 const Form = styled.form`
@@ -24,6 +24,10 @@ const Input = styled.input`
   color: #949494;
   font-weight: 600;
   font-size: 1.1rem;
+
+  ::placeholder {
+    color: #bebebe;
+  }
 `;
 
 const Button = styled.button`
@@ -47,11 +51,18 @@ const Button = styled.button`
   }
 `;
 
-const SearchBar = ({ searchBook, handleSearch }) => {
+const SearchBar = ({ searchBook, handleSearch, placeholder }) => {
   return (
     <SearchArea>
       <Form onSubmit={searchBook}>
-        <Input type="text" name="" id="" required onChange={handleSearch} />
+        <Input
+          type="text"
+          name=""
+          id=""
+          required
+          onChange={handleSearch}
+          placeholder={placeholder}
+        />
         <Button type="submit">
           <img src={SearchIcon} alt="Search Icon" />
         </Button>

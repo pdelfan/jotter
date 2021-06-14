@@ -7,45 +7,42 @@ import PrivateRoute, { RedirectHome } from "../components/Routing";
 import Index from "../pages/index";
 import { Router } from "@reach/router";
 import styled from "styled-components";
-import striptags from "striptags";
 import CategoryIcon from "../assets/category.svg";
 import AvgRatingIcon from "../assets/rating.svg";
 import NumOfRatingsIcon from "../assets/number_ratings.svg";
 import LanguageIcon from "../assets/language.svg";
 import BarcodeIcon from "../assets/barcode.svg";
 import LengthIcon from "../assets/length.svg";
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 50vh;
-`;
-
-const Loading = styled.img`
-  width: 8rem;
-  margin: 1rem auto 1rem auto;
-  -webkit-animation: spin 4s linear infinite;
-  -moz-animation: spin 4s linear infinite;
-  animation: spin 4s linear infinite;
-  min-height: 50vh;
-`;
+import { Wrapper, Loading } from "../components/Loading";
 
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-top: 3rem;
+  margin-bottom: 5rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
 `;
 
-const Divider = styled.hr`
-  border: 1px solid #404040;
+const SectionTitle = styled.h5`
+  font-size: 1.3rem;
+  text-align: ${(props) => (props.center ? "center" : "")};
+  color: #516079;
+  margin-top: 0;
+  margin-bottom: 1rem;
 `;
 
 const Primary = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  flex-grow: 1;
+  background-color: white;
+  padding: 2rem;
+  border: var(--general-border);
+  border-radius: var(--round);
+  box-shadow: var(--general-shadow);
 `;
 
 const BookInfo = styled.div`
@@ -55,6 +52,7 @@ const Cover = styled.img`
   box-shadow: var(--book-shadow);
   border: var(--general-border);
   max-height: 200px;
+  margin-bottom: 2rem;
 `;
 const MainInfo = styled.div`
   display: flex;
@@ -62,10 +60,10 @@ const MainInfo = styled.div`
   margin-left: 1rem;
 
   h3 {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     font-weight: 600;
     color: var(--book-title);
-    line-height: 1.5rem;
+    line-height: 2rem;
     margin-top: 0.5rem;
     margin-bottom: 0.3rem;
   }
@@ -87,51 +85,79 @@ const MainInfo = styled.div`
 `;
 
 const Description = styled.p`
-  max-width: 50rem;
-  margin-top: 2rem;
+  margin-top: 0rem;
 `;
 
 const Secondary = styled.div`
   display: flex;
   flex: 0.5;
+  flex-grow: 0.7;
 
-  // add media queries
+  background-color: white;
+  padding: 2rem;
+  border: var(--general-border);
+  border-radius: var(--round);
+  box-shadow: var(--general-shadow);
+
+  @media only screen and (max-width: 1200px) {
+    flex: 1;
+    flex-basis: 100%;
+  }
 `;
 
 const Meta = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  flex-wrap: wrap;
   flex: 1;
 `;
 
 const Detail = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: 2rem;
+
+  @media only screen and (max-width: 600px) {
+    flex: 1;
+    flex-basis: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 2rem;
+  }
 
   > div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 12rem;
+    flex-basis: 10rem;
+
+    @media only screen and (max-width: 600px) {
+      flex-basis: 100%;
+    }
   }
 
   img {
-    width: 40px;
+    width: 35px;
   }
 
   h6 {
     font-size: 1rem;
+    font-weight: 600;
     max-width: 10rem;
     margin: 0;
     text-align: center;
+    color: #afafb2;
   }
 
   p {
-    font-size: 0.9rem;
+    font-size: 1rem;
+    font-weight: 500;
     max-width: 12rem;
     text-align: center;
+    margin: 0;
   }
+
+  // add queries
 `;
 
 const BookContainer = ({
@@ -158,39 +184,42 @@ const BookContainer = ({
             <h5>{date}</h5>
           </MainInfo>
         </BookInfo>
-        <Description>{desc}</Description>
+        <SectionTitle>Description</SectionTitle>
+        <Description
+          dangerouslySetInnerHTML={{
+            __html: desc,
+          }}
+        />
       </Primary>
-      <Divider />
       <Secondary>
         <Meta>
+          <SectionTitle center>More Information</SectionTitle>
           <Detail>
             <div>
               <img src={CategoryIcon} alt="Category icon" />
-              <h6>Category</h6>
+              <h6>CATEGORY</h6>
               <p>{category}</p>
             </div>
             <div>
               <img src={LengthIcon} alt="Length icon" />
-              <h6>Length</h6>
-              <p>{length}</p>
+              <h6>LENGTH</h6>
+              <p>{length} pages</p>
             </div>
-          </Detail>
-          <Detail>
             <div>
               <img src={AvgRatingIcon} alt="Average rating icon" />
-              <h6>Google Books Average Rating</h6>
+              <h6>AVERAGE RATING</h6>
               <p>{avgRating}</p>
-            </div>
-            <div>
-              <img src={NumOfRatingsIcon} alt="Number of ratings icon" />
-              <h6>Number of Ratings</h6>
-              <p>{ratings}</p>
             </div>
           </Detail>
           <Detail>
             <div>
+              <img src={NumOfRatingsIcon} alt="Number of ratings icon" />
+              <h6># OF RATINGS</h6>
+              <p>{ratings}</p>
+            </div>
+            <div>
               <img src={LanguageIcon} alt="Language (globe) icon" />
-              <h6>Language</h6>
+              <h6>LANGUAGE</h6>
               <p>{language}</p>
             </div>
             <div>
@@ -256,7 +285,7 @@ const Book = ({ location }) => {
             }
             desc={
               book.volumeInfo.description
-                ? striptags(book.volumeInfo.description)
+                ? book.volumeInfo.description
                 : "No description avaiable for this book."
             }
             category={
@@ -275,7 +304,7 @@ const Book = ({ location }) => {
             ratings={
               book.volumeInfo.ratingsCount
                 ? book.volumeInfo.ratingsCount
-                : "N/A"
+                : "0"
             }
             language={
               book.volumeInfo.language ? book.volumeInfo.language : "N/A"
@@ -283,14 +312,21 @@ const Book = ({ location }) => {
             isbn={book.id ? book.id : "N/A"}
           />
         ) : (
-          <Wrapper>
+          <Wrapper minHeight="50vh">
             <Loading
+              minHeight="30vh"
               src={LoadingIcon}
               alt="Loading icon"
               className="rotating"
             />
           </Wrapper>
         )}
+        <TopHeader>
+          <div>
+            <Heading>Notes</Heading>
+            <SubHeading>All your notes on this book</SubHeading>
+          </div>
+        </TopHeader>
       </Layout>
     );
   } else {

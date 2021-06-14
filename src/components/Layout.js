@@ -5,7 +5,7 @@ import Menu from "./NavBar/Menu";
 const Main = styled.div`
   margin: 0 auto;
   max-width: 90rem;
-  padding: 0 1rem;
+  padding: 0 1rem;  
 `;
 
 const Layout = ({ children }) => { 

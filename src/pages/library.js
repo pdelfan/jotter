@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import Layout from "../components/Layout";
 import LoadingIcon from "../assets/loading.svg";
 import { useAuth0 } from "../services/auth";
@@ -8,29 +7,13 @@ import BookItem, { BookList } from "../components/BookItem";
 import { getLibrary } from "../services/realm/API";
 import { Router } from "@reach/router";
 import { RedirectToLibrary } from "../components/Routing";
-
+import { Wrapper, Loading } from "../components/Loading";
 //import SearchBar from "../components/SearchBar";
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-`;
-
-const Loading = styled.img`
-  width: 8rem;
-  margin: 1rem auto 1rem auto;
-  -webkit-animation: spin 4s linear infinite;
-  -moz-animation: spin 4s linear infinite;
-  animation: spin 4s linear infinite;
-  min-height: 60vh;
-`;
 
 const Library = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [libraryBooks, setLibraryBooks] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
   // const [search, setSearch] = useState("");
   // const handleSearch = (e) => {
   //   setSearch(e.target.value);
@@ -41,10 +24,12 @@ const Library = () => {
   // };
 
   useEffect(() => {
-    if (user) {
+    if (user) {      
+      setIsFetching(true);
       getLibrary(user.nickname)
         .then((response) => {
           setLibraryBooks(response);
+          setIsFetching(false);
         })
         .catch((e) => {
           console.log(e);
@@ -52,7 +37,7 @@ const Library = () => {
     }
   }, [user]);
 
-  if (isAuthenticated && !isLoading) {
+  if (isAuthenticated && !isLoading && !isFetching && libraryBooks) {
     return (
       <Layout>
         <TopHeader>
@@ -63,30 +48,6 @@ const Library = () => {
           {/* <SearchBar searchBook={searchBook} handleSearch={handleSearch} /> */}
         </TopHeader>
         <BookList>
-          {/* {libraryBooks
-            .filter((book) => {
-              if (search === "") {
-                return book;
-              } else if (
-                book.bookTitle.toUpperCase().includes(search.toUpperCase())
-              ) {
-                return book;
-              }
-            })
-            .map((book) => {
-              return (
-                <BookItem
-                  key={book.bookTitle + book.cover}
-                  isLink={true}
-                  to="book"
-                  shouldHover={true}
-                  cover={book.cover}
-                  title={book.bookTitle}
-                  author={book.author.join(", ")}
-                  date={book.year}
-                />
-              );
-            })} */}
           {libraryBooks.map((book) => {
             return (
               <BookItem
@@ -105,10 +66,15 @@ const Library = () => {
         </BookList>
       </Layout>
     );
-  } else if (isLoading) {
+  } else if (isFetching) {
     return (
-      <Wrapper>
-        <Loading src={LoadingIcon} alt="Loading icon" className="rotating" />
+      <Wrapper minHeight="100vh">
+        <Loading
+          minHeight="60vh"
+          src={LoadingIcon}
+          alt="Loading icon"
+          className="rotating"
+        />
       </Wrapper>
     );
   } else {

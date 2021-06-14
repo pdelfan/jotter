@@ -12,19 +12,11 @@ import { useAuth0 } from "../services/auth";
 import { Router } from "@reach/router";
 import PrivateRoute from "../components/Routing";
 import Index from "../pages/index";
+import { Loading } from "../components/Loading";
 
 const BookButtons = styled.div`
   display: flex;
   column-gap: 0.5rem;
-`;
-
-const Loading = styled.img`
-  width: 8rem;
-  margin: 1rem auto 1rem auto;
-  -webkit-animation: spin 4s linear infinite;
-  -moz-animation: spin 4s linear infinite;
-  animation: spin 4s linear infinite;
-  min-height: 60vh;
 `;
 
 const AddBook = () => {
@@ -59,11 +51,16 @@ const AddBook = () => {
             <Heading>Add Book</Heading>
             <SubHeading>Find a book and add it to your collection</SubHeading>
           </div>
-          <SearchBar searchBook={searchBook} handleSearch={handleSearch} />
+          <SearchBar
+            searchBook={searchBook}
+            handleSearch={handleSearch}
+            placeholder="Search for books"
+          />
         </TopHeader>
         <BookList>
           {loading ? (
             <Loading
+              minHeight="60vh"
               src={LoadingIcon}
               alt="Loading icon"
               className="rotating"
