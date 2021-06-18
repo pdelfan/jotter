@@ -7,26 +7,10 @@ import { useAuth0 } from "../services/auth";
 import { Router } from "@reach/router";
 import { RedirectToLibrary } from "../components/Routing";
 import Library from "../pages/library";
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-`;
+import { Wrapper, Loading } from "../components/Loading";
 
 const Logo = styled.img`
   width: 12rem;
-`;
-
-const Loading = styled.img`
-  width: 8rem;
-  margin: 1rem auto 1rem auto;
-  -webkit-animation: spin 4s linear infinite;
-  -moz-animation: spin 4s linear infinite;
-  animation: spin 4s linear infinite;
-  min-height: 60vh;
 `;
 
 const Greeting = styled.h1`
@@ -44,7 +28,7 @@ const Index = () => {
 
   if (!isAuthenticated && !isLoading) {
     return (
-      <Wrapper>
+      <Wrapper minHeight="100vh">
         <Logo src={JotterLogo} alt="Jotter logo" />
         <Greeting>Write and keep notes on your favourite books. </Greeting>
         <LoginButton />
@@ -53,7 +37,12 @@ const Index = () => {
   } else if (isLoading) {
     return (
       <Wrapper>
-        <Loading src={LoadingIcon} alt="Loading icon" className="rotating" />
+        <Loading
+          minHeight="60vh"
+          src={LoadingIcon}
+          alt="Loading icon"
+          className="rotating"
+        />
       </Wrapper>
     );
   } else {

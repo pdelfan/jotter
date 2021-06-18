@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import { useAuth0 } from "../services/auth";
 
 const Account = () => {
@@ -8,7 +8,7 @@ const Account = () => {
     return <div>Loading...</div>;
   }
 
-  return(
+  return (
     <>
       <h1>Your profile</h1>
       <img src={user.picture} alt="Profile" />
@@ -20,7 +20,7 @@ const Account = () => {
         <dd>{user.email}</dd>
       </dl>
     </>
-  )
-}
+  );
+};
 
-export default Account
+export default Account;

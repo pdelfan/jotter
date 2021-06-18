@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import LoadingIcon from "../assets/loading.svg";
 import { useAuth0 } from "../services/auth";
-import { Heading, SubHeading, TopHeader } from "../components/Headings";
-import BookItem, { BookList } from "../components/BookItem";
+import BookItem, { BookList } from "../components/Book";
 import { getLibrary } from "../services/realm/API";
 import { Router } from "@reach/router";
 import { RedirectToLibrary } from "../components/Routing";
@@ -24,12 +23,12 @@ const Library = () => {
   // };
 
   useEffect(() => {
-    if (user) {      
+    if (user) {
       setIsFetching(true);
       getLibrary(user.nickname)
         .then((response) => {
           setLibraryBooks(response);
-          setIsFetching(false);
+          setIsFetching(false);          
         })
         .catch((e) => {
           console.log(e);
@@ -39,14 +38,7 @@ const Library = () => {
 
   if (isAuthenticated && !isLoading && !isFetching && libraryBooks) {
     return (
-      <Layout>
-        <TopHeader>
-          <div>
-            <Heading>Library</Heading>
-            <SubHeading>All your books in one place</SubHeading>
-          </div>
-          {/* <SearchBar searchBook={searchBook} handleSearch={handleSearch} /> */}
-        </TopHeader>
+      <Layout heading="Library" subheading="All your books in one place">
         <BookList>
           {libraryBooks.map((book) => {
             return (

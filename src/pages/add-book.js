@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Layout from "../components/Layout";
 import { Heading, SubHeading, TopHeader } from "../components/Headings";
 import SearchBar from "../components/SearchBar";
-import BookItem, { BookList } from "../components/BookItem";
+import BookItem, { BookList } from "../components/Book";
 import { AddToLibraryButton, AddToReadButton } from "../components/Buttons";
 import NoCover from "../assets/noCover.png";
 import LoadingIcon from "../assets/loading.svg";
@@ -13,6 +13,7 @@ import { Router } from "@reach/router";
 import PrivateRoute from "../components/Routing";
 import Index from "../pages/index";
 import { Loading } from "../components/Loading";
+import { searchGoogleBooks } from "../services/googleBooks";
 
 const BookButtons = styled.div`
   display: flex;
@@ -28,11 +29,9 @@ const AddBook = () => {
     setSearch(e.target.value);
   };
   const searchBook = (e) => {
-    setLoading(true);
     e.preventDefault();
-    fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=20`
-    )
+    setLoading(true);
+    searchGoogleBooks(search)
       .then((res) => {
         return res.json();
       })
@@ -79,7 +78,7 @@ const AddBook = () => {
               let image =
                 book.volumeInfo.imageLinks === undefined
                   ? `${NoCover}`
-                  : `${book.volumeInfo.imageLinks.thumbnail}`;
+                  : book.volumeInfo.imageLinks.thumbnail;
               let published =
                 book.volumeInfo.publishedDate === undefined
                   ? "Unknown Date"

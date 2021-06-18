@@ -14,7 +14,7 @@ export const addBookToLibrary = async (
   username,
   bookTitle,
   author,
-  year,  
+  year,
   cover,
   addDate,
   isbn
@@ -38,14 +38,11 @@ export const addBookToLibrary = async (
   }
 };
 
-
-
-
 export const addBookToToRead = async (
   username,
   bookTitle,
   author,
-  year,  
+  year,
   cover,
   addDate,
   isbn
@@ -68,5 +65,3 @@ export const addBookToToRead = async (
     console.error("error (couldn't add book to to-read):", error.response);
   }
 };
-
-

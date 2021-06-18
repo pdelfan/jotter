@@ -6,15 +6,12 @@ html {
   font-size: 1rem;
 }
 
-
 a {
   text-decoration: none;
 }
 
 body {
-  // max-width: 90rem;
   margin: 0 auto;
-  // padding: 0 1rem;
 }
 
 * :focus {
@@ -97,7 +94,7 @@ h2 {
   height: 40px;
   display: flex;
   align-items: center;
-  border-radius: 10px;  
+  border-radius: 10px;
   padding: 0.5rem;
 }
 
