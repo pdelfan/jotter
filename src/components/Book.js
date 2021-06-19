@@ -220,9 +220,9 @@ const Detail = styled.div`
 
   @media only screen and (max-width: 600px) {
     flex: 1;
-    flex-basis: 100%;
+    flex-basis: 100%;    
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: center;    
     row-gap: 2rem;
   }
 

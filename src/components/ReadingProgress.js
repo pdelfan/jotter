@@ -28,16 +28,22 @@ const Title = styled.h5`
 
 const ProgressBar = styled.progress`
   appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   overflow: hidden;
   border-radius: var(--round);
   height: 0.7rem;
   width: 100%;
-  &::-webkit-progress-bar,
-  ::-webkit-progress-bar {
+  background-color: #c4f1d8;  // firefox
+  &::-webkit-progress-bar {
     background-color: #c4f1d8;
   }
 
   &::-webkit-progress-value {
+    background-color: #3aae5b;
+  }
+
+  &::-moz-progress-bar {
     background-color: #3aae5b;
   }
 `;
