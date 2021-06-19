@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "gatsby";
 import CategoryIcon from "../assets/category.svg";
@@ -7,6 +7,8 @@ import NumOfRatingsIcon from "../assets/number_ratings.svg";
 import LanguageIcon from "../assets/language.svg";
 import BarcodeIcon from "../assets/barcode.svg";
 import LengthIcon from "../assets/length.svg";
+import { ShowButton } from "./Buttons";
+import ReadingProgress from "./ReadingProgress";
 
 // individual book item (for lists)
 
@@ -72,12 +74,13 @@ export default function BookItem({
   date,
   isLink,
   shouldHover,
+  percentageRead,
   children,
   to,
 }) {
   const ConditionalLink = ({ children, to, isLink }) =>
     isLink ? (
-      <BookLink to={to} state={{ isbn: isbn }}>
+      <BookLink to={to} state={{ isbn: isbn, percentageRead: percentageRead }}>
         {children}
       </BookLink>
     ) : (
@@ -132,7 +135,7 @@ const Primary = styled.div`
   flex: 1;
   flex-grow: 1;
   background-color: white;
-  padding: 2rem;
+  padding: 1.8rem;
   border: var(--general-border);
   border-radius: var(--round);
   box-shadow: var(--general-shadow);
@@ -140,6 +143,8 @@ const Primary = styled.div`
 
 const BookInfo = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  column-gap: 1.5rem;
 `;
 const Cover = styled.img`
   box-shadow: var(--book-shadow);
@@ -150,8 +155,7 @@ const Cover = styled.img`
 `;
 const MainInfo = styled.div`
   display: flex;
-  flex-direction: column;
-  margin-left: 1rem;
+  flex-direction: column;  
 
   h3 {
     font-size: 1.8rem;
@@ -178,20 +182,18 @@ const MainInfo = styled.div`
   }
 `;
 
-const Description = styled.p`
-  margin-top: 0rem;
+const Description = styled.div`
+  p {
+    margin-top: 0rem;
+  }
 `;
 
 const Secondary = styled.div`
   display: flex;
+  flex-direction: column;
   flex: 0.5;
   flex-grow: 0.7;
-
-  background-color: white;
-  padding: 2rem;
-  border: var(--general-border);
-  border-radius: var(--round);
-  box-shadow: var(--general-shadow);
+  row-gap: 2rem;
 
   @media only screen and (max-width: 1200px) {
     flex: 1;
@@ -204,6 +206,11 @@ const Meta = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   flex: 1;
+  background-color: white;
+  padding: 1.8rem;
+  border: var(--general-border);
+  border-radius: var(--round);
+  box-shadow: var(--general-shadow);
 `;
 
 const Detail = styled.div`
@@ -263,8 +270,47 @@ export const BookContainer = ({
   avgRating,
   ratings,
   language,
-  isbn,
+  isbn,  
+  percentageRead,
 }) => {
+  const [showMore, setShowMore] = useState(false);
+  const getText = (text, wordLimit) => {
+    if (text.length <= wordLimit)
+      return (
+        <p
+          dangerouslySetInnerHTML={{
+            __html: text,
+          }}
+        />
+      );
+    if (text.length > wordLimit && showMore) {
+      return (
+        <>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: text,
+            }}
+          />
+
+          <ShowButton onClick={() => setShowMore(false)}>Show Less</ShowButton>
+        </>
+      );
+    }
+    if (text.length > wordLimit) {
+      return (
+        <>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: text.slice(0, wordLimit) + "...",
+            }}
+          />
+
+          <ShowButton onClick={() => setShowMore(true)}>Show more</ShowButton>
+        </>
+      );
+    }
+  };
+
   return (
     <Container>
       <Primary>
@@ -277,12 +323,9 @@ export const BookContainer = ({
           </MainInfo>
         </BookInfo>
         <SectionTitle>Description</SectionTitle>
-        <Description
-          dangerouslySetInnerHTML={{
-            __html: desc,
-          }}
-        />
+        <Description>{getText(desc, 500)}</Description>
       </Primary>
+
       <Secondary>
         <Meta>
           <SectionTitle center>More Information</SectionTitle>
@@ -321,6 +364,7 @@ export const BookContainer = ({
             </div>
           </Detail>
         </Meta>
+        <ReadingProgress percentage={percentageRead} />
       </Secondary>
     </Container>
   );

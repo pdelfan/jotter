@@ -15,7 +15,7 @@ import { Link } from "gatsby"
 const Header = styled.header`
   margin: auto;
   background-color: white;
-  box-shadow: 0px 0px 80px -27px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 80px -20px rgba(0, 0, 0, 0.25);
 `;
 
 const Navbar = styled.nav`

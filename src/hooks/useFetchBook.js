@@ -31,7 +31,7 @@ const validate = (res) => {
     : "Author not available";
 
   book.date = res.volumeInfo.publishedDate
-    ? res.volumeInfo.publishedDate
+    ? res.volumeInfo.publishedDate.split("-")[0]
     : "Date not available";
 
   book.desc = res.volumeInfo.description

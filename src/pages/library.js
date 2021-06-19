@@ -28,7 +28,7 @@ const Library = () => {
       getLibrary(user.nickname)
         .then((response) => {
           setLibraryBooks(response);
-          setIsFetching(false);          
+          setIsFetching(false);               
         })
         .catch((e) => {
           console.log(e);
@@ -52,6 +52,7 @@ const Library = () => {
                 title={book.bookTitle}
                 author={book.author.join(", ")}
                 date={book.year}
+                percentageRead={book.percentageRead}
               />
             );
           })}

@@ -7,13 +7,13 @@ import PlusIcon from "../assets/plus.svg";
 const LoginBtn = styled.button`
   padding: 0.8rem 2rem;
   border-radius: 2rem;
-  background-color: ${(props) => (props.logOut ? `var(--red)` : "#1BD692")};
+  background-color: #1BD692;
   color: white;
   font-size: 1rem;
   font-weight: 600;
 
   &:hover {
-    background-color: ${(props) => (props.logOut ? `var(--red)` : "#1acf8d")};
+    background-color: #1acf8d;
   }
 `;
 
@@ -37,7 +37,7 @@ const AddBtn = styled.button`
   justify-content: space-between;
   column-gap: 0.3rem;
   padding: 0.4rem 0.7rem;
-  border-radius: 2rem;
+  border-radius: 0.9rem;
   background-color: var(--mid-gray);
   color: white;
   font-size: 0.9rem;
@@ -47,7 +47,7 @@ const AddBtn = styled.button`
   }
 `;
 
-export const AddToLibraryButton = ({handleAddToLibrary}) => {
+export const AddToLibraryButton = ({ handleAddToLibrary }) => {
   return (
     <AddBtn onClick={handleAddToLibrary}>
       <AddSign src={PlusIcon} alt="Add icon" />
@@ -62,7 +62,7 @@ const ToReadBtn = styled.button`
   justify-content: space-between;
   column-gap: 0.3rem;
   padding: 0.4rem 0.7rem;
-  border-radius: 2rem;
+  border-radius: 0.9rem;
   background-color: var(--purple);
   color: white;
   font-size: 0.9rem;
@@ -72,7 +72,7 @@ const ToReadBtn = styled.button`
   }
 `;
 
-export const AddToReadButton = ({handleAddToToRead}) => {
+export const AddToReadButton = ({ handleAddToToRead }) => {
   return (
     <ToReadBtn onClick={handleAddToToRead}>
       <AddSign src={PlusIcon} alt="Add icon" />
@@ -80,3 +80,34 @@ export const AddToReadButton = ({handleAddToToRead}) => {
     </ToReadBtn>
   );
 };
+
+export const ShowButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 0.3rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.9rem;
+  background-color: #edf2f7;
+  color: black;
+  font-weight: 600;
+  font-size: 0.9rem;
+
+  &:hover {
+    background-color: var(--button-hover);
+    color: white;
+  }
+`;
+
+export const UpdateButton = styled.button`
+  background-color: #e9edf1;
+  color: #5a5c62;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.9rem;
+
+  &:hover {
+    background-color: #d6dce0;
+  }
+`;

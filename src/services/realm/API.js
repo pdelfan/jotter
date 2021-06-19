@@ -38,6 +38,15 @@ export const addBookToLibrary = async (
   }
 };
 
+export const getToRead = async (username) => {
+  try {
+    const books = await axios.get(`${baseurl}to-read?user=${username}`);
+    return books.data[0].toRead;
+  } catch (error) {
+    console.error("getToRead error:", error);
+  }
+};
+
 export const addBookToToRead = async (
   username,
   bookTitle,
