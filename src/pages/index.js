@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import JotterLogo from "../assets/jotter-logo.svg";
 import LoadingIcon from "../assets/loading.svg";
-import { LoginButton } from "../components/Buttons";
+import LoginButton from "../components/Buttons/LoginButton";
 import { useAuth0 } from "../services/auth";
 import { Router } from "@reach/router";
 import { RedirectToLibrary } from "../components/Routing";

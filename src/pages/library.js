@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import LoadingIcon from "../assets/loading.svg";
 import { useAuth0 } from "../services/auth";
-import BookItem, { BookList } from "../components/Book";
+import BookItem, { BookList } from "../components/Books/LibraryBook";
 import { getLibrary } from "../services/realm/API";
 import { Router } from "@reach/router";
 import { RedirectToLibrary } from "../components/Routing";

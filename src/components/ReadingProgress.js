@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { UpdateButton } from "./Buttons";
+import UpdateButton from "./Buttons/UpdateButton";
 
 const Container = styled.div`
   display: flex;
@@ -34,7 +34,7 @@ const ProgressBar = styled.progress`
   border-radius: var(--round);
   height: 0.7rem;
   width: 100%;
-  background-color: #c4f1d8;  // firefox
+  background-color: #c4f1d8; // firefox
   &::-webkit-progress-bar {
     background-color: #c4f1d8;
   }

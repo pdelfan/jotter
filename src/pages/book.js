@@ -6,7 +6,7 @@ import LoadingIcon from "../assets/loading.svg";
 import PrivateRoute, { RedirectHome } from "../components/Routing";
 import Index from "../pages/index";
 import { Router } from "@reach/router";
-import { BookContainer } from "../components/Book";
+import { BookContainer } from "../components/Books/BookPage";
 import { Wrapper, Loading } from "../components/Loading";
 import useFetchGoogleBook from "../hooks/useFetchBook";
 
