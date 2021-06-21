@@ -9,6 +9,7 @@ import { RedirectToLibrary } from "../components/Routing";
 import { Wrapper, Loading } from "../components/Loading";
 //import SearchBar from "../components/SearchBar";
 
+
 const Library = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [libraryBooks, setLibraryBooks] = useState([]);
@@ -28,7 +29,7 @@ const Library = () => {
       getLibrary(user.nickname)
         .then((response) => {
           setLibraryBooks(response);
-          setIsFetching(false);               
+          setIsFetching(false);                
         })
         .catch((e) => {
           console.log(e);
@@ -38,7 +39,7 @@ const Library = () => {
 
   if (isAuthenticated && !isLoading && !isFetching && libraryBooks) {
     return (
-      <Layout heading="Library" subheading="All your books in one place">
+      <Layout heading="Library" subheading="All your books in one place">      
         <BookList>
           {libraryBooks.map((book) => {
             return (
