@@ -165,6 +165,8 @@ export const BookContainer = ({
   language,
   isbn,
   percentageRead,
+  handleSubmit,
+  onChange,
 }) => {
   const [showMore, setShowMore] = useState(false);
   const getText = (text, wordLimit) => {
@@ -255,7 +257,11 @@ export const BookContainer = ({
             </div>
           </Detail>
         </Meta>
-        <ReadingProgress percentage={percentageRead} />
+        <ReadingProgress
+          percentage={percentageRead}   
+          handleSubmit={handleSubmit}    
+          onChange={onChange}
+        />
       </Secondary>
     </Container>
   );

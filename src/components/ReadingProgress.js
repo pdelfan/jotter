@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import UpdateButton from "./Buttons/UpdateButton";
+import SubmitButton from "./Buttons/UpdatePercentageReadButton";
 
 const Container = styled.div`
   display: flex;
@@ -97,12 +98,15 @@ const fadeOut = keyframes`
 const Input = styled.input`
   border-radius: 10rem;
   border: var(--general-border);
-
+  font-weight: 600;
+  font-size: 1rem;
   text-align: center;
   width: 5rem;
+  color: gray;
 
   ::placeholder {
     text-align: center;
+    color: darkgray;
   }
 `;
 
@@ -110,30 +114,17 @@ const Label = styled.label`
   align-self: center;
   margin-left: 0.3rem;
   margin-right: 1rem;
-  color: gray;
-`;
-
-const SubmitButton = styled.button`
-  background-color: #3aae5b;
-  color: white;
+  color: #949494;
   font-weight: 600;
-  font-size: 1rem;
-  padding: 0.4rem 0.7rem;
-  margin-left: 1rem;
-  border-radius: 0.9rem;
-
-  &:hover {
-    background-color: #37a556;
-  }
 `;
 
-const ReadingProgress = ({ percentage }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const ReadingProgress = ({ percentage, handleSubmit, onChange }) => {
+  const [isOpen, setIsOpen] = useState(false);  
   const outside = useRef();
 
   useEffect(() => {
     const handleClick = (e) => {
-      if (!outside.current.contains(e.target)) {
+      if (!outside?.current?.contains(e.target)) {
         setIsOpen(false);
       }
     };
@@ -150,20 +141,22 @@ const ReadingProgress = ({ percentage }) => {
     }
   }
   return (
-    <div>
+    <div ref={outside}>
       <Container>
         <Info>
           <Title>Reading Progress</Title>
           <ProgressBar value={percentage} max="100" />
           <Description>{handlePercentage(percentage)}</Description>
         </Info>
-        <UpdateButton onClick={() => setIsOpen(!isOpen)} ref={outside}>
-          Update
-        </UpdateButton>
+        <UpdateButton onClick={() => setIsOpen(!isOpen)}>Update</UpdateButton>
       </Container>
       <Modal out={!isOpen}>
-        <Input placeholder={percentage} /> <Label>%</Label>
-        <SubmitButton>Submit</SubmitButton>
+        <Input
+          placeholder={percentage}
+          onChange={onChange}
+        />
+        <Label>%</Label>
+        <SubmitButton handleSubmit={handleSubmit}>Submit</SubmitButton>
       </Modal>
     </div>
   );

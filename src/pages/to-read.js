@@ -36,8 +36,6 @@ export default function ToRead() {
             return (
               <BookItem
                 key={book.bookTitle + book.cover}
-                isLink={true}
-                to="/book/"
                 isbn={book.isbn}
                 shouldHover={true}
                 cover={book.cover}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../components/Layout";
 import { Heading, SubHeading, TopHeader } from "../components/Headings";
 import { useAuth0 } from "../services/auth";
@@ -9,12 +9,14 @@ import { Router } from "@reach/router";
 import { BookContainer } from "../components/Books/BookPage";
 import { Wrapper, Loading } from "../components/Loading";
 import useFetchGoogleBook from "../hooks/useFetchBook";
+import { updatePercentageRead } from "../services/realm/API";
 
 const Book = ({ location }) => {
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated, isLoading, user } = useAuth0();
   const isbn = location.state ? location.state.isbn : "";
   const progress = location.state ? location.state.percentageRead : 0;
   const { data: book, hasFetched } = useFetchGoogleBook(isbn);
+  const [inputValue, setInputValue] = useState(progress);
 
   if (location.state === null) {
     return <RedirectHome />;
@@ -35,6 +37,13 @@ const Book = ({ location }) => {
             language={book.language}
             isbn={book.isbn}
             percentageRead={progress}
+            onChange={(e) => {
+              setInputValue(e.target.value);
+            }}
+            handleSubmit={(e) => {
+              e.preventDefault();
+              updatePercentageRead(user.nickname, book.isbn, inputValue);
+            }}
           />
         ) : (
           <Wrapper minHeight="50vh">

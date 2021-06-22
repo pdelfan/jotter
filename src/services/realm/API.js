@@ -74,3 +74,24 @@ export const addBookToToRead = async (
     console.error("error (couldn't add book to to-read):", error.response);
   }
 };
+
+
+export const updatePercentageRead = async (
+  username,
+  isbn,
+  readPercentage
+) => {
+  try {
+    axios
+      .post(`${baseurl}update-reading`, null, {
+        params: {
+          user: username,
+          bookID: isbn,
+          percentageRead: readPercentage,
+        },
+      })
+      .then(console.log("Updated percentage read with the value: ", readPercentage));
+  } catch (error) {
+    console.error("error (Couldn't update percentage read):", error.response);
+  }
+};
