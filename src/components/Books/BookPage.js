@@ -9,8 +9,6 @@ import LengthIcon from "../../assets/length.svg";
 import ShowButton from "../Buttons/ShowButton";
 import ReadingProgress from "../ReadingProgress";
 
-// dedicated book page (item + info + container)
-
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;

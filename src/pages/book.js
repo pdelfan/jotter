@@ -12,10 +12,8 @@ import useFetchGoogleBook from "../hooks/useFetchBook";
 
 const Book = ({ location }) => {
   const { isAuthenticated, isLoading } = useAuth0();
-  const isbn = location.state.isbn ? location.state.isbn : "";
-  const progress = location.state.percentageRead
-    ? location.state.percentageRead
-    : 0;
+  const isbn = location.state ? location.state.isbn : "";
+  const progress = location.state ? location.state.percentageRead : 0;
   const { data: book, hasFetched } = useFetchGoogleBook(isbn);
 
   if (location.state === null) {

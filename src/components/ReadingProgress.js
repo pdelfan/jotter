@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import UpdateButton from "./Buttons/UpdateButton";
 
@@ -129,6 +129,16 @@ const SubmitButton = styled.button`
 
 const ReadingProgress = ({ percentage }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const outside = useRef();
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (!outside.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClick);
+  }, [outside]);
 
   function handlePercentage(percentage) {
     if (percentage === "0") {
@@ -147,7 +157,9 @@ const ReadingProgress = ({ percentage }) => {
           <ProgressBar value={percentage} max="100" />
           <Description>{handlePercentage(percentage)}</Description>
         </Info>
-        <UpdateButton onClick={() => setIsOpen(!isOpen)}>Update</UpdateButton>
+        <UpdateButton onClick={() => setIsOpen(!isOpen)} ref={outside}>
+          Update
+        </UpdateButton>
       </Container>
       <Modal out={!isOpen}>
         <Input placeholder={percentage} /> <Label>%</Label>
