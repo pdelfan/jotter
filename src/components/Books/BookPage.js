@@ -6,7 +6,6 @@ import NumOfRatingsIcon from "../../assets/number_ratings.svg";
 import LanguageIcon from "../../assets/language.svg";
 import BarcodeIcon from "../../assets/barcode.svg";
 import LengthIcon from "../../assets/length.svg";
-import ShowButton from "../Buttons/ShowButton";
 import ReadingProgress from "../ReadingProgress";
 
 const Container = styled.div`
@@ -116,7 +115,7 @@ const Detail = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 2rem;
+  margin-top: 1rem;
   row-gap: 2rem;
 
   @media only screen and (max-width: 413px) {
@@ -149,6 +148,24 @@ const Detail = styled.div`
     max-width: 12rem;
     text-align: center;
     margin: 0;
+  }
+`;
+
+const ShowButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 0.3rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.9rem;
+  background-color: #edf2f7;
+  color: black;
+  font-weight: 600;
+  font-size: 0.9rem;
+
+  &:hover {
+    background-color: var(--button-hover);
+    color: white;
   }
 `;
 
@@ -252,14 +269,14 @@ export const BookContainer = ({
             </div>
             <div>
               <img src={BarcodeIcon} alt="Barcode icon" />
-              <h6>ISBN</h6>
+              <h6>Identifier</h6>
               <p>{isbn}</p>
             </div>
           </Detail>
         </Meta>
         <ReadingProgress
-          percentage={percentageRead}   
-          handleSubmit={handleSubmit}    
+          percentage={percentageRead}
+          handleSubmit={handleSubmit}
           onChange={onChange}
         />
       </Secondary>

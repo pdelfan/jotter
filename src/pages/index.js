@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import JotterLogo from "../assets/jotter-logo.svg";
 import LoadingIcon from "../assets/loading.svg";
-import LoginButton from "../components/Buttons/LoginButton";
 import { useAuth0 } from "../services/auth";
+import Login from "../services/realm/userAuth";
 import { Router } from "@reach/router";
 import { RedirectToLibrary } from "../components/Routing";
 import Library from "../pages/library";
@@ -22,6 +22,29 @@ const Greeting = styled.h1`
   color: var(--gray);
   text-align: center;
 `;
+
+const LoginBtn = styled.button`
+  padding: 0.8rem 2rem;
+  border-radius: 2rem;
+  background-color: #1bd692;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+
+  &:hover {
+    background-color: #1acf8d;
+  }
+`;
+
+const LoginButton = () => {
+  const { loginWithRedirect } = useAuth0();
+  const handleSignIn = () => {
+    loginWithRedirect({});
+    Login();
+  };
+
+  return <LoginBtn onClick={() => handleSignIn()}>Sign in</LoginBtn>;
+};
 
 const Index = () => {
   const { isAuthenticated, isLoading } = useAuth0();

@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import UpdateButton from "./Buttons/UpdateButton";
-import SubmitButton from "./Buttons/UpdatePercentageReadButton";
 
 const Container = styled.div`
   display: flex;
@@ -118,8 +116,35 @@ const Label = styled.label`
   font-weight: 600;
 `;
 
+const UpdateButton = styled.button`
+  background-color: #e9edf1;
+  color: #5a5c62;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.9rem;
+
+  &:hover {
+    background-color: #d6dce0;
+  }
+`;
+
+const Submit = styled.button`
+  background-color: #3aae5b;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.4rem 0.7rem;
+  margin-left: 1rem;
+  border-radius: 0.9rem;
+
+  &:hover {
+    background-color: #37a556;
+  }
+`;
+
 const ReadingProgress = ({ percentage, handleSubmit, onChange }) => {
-  const [isOpen, setIsOpen] = useState(false);  
+  const [isOpen, setIsOpen] = useState(false);
   const outside = useRef();
 
   useEffect(() => {
@@ -151,12 +176,9 @@ const ReadingProgress = ({ percentage, handleSubmit, onChange }) => {
         <UpdateButton onClick={() => setIsOpen(!isOpen)}>Update</UpdateButton>
       </Container>
       <Modal out={!isOpen}>
-        <Input
-          placeholder={percentage}
-          onChange={onChange}
-        />
+        <Input placeholder={percentage} onChange={onChange} />
         <Label>%</Label>
-        <SubmitButton handleSubmit={handleSubmit}>Submit</SubmitButton>
+        <Submit onClick={handleSubmit}>Submit</Submit>
       </Modal>
     </div>
   );
