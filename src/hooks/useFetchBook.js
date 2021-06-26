@@ -27,7 +27,7 @@ const validate = (res) => {
     : "Title not Avaialble";
 
   book.author = res.volumeInfo.authors
-    ? res.volumeInfo.authors
+    ? res.volumeInfo.authors.join(", ")
     : "Author not available";
 
   book.date = res.volumeInfo.publishedDate
@@ -66,21 +66,20 @@ const useFetchGoogleBook = (id) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    setHasFetched(false);
-    fetchGoogleBooks(id)
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setData(validate(res));
-        console.log(data);
+    const fetchData = async () => {
+      setHasFetched(false);
+      try {
+        let result = await fetchGoogleBooks(id);
+        let book = await result.json();
+        setData(validate(book));
         setHasFetched(true);
-      })
-      .catch((err) => {
-        console.log(err.message);
-        setError(err.message);
-      });
-  }, [id, data]);
+      } catch (error) {
+        setError(error);
+      }
+    };
+
+    fetchData();
+  }, [id]);
 
   return { data, hasFetched, error };
 };

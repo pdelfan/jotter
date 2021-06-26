@@ -95,3 +95,13 @@ export const updatePercentageRead = async (
     console.error("error (Couldn't update percentage read):", error.response);
   }
 };
+
+
+export const getPercentageRead = async (username, isbn) => {
+  try {
+    const percentageRead = await axios.get(`${baseurl}percentageRead?user=${username}&bookID=${isbn}`);
+    return percentageRead.data;
+  } catch (error) {
+    console.error("getToRead error:", error);
+  }
+};

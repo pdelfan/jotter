@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Layout from "../components/Layout";
 import { Heading, SubHeading, TopHeader } from "../components/Headings";
 import { useAuth0 } from "../services/auth";
@@ -9,21 +9,21 @@ import { Router } from "@reach/router";
 import { BookContainer } from "../components/Books/BookPage";
 import { Wrapper, Loading } from "../components/Loading";
 import useFetchGoogleBook from "../hooks/useFetchBook";
-import { updatePercentageRead } from "../services/realm/API";
+import useFetchPercentageRead from "../hooks/useFetchPercentageRead";
 
 const Book = ({ location }) => {
   const { isAuthenticated, isLoading, user } = useAuth0();
   const isbn = location.state ? location.state.isbn : "";
-  const progress = location.state ? location.state.percentageRead : 0;
-  const { data: book, hasFetched } = useFetchGoogleBook(isbn);
-  const [inputValue, setInputValue] = useState(progress);
+  const { data: book, hasFetched: hasFetchedBook } = useFetchGoogleBook(isbn);
+  const { data: read, hasFetched: fetchedPercentageRead } =
+    useFetchPercentageRead(user, isbn);
 
   if (location.state === null) {
     return <RedirectHome />;
   } else if (isAuthenticated && !isLoading && isbn !== null) {
     return (
       <Layout heading="Book" subheading="In your library">
-        {hasFetched ? (
+        {hasFetchedBook && fetchedPercentageRead && (
           <BookContainer
             cover={book.cover}
             title={book.title}
@@ -36,16 +36,11 @@ const Book = ({ location }) => {
             ratings={book.ratings}
             language={book.language}
             isbn={book.isbn}
-            percentageRead={progress}
-            onChange={(e) => {
-              setInputValue(e.target.value);
-            }}
-            handleSubmit={(e) => {
-              e.preventDefault();
-              updatePercentageRead(user.nickname, book.isbn, inputValue);
-            }}
+            percentageRead={read}
+            user={user.nickname}
           />
-        ) : (
+        )}
+        {!hasFetchedBook && (
           <Wrapper minHeight="50vh">
             <Loading
               minHeight="30vh"

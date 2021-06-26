@@ -28,36 +28,37 @@ export default function ToRead() {
     }
   }, [user]);
 
-  if (isAuthenticated && !isLoading && !isFetching && libraryBooks) {
+  if (isAuthenticated && !isLoading) {
     return (
       <Layout heading="To-read" subheading="The books you want to read later">
-        <BookList>
-          {libraryBooks.map((book) => {
-            return (
-              <BookItem
-                key={book.bookTitle + book.cover}
-                isbn={book.isbn}
-                shouldHover={true}
-                cover={book.cover}
-                title={book.bookTitle}
-                author={book.author.join(", ")}
-                date={book.year}
-              />
-            );
-          })}
-        </BookList>
+        {libraryBooks && (
+          <BookList>
+            {libraryBooks.map((book) => {
+              return (
+                <BookItem
+                  key={book.bookTitle + book.cover}
+                  isbn={book.isbn}
+                  shouldHover={true}
+                  cover={book.cover}
+                  title={book.bookTitle}
+                  author={book.author.join(", ")}
+                  date={book.year}
+                />
+              );
+            })}
+          </BookList>
+        )}
+        {isFetching && (
+          <Wrapper minHeight="50vh">
+            <Loading
+              minHeight="60vh"
+              src={LoadingIcon}
+              alt="Loading icon"
+              className="rotating"
+            />
+          </Wrapper>
+        )}
       </Layout>
-    );
-  } else if (isFetching) {
-    return (
-      <Wrapper minHeight="100vh">
-        <Loading
-          minHeight="60vh"
-          src={LoadingIcon}
-          alt="Loading icon"
-          className="rotating"
-        />
-      </Wrapper>
     );
   } else {
     return (

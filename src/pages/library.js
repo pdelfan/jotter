@@ -7,20 +7,11 @@ import { getLibrary } from "../services/realm/API";
 import { Router } from "@reach/router";
 import { RedirectToLibrary } from "../components/Routing";
 import { Wrapper, Loading } from "../components/Loading";
-//import SearchBar from "../components/SearchBar";
 
 const Library = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [libraryBooks, setLibraryBooks] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
-  // const [search, setSearch] = useState("");
-  // const handleSearch = (e) => {
-  //   setSearch(e.target.value);
-  // };
-
-  // const searchBook = (e) => {
-  //   e.preventDefault();
-  // };
 
   useEffect(() => {
     if (user) {

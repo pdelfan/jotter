@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
+import { updatePercentageRead } from "../services/realm/API";
 
 const Container = styled.div`
   display: flex;
@@ -56,8 +57,7 @@ const Description = styled.p`
 const Modal = styled.div`
   display: flex;
   justify-content: space-between;
-  position: absolute;
-  right: 1rem;
+  float: right;
   background-color: white;
   padding: 0.8rem 1.8rem;
   margin-top: 0.5rem;
@@ -143,26 +143,39 @@ const Submit = styled.button`
   }
 `;
 
-const ReadingProgress = ({ percentage, handleSubmit, onChange }) => {
+const ReadingProgress = ({ percentage, user, isbn }) => {
   const [isOpen, setIsOpen] = useState(false);
   const outside = useRef();
+  const [progress, setProgress] = useState(percentage);
+  const [inputValue, setInputValue] = useState("");
+  const onChange = (e) => {
+    setInputValue(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updatePercentageRead(user, isbn, inputValue)
+      .then(setIsOpen(false))
+      .then(setProgress(inputValue))
+      .then(setInputValue(""));
+  };
 
   useEffect(() => {
     const handleClick = (e) => {
       if (!outside?.current?.contains(e.target)) {
         setIsOpen(false);
+        setInputValue("");
       }
     };
     document.addEventListener("mousedown", handleClick);
-  }, [outside]);
+  }, [outside, progress]);
 
-  function handlePercentage(percentage) {
-    if (percentage === "0") {
+  function handlePercentage(progress) {
+    if (progress === "0") {
       return "Not read";
-    } else if (percentage === "100") {
+    } else if (progress === "100") {
       return "Completed";
     } else {
-      return `${percentage}% read`;
+      return `${progress}% read`;
     }
   }
   return (
@@ -170,13 +183,13 @@ const ReadingProgress = ({ percentage, handleSubmit, onChange }) => {
       <Container>
         <Info>
           <Title>Reading Progress</Title>
-          <ProgressBar value={percentage} max="100" />
-          <Description>{handlePercentage(percentage)}</Description>
+          <ProgressBar value={progress} max="100" />
+          <Description>{handlePercentage(progress)}</Description>
         </Info>
         <UpdateButton onClick={() => setIsOpen(!isOpen)}>Update</UpdateButton>
       </Container>
       <Modal out={!isOpen}>
-        <Input placeholder={percentage} onChange={onChange} />
+        <Input placeholder={progress} onChange={onChange} value={inputValue} />
         <Label>%</Label>
         <Submit onClick={handleSubmit}>Submit</Submit>
       </Modal>
@@ -185,3 +198,44 @@ const ReadingProgress = ({ percentage, handleSubmit, onChange }) => {
 };
 
 export default ReadingProgress;
+
+// const ReadingProgress = ({ percentage, handleSubmit, onChange }) => {
+//   const [isOpen, setIsOpen] = useState(false);
+//   const outside = useRef();
+
+//   useEffect(() => {
+//     const handleClick = (e) => {
+//       if (!outside?.current?.contains(e.target)) {
+//         setIsOpen(false);
+//       }
+//     };
+//     document.addEventListener("mousedown", handleClick);
+//   }, [outside]);
+
+//   function handlePercentage(percentage) {
+//     if (percentage === "0") {
+//       return "Not read";
+//     } else if (percentage === "100") {
+//       return "Completed";
+//     } else {
+//       return `${percentage}% read`;
+//     }
+//   }
+//   return (
+//     <div ref={outside}>
+//       <Container>
+//         <Info>
+//           <Title>Reading Progress</Title>
+//           <ProgressBar value={percentage} max="100" />
+//           <Description>{handlePercentage(percentage)}</Description>
+//         </Info>
+//         <UpdateButton onClick={() => setIsOpen(!isOpen)}>Update</UpdateButton>
+//       </Container>
+//       <Modal out={!isOpen}>
+//         <Input placeholder={percentage} onChange={onChange} />
+//         <Label>%</Label>
+//         <Submit onClick={handleSubmit}>Submit</Submit>
+//       </Modal>
+//     </div>
+//   );
+// };
