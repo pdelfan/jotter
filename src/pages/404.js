@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "gatsby";
-import Layout from "../components/Layout";
+import Layout from "../components/Page/Layout";
 import styled from "styled-components";
 
 const NotFound = styled.div`

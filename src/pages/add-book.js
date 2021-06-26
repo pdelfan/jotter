@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Layout from "../components/Layout";
-import { Heading, SubHeading, TopHeader } from "../components/Headings";
+import Layout from "../components/Page/Layout";
+import { Heading, SubHeading, TopHeader } from "../components/Page/Headings";
 import SearchBar from "../components/SearchBar";
-import BookItem, { BookList } from "../components/Books/AddBook";
+import BookItem, { BookList } from "../components/Book/AddBook";
 import AddToLibraryButton from "../components/Buttons/AddToLibraryButton";
 import AddToReadButton from "../components/Buttons/AddToReadButton";
 import NoCover from "../assets/noCover.png";

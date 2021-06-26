@@ -1,6 +1,6 @@
 import React from "react";
 import { Router } from "@reach/router";
-import Layout from "../components/Layout";
+import Layout from "../components/Page/Layout";
 import AccountView from "../components/Account";
 import PrivateRoute from "../components/Routing";
 

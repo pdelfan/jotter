@@ -1,14 +1,14 @@
 import React from "react";
-import Layout from "../components/Layout";
-import { Heading, SubHeading, TopHeader } from "../components/Headings";
+import Layout from "../components/Page/Layout";
+import { Heading, SubHeading, TopHeader } from "../components/Page/Headings";
 import { useAuth0 } from "../services/auth";
 import LoadingIcon from "../assets/loading.svg";
 import PrivateRoute, { RedirectHome } from "../components/Routing";
 import Index from "../pages/index";
 import { Router } from "@reach/router";
-import { BookContainer } from "../components/Books/BookPage";
+import { BookContainer } from "../components/Book/BookPage";
 import { Wrapper, Loading } from "../components/Loading";
-import useFetchGoogleBook from "../hooks/useFetchBook";
+import useFetchGoogleBook from "../hooks/useFetchGoogleBook";
 import useFetchPercentageRead from "../hooks/useFetchPercentageRead";
 
 const Book = ({ location }) => {

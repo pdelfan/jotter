@@ -1,45 +1,26 @@
-import React, { useEffect, useState } from "react";
-import Layout from "../components/Layout";
+import React from "react";
+import Layout from "../components/Page/Layout";
 import LoadingIcon from "../assets/loading.svg";
 import { useAuth0 } from "../services/auth";
-import BookItem, { BookList } from "../components/Books/LibraryBook";
+import BookItem, { BookList } from "../components/Book/LibraryBook";
 import { getLibrary } from "../services/realm/API";
 import { Router } from "@reach/router";
 import { RedirectToLibrary } from "../components/Routing";
 import { Wrapper, Loading } from "../components/Loading";
+import useFetchMongoBooks from "../hooks/useFetchMongoBooks";
 
 const Library = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const [libraryBooks, setLibraryBooks] = useState([]);
-  const [isFetching, setIsFetching] = useState(false);
-
-  useEffect(() => {
-    if (user) {
-      setIsFetching(true);
-      getLibrary(user.nickname)
-        .then((response) => {
-          setLibraryBooks(response);
-          setIsFetching(false);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    }
-  }, [user]);
+  const {
+    data: libraryBooks,
+    hasFetched,
+    error,
+  } = useFetchMongoBooks({ user: user, from: getLibrary });
 
   if (isAuthenticated && !isLoading) {
     return (
       <Layout heading="Library" subheading="All your books in one place">
-        {isFetching ? (
-          <Wrapper minHeight="60vh">
-            <Loading
-              minHeight="50vh"
-              src={LoadingIcon}
-              alt="Loading icon"
-              className="rotating"
-            />
-          </Wrapper>
-        ) : (
+        {libraryBooks && (
           <BookList>
             {libraryBooks.map((book) => {
               return (
@@ -58,6 +39,16 @@ const Library = () => {
               );
             })}
           </BookList>
+        )}
+        {!hasFetched && (
+          <Wrapper minHeight="60vh">
+            <Loading
+              minHeight="50vh"
+              src={LoadingIcon}
+              alt="Loading icon"
+              className="rotating"
+            />
+          </Wrapper>
         )}
       </Layout>
     );
