@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import Menu from "../NavBar/Menu";
+import Menu from "../Navbar/Menu";
 import { Heading, SubHeading, TopHeader } from "./Headings";
+import { RedirectToLogin } from "../Routing";
+import { useAuth0 } from "../../services/auth";
 
 const Main = styled.main`
   margin: 0 auto;
@@ -10,6 +12,12 @@ const Main = styled.main`
 `;
 
 const Layout = ({ children, heading, subheading }) => {
+  const { isAuthenticated } = useAuth0();
+
+  if (!isAuthenticated) {
+    return <RedirectToLogin />;
+  }
+
   if (heading && subheading) {
     return (
       <>

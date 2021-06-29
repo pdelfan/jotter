@@ -17,7 +17,7 @@ const Account = () => {
         <dd>{user.name}</dd>
 
         <dt>Email</dt>
-        <dd>{user.email}</dd>
+        <dd>{user.email}</dd>        
       </dl>
     </>
   );

@@ -2,12 +2,21 @@ import React, { useEffect } from "react";
 import { useAuth0 } from "../services/auth";
 import { navigate } from "gatsby";
 import Library from "../pages/library";
+import Index from "../pages/index";
 
 // redirect
-
 export const RedirectHome = ({ component: Component, ...rest }) => {
-  navigate("/");
+  navigate("/library");
   return <Library />;
+};
+
+export const RedirectToLogin = () => {
+  const { loading, isAuthenticated } = useAuth0();
+  if (loading || isAuthenticated) {
+    return null;
+  }
+  navigate("/");
+  return <Index />;
 };
 
 // redirect if user isn't logged in (authenticated)

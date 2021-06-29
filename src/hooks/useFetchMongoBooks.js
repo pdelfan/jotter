@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useFetchMongoBooks = ({user, from}) => {
+const useFetchMongoBooks = ({ user, from }) => {
   const [hasFetched, setHasFetched] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
@@ -12,9 +12,8 @@ const useFetchMongoBooks = ({user, from}) => {
           setHasFetched(false);
           let result = await from(user.nickname);
           setData(result);
-          setHasFetched(true);          
+          setHasFetched(true);
         } catch (error) {
-          console.log(error.message);
           setError(error.message);
         }
       }

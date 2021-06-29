@@ -12,7 +12,7 @@ import useFetchGoogleBook from "../hooks/useFetchGoogleBook";
 import useFetchPercentageRead from "../hooks/useFetchPercentageRead";
 
 const Book = ({ location }) => {
-  const { isAuthenticated, isLoading, user } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
   const isbn = location.state ? location.state.isbn : "";
   const { data: book, hasFetched: hasFetchedBook } = useFetchGoogleBook(isbn);
   const { data: read, hasFetched: fetchedPercentageRead } =
@@ -20,7 +20,7 @@ const Book = ({ location }) => {
 
   if (location.state === null) {
     return <RedirectHome />;
-  } else if (isAuthenticated && !isLoading && isbn !== null) {
+  } else if (isAuthenticated && isbn !== null) {
     return (
       <Layout heading="Book" subheading="In your library">
         {hasFetchedBook && fetchedPercentageRead && (

@@ -1,6 +1,5 @@
 import React from "react";
 import { Auth0Provider } from "../services/auth";
-// import { Redirect, BrowserRouter, Switch } from "@reach/router";
 
 const App = ({ element, location }) => {
   const onRedirectCallback = (appState) => {
@@ -17,7 +16,7 @@ const App = ({ element, location }) => {
       client_id={process.env.AUTH0_CLIENT_ID}
       redirect_uri="http://localhost:8000"
       cacheLocation="localstorage"
-      onRedirectCallback={onRedirectCallback}
+      onRedirectCallback={onRedirectCallback}      
     >
       {element}
     </Auth0Provider>

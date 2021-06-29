@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PlusIcon from "../../assets/plus.svg";
+import { addBookToLibrary } from "../../services/realm/API";
+import ErrorMessage from "../ErrorMessage";
 
 const AddSign = styled.img`
   width: 0.8rem;
@@ -22,12 +24,33 @@ const AddBtn = styled.button`
   }
 `;
 
-const AddToLibraryButton = ({ handleAddToLibrary }) => {
+const AddToLibraryButton = ({ username, title, author, date, cover, isbn }) => {
+  const [error, setError] = useState(false);
   return (
-    <AddBtn onClick={handleAddToLibrary}>
-      <AddSign src={PlusIcon} alt="Add icon" />
-      Library
-    </AddBtn>
+    <div>
+      <AddBtn
+        onClick={async () => {
+          let ress = await addBookToLibrary(
+            username,
+            title,
+            author,
+            date,
+            cover,
+            new Date(),
+            isbn
+          );
+          if (!ress) {
+            setError(true);
+          }
+        }}
+      >
+        <AddSign src={PlusIcon} alt="Add icon" />
+        Library
+      </AddBtn>
+      {/* {error && (
+        <ErrorMessage message="Sorry, we ran into a problem while adding this book to your library. Try again by refreshing this page." />
+      )} */}
+    </div>
   );
 };
 
