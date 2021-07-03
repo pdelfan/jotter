@@ -6,7 +6,7 @@ import BookItem, { BookList } from "../components/Book/LibraryBook";
 import { getLibrary } from "../services/realm/API";
 import { Wrapper, Loading } from "../components/Loading";
 import useFetchMongoBooks from "../hooks/useFetchMongoBooks";
-import ErrorMessage from "../components/ErrorMessage";
+import ErrorMessage from "../components/Notification & Error/ErrorMessage";
 
 const Library = () => {
   const { user } = useAuth0();

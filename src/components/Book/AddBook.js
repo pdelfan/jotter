@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import NoCover from "../../assets/noCover.png";
 
 const Book = styled.div`
   display: flex;
@@ -45,6 +46,37 @@ const Info = styled.div`
 `;
 
 const Divider = styled.div``;
+
+export const validate = (res) => {
+  let book = {
+    cover: null,
+    title: null,
+    author: null,
+    date: null,
+    isbn: null,
+  };
+
+  book.cover =
+    res.volumeInfo.imageLinks === undefined
+      ? `${NoCover}`
+      : res.volumeInfo.imageLinks.thumbnail;
+
+  book.title = res.volumeInfo.title
+    ? res.volumeInfo.title
+    : "Title not Avaialble";
+
+  book.author = res.volumeInfo.authors
+    ? res.volumeInfo.authors.join(", ")
+    : "Author not available";
+
+  book.date = res.volumeInfo.publishedDate
+    ? res.volumeInfo.publishedDate.split("-")[0]
+    : "Date not available";
+
+  book.isbn = res.id ? res.id : "N/A";
+
+  return book;
+};
 
 export default function BookItem({
   cover,

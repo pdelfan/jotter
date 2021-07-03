@@ -40,8 +40,12 @@ const Primary = styled.div`
 
 const BookInfo = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-grow: 1;
   column-gap: 1.5rem;
+
+  @media only screen and (max-width: 700px) {
+    flex-wrap: wrap;
+  }
 `;
 const Cover = styled.img`
   box-shadow: var(--book-shadow);
@@ -234,7 +238,7 @@ export const BookContainer = ({
           </MainInfo>
         </BookInfo>
         <SectionTitle>Description</SectionTitle>
-        <Description>{getText(desc, 500)}</Description>
+        <Description>{getText(desc, 450)}</Description>
       </Primary>
 
       <Secondary>
@@ -254,7 +258,7 @@ export const BookContainer = ({
             <div>
               <img src={LanguageIcon} alt="Language (globe) icon" />
               <h6>LANGUAGE</h6>
-              <p>{language}</p>
+              <p>{language.toUpperCase()}</p>
             </div>
             <div>
               <img src={NumOfRatingsIcon} alt="Number of ratings icon" />

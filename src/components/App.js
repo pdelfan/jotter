@@ -1,5 +1,6 @@
 import React from "react";
 import { Auth0Provider } from "../services/auth";
+import { Toaster } from "react-hot-toast";
 
 const App = ({ element, location }) => {
   const onRedirectCallback = (appState) => {
@@ -19,6 +20,7 @@ const App = ({ element, location }) => {
       onRedirectCallback={onRedirectCallback}      
     >
       {element}
+      <Toaster />
     </Auth0Provider>
   );
 };

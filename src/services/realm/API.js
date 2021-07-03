@@ -10,7 +10,7 @@ export const getLibrary = async (username) => {
   }
 };
 
-export const addBookToLibrary = (
+export const addBookToLibrary = async (
   username,
   bookTitle,
   author,
@@ -19,8 +19,8 @@ export const addBookToLibrary = (
   addDate,
   isbn
 ) => {
-  axios
-    .post(`${baseurl}add-book-library`, null, {
+  try {
+    let response = await axios.post(`${baseurl}add-book-library`, null, {
       params: {
         user: username,
         title: bookTitle,
@@ -30,37 +30,12 @@ export const addBookToLibrary = (
         bookAddedDate: addDate,
         bookIsbn: isbn,
       },
-    })
-    .catch(() => {
-      console.error("ERROR BRO");
     });
+    return response.data;
+  } catch (error) {
+    throw new Error(error);
+  }
 };
-
-// export const addBookToLibrary = async (
-//   username,
-//   bookTitle,
-//   author,
-//   year,
-//   cover,
-//   addDate,
-//   isbn
-// ) => {
-//   try {
-//     axios.post(`${baseurl}add-book-library`, null, {
-//       params: {
-//         user: username,
-//         title: bookTitle,
-//         bookAuthor: author,
-//         bookYear: year,
-//         bookCover: cover,
-//         bookAddedDate: addDate,
-//         bookIsbn: isbn,
-//       },
-//     })
-//   } catch (error) {
-//     console.error("error (couldn't add book to library):", error.response);
-//   }
-// };
 
 export const getToRead = async (username) => {
   try {
@@ -81,39 +56,36 @@ export const addBookToToRead = async (
   isbn
 ) => {
   try {
-    axios
-      .post(`${baseurl}add-book-to-read`, null, {
-        params: {
-          user: username,
-          title: bookTitle,
-          bookAuthor: author,
-          bookYear: year,
-          bookCover: cover,
-          bookAddedDate: addDate,
-          bookIsbn: isbn,
-        },
-      })
-      .then(console.log("added book to to-read"));
+    let response = await axios.post(`${baseurl}add-book-to-read`, null, {
+      params: {
+        user: username,
+        title: bookTitle,
+        bookAuthor: author,
+        bookYear: year,
+        bookCover: cover,
+        bookAddedDate: addDate,
+        bookIsbn: isbn,
+      },
+    });
+
+    return response.data;
   } catch (error) {
-    console.error("error (couldn't add book to to-read):", error.response);
+    throw new Error(error);
   }
 };
 
 export const updatePercentageRead = async (username, isbn, readPercentage) => {
   try {
-    axios
-      .post(`${baseurl}update-reading`, null, {
-        params: {
-          user: username,
-          bookID: isbn,
-          percentageRead: readPercentage,
-        },
-      })
-      .then(
-        console.log("Updated percentage read with the value: ", readPercentage)
-      );
+    let response = await axios.post(`${baseurl}update-reading`, null, {
+      params: {
+        user: username,
+        bookID: isbn,
+        percentageRead: readPercentage,
+      },
+    });
+    return response.data;
   } catch (error) {
-    console.error("error (Couldn't update percentage read):", error.response);
+    throw new Error(error);
   }
 };
 

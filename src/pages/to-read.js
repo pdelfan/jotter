@@ -6,7 +6,8 @@ import BookItem, { BookList } from "../components/Book/LibraryBook";
 import { getToRead } from "../services/realm/API";
 import { Wrapper, Loading } from "../components/Loading";
 import useFetchMongoBooks from "../hooks/useFetchMongoBooks";
-import ErrorMessage from "../components/ErrorMessage";
+import ErrorMessage from "../components/Notification & Error/ErrorMessage";
+import MoveToLibraryButton from "../components/Buttons/MoveToLibraryButton";
 
 export default function ToRead() {
   const { user } = useAuth0();
@@ -33,7 +34,9 @@ export default function ToRead() {
                 title={book.bookTitle}
                 author={book.author.join(", ")}
                 date={book.year}
-              />
+              >
+                <MoveToLibraryButton />
+              </BookItem>
             );
           })}
         </BookList>

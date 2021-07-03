@@ -1,6 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { updatePercentageRead } from "../../services/realm/API";
+import {
+  generalError,
+  specificError,
+  success,
+} from "../Notification & Error/Notifications";
 
 const Container = styled.div`
   display: flex;
@@ -153,10 +158,26 @@ const ReadingProgress = ({ percentage, user, isbn }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    updatePercentageRead(user, isbn, inputValue)
-      .then(setIsOpen(false))
-      .then(setProgress(inputValue))
-      .then(setInputValue(""));
+    updatePercentageRead(user, isbn, inputValue).then(
+      () => {
+        setIsOpen(false);
+        setProgress(inputValue);
+        setInputValue("");
+        success("Your reading progress has been updated");
+      },
+      (error) => {
+        if (error === 400) {
+          generalError(
+            "Invalid request: Couldn't update your reading progress."
+          );
+        } else {
+          specificError(
+            error,
+            "Something went wrong. Check your internet connection and try again."
+          );
+        }
+      }
+    );
   };
 
   useEffect(() => {
@@ -198,44 +219,3 @@ const ReadingProgress = ({ percentage, user, isbn }) => {
 };
 
 export default ReadingProgress;
-
-// const ReadingProgress = ({ percentage, handleSubmit, onChange }) => {
-//   const [isOpen, setIsOpen] = useState(false);
-//   const outside = useRef();
-
-//   useEffect(() => {
-//     const handleClick = (e) => {
-//       if (!outside?.current?.contains(e.target)) {
-//         setIsOpen(false);
-//       }
-//     };
-//     document.addEventListener("mousedown", handleClick);
-//   }, [outside]);
-
-//   function handlePercentage(percentage) {
-//     if (percentage === "0") {
-//       return "Not read";
-//     } else if (percentage === "100") {
-//       return "Completed";
-//     } else {
-//       return `${percentage}% read`;
-//     }
-//   }
-//   return (
-//     <div ref={outside}>
-//       <Container>
-//         <Info>
-//           <Title>Reading Progress</Title>
-//           <ProgressBar value={percentage} max="100" />
-//           <Description>{handlePercentage(percentage)}</Description>
-//         </Info>
-//         <UpdateButton onClick={() => setIsOpen(!isOpen)}>Update</UpdateButton>
-//       </Container>
-//       <Modal out={!isOpen}>
-//         <Input placeholder={percentage} onChange={onChange} />
-//         <Label>%</Label>
-//         <Submit onClick={handleSubmit}>Submit</Submit>
-//       </Modal>
-//     </div>
-//   );
-// };

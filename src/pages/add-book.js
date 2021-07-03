@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import Layout from "../components/Page/Layout";
 import { Heading, SubHeading, TopHeader } from "../components/Page/Headings";
 import SearchBar from "../components/SearchBar";
-import BookItem, { BookList } from "../components/Book/AddBook";
+import BookItem, { BookList, validate } from "../components/Book/AddBook";
 import AddToLibraryButton from "../components/Buttons/AddToLibraryButton";
 import AddToReadButton from "../components/Buttons/AddToReadButton";
-import NoCover from "../assets/noCover.png";
 import LoadingIcon from "../assets/loading.svg";
 import styled from "styled-components";
 import { useAuth0 } from "../services/auth";
@@ -14,6 +13,7 @@ import { searchGoogleBooks } from "../services/googleBooks";
 
 const BookButtons = styled.div`
   display: flex;
+  flex-wrap: wrap;
   column-gap: 0.5rem;
 `;
 
@@ -22,37 +22,6 @@ const AddBook = () => {
   const [books, setBooks] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const validate = (res) => {
-    let book = {
-      cover: null,
-      title: null,
-      author: null,
-      date: null,
-      isbn: null,
-    };
-
-    book.cover =
-      res.volumeInfo.imageLinks === undefined
-        ? `${NoCover}`
-        : res.volumeInfo.imageLinks.thumbnail;
-
-    book.title = res.volumeInfo.title
-      ? res.volumeInfo.title
-      : "Title not Avaialble";
-
-    book.author = res.volumeInfo.authors
-      ? res.volumeInfo.authors.join(", ")
-      : "Author not available";
-
-    book.date = res.volumeInfo.publishedDate
-      ? res.volumeInfo.publishedDate.split("-")[0]
-      : "Date not available";
-
-    book.isbn = res.id ? res.id : "N/A";
-
-    return book;
-  };
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -66,8 +35,8 @@ const AddBook = () => {
       })
       .then((res) => {
         setLoading(false);
-        let yoyo = res.items.map((item) => validate(item));
-        setBooks([...yoyo]);
+        let books = res.items.map((item) => validate(item));
+        setBooks([...books]);
       })
       .catch((err) => console.log(err.message));
   };
