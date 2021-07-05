@@ -7,7 +7,7 @@ import Login from "../services/realm/userAuth";
 import { Router } from "@reach/router";
 import { RedirectToLibrary } from "../components/Routing";
 import Library from "../pages/library";
-import { Wrapper, Loading } from "../components/Loading";
+import { Wrapper, Loading } from "../components/Notification & Error/Loading";
 
 const Logo = styled.img`
   width: 12rem;

@@ -1,24 +1,13 @@
 import React, { useState } from "react";
 import Layout from "../components/Page/Layout";
 import { Heading, SubHeading, TopHeader } from "../components/Page/Headings";
-import SearchBar from "../components/SearchBar";
-import BookItem, { BookList, validate } from "../components/Book/AddBook";
-import AddToLibraryButton from "../components/Buttons/AddToLibraryButton";
-import AddToReadButton from "../components/Buttons/AddToReadButton";
+import SearchBar from "../components/Page/SearchBar";
+import BookItem, { BookList, validate } from "../components/Book/Book";
 import LoadingIcon from "../assets/loading.svg";
-import styled from "styled-components";
-import { useAuth0 } from "../services/auth";
-import { Loading } from "../components/Loading";
+import { Loading } from "../components/Notification & Error/Loading";
 import { searchGoogleBooks } from "../services/googleBooks";
 
-const BookButtons = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 0.5rem;
-`;
-
 const AddBook = () => {
-  const { user } = useAuth0();
   const [books, setBooks] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
@@ -70,30 +59,13 @@ const AddBook = () => {
             return (
               <BookItem
                 key={i}
+                to="/searched-book"
+                isbn={book.isbn}
                 cover={book.cover}
                 title={book.title}
                 author={book.author}
                 date={book.date}
-              >
-                <BookButtons>
-                  <AddToLibraryButton
-                    username={user.nickname}
-                    title={book.title}
-                    author={book.author}
-                    date={book.date}
-                    cover={book.cover}
-                    isbn={book.isbn}
-                  />
-                  <AddToReadButton
-                    username={user.nickname}
-                    title={book.title}
-                    author={book.author}
-                    date={book.date}
-                    cover={book.cover}
-                    isbn={book.isbn}
-                  />
-                </BookButtons>
-              </BookItem>
+              />
             );
           })}
       </BookList>

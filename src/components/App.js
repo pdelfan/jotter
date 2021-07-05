@@ -17,10 +17,10 @@ const App = ({ element, location }) => {
       client_id={process.env.AUTH0_CLIENT_ID}
       redirect_uri="http://localhost:8000"
       cacheLocation="localstorage"
-      onRedirectCallback={onRedirectCallback}      
+      onRedirectCallback={onRedirectCallback}
     >
       {element}
-      <Toaster />
+      <Toaster position="top-right" />
     </Auth0Provider>
   );
 };

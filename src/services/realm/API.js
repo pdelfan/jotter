@@ -99,3 +99,17 @@ export const getPercentageRead = async (username, isbn) => {
     console.error("getToRead error:", error);
   }
 };
+
+export const deleteBook = async (username, isbn) => {
+  try {
+    let response = await axios.post(`${baseurl}delete-book`, null, {
+      params: {
+        user: username,
+        bookID: isbn,
+      },
+    });
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};

@@ -1,17 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import PlusIcon from "../../assets/plus.svg";
 import { addBookToToRead } from "../../services/realm/API";
+import { MoveIcon } from "./Icons";
 import {
   warning,
   success,
   generalError,
   specificError,
 } from "../Notification & Error/Notifications";
-
-const AddSign = styled.img`
-  width: 0.8rem;
-`;
 
 const MoveBtn = styled.button`
   display: flex;
@@ -25,7 +21,7 @@ const MoveBtn = styled.button`
   font-size: 0.9rem;
 
   &:hover {
-    background-color: var(--button-hover);
+    background-color: #6b6363;
   }
 `;
 
@@ -73,8 +69,8 @@ const MoveToLibraryButton = ({
         )
       }
     >
-      <AddSign src={PlusIcon} alt="Add icon" />
-      Library
+      <MoveIcon />
+      Move to library
     </MoveBtn>
   );
 };

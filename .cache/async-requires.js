@@ -9,6 +9,8 @@ exports.components = {
   "component---src-pages-book-js": () => import("./../../../src/pages/book.js" /* webpackChunkName: "component---src-pages-book-js" */),
   "component---src-pages-index-js": () => import("./../../../src/pages/index.js" /* webpackChunkName: "component---src-pages-index-js" */),
   "component---src-pages-library-js": () => import("./../../../src/pages/library.js" /* webpackChunkName: "component---src-pages-library-js" */),
+  "component---src-pages-searched-book-js": () => import("./../../../src/pages/searched-book.js" /* webpackChunkName: "component---src-pages-searched-book-js" */),
+  "component---src-pages-to-read-book-js": () => import("./../../../src/pages/to-read-book.js" /* webpackChunkName: "component---src-pages-to-read-book-js" */),
   "component---src-pages-to-read-js": () => import("./../../../src/pages/to-read.js" /* webpackChunkName: "component---src-pages-to-read-js" */)
 }
 

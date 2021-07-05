@@ -6,10 +6,11 @@ import LoadingIcon from "../assets/loading.svg";
 import PrivateRoute, { RedirectHome } from "../components/Routing";
 import Index from "../pages/index";
 import { Router } from "@reach/router";
-import { BookContainer } from "../components/Book/BookPage";
-import { Wrapper, Loading } from "../components/Loading";
+import { BookContainer } from "../components/Book/BookContainer";
+import { Wrapper, Loading } from "../components/Notification & Error/Loading";
 import useFetchGoogleBook from "../hooks/useFetchGoogleBook";
 import useFetchPercentageRead from "../hooks/useFetchPercentageRead";
+import ReadingProgress from "../components/Book/ReadingProgress";
 
 const Book = ({ location }) => {
   const { isAuthenticated, user } = useAuth0();
@@ -36,10 +37,18 @@ const Book = ({ location }) => {
             ratings={book.ratings}
             language={book.language}
             isbn={book.isbn}
-            percentageRead={read}
-            user={user.nickname}
-          />
+            username={user.nickname}
+            deleteButton={true}
+            redirectAfterDelete={"/library"}
+          >
+            <ReadingProgress
+              percentage={read}
+              isbn={book.isbn}
+              user={user.nickname}
+            />
+          </BookContainer>
         )}
+
         {!hasFetchedBook && (
           <Wrapper minHeight="50vh">
             <Loading

@@ -11,6 +11,8 @@ exports.components = {
   "component---src-pages-book-js": preferDefault(require("/Users/pouria/Documents/GitHub/jotter/src/pages/book.js")),
   "component---src-pages-index-js": preferDefault(require("/Users/pouria/Documents/GitHub/jotter/src/pages/index.js")),
   "component---src-pages-library-js": preferDefault(require("/Users/pouria/Documents/GitHub/jotter/src/pages/library.js")),
+  "component---src-pages-searched-book-js": preferDefault(require("/Users/pouria/Documents/GitHub/jotter/src/pages/searched-book.js")),
+  "component---src-pages-to-read-book-js": preferDefault(require("/Users/pouria/Documents/GitHub/jotter/src/pages/to-read-book.js")),
   "component---src-pages-to-read-js": preferDefault(require("/Users/pouria/Documents/GitHub/jotter/src/pages/to-read.js"))
 }
 
