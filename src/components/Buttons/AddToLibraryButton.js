@@ -14,12 +14,12 @@ const AddBtn = styled.button`
   align-items: center;
   justify-content: space-between;
   column-gap: 0.3rem;
-  padding: 0.5rem 1rem;
-  border-radius: 0.8rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 2rem;
   background-color: #1bd692;
   color: white;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.9rem;
+  
 
   &:hover {
     background-color: #1ace8c;

@@ -15,7 +15,7 @@ const MoveBtn = styled.button`
   justify-content: space-between;
   column-gap: 0.3rem;
   padding: 0.4rem 0.7rem;
-  border-radius: 0.9rem;
+  border-radius: 2rem;
   background-color: #756d6d;
   color: white;
   font-size: 0.9rem;
