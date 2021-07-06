@@ -4,9 +4,6 @@ import { Link } from "gatsby";
 import NoCover from "../../assets/noCover.png";
 
 const Book = styled.div`
-  transition: 0.2s;
-  flex: 0 0 17rem;
-
   .cover {
     box-shadow: var(--book-shadow);
     border: var(--book-border);
@@ -45,7 +42,7 @@ const Info = styled.div`
 const BookLink = styled(Link)`
   transition: 0.2s;
   flex: 0 1 17rem;
-  margin-bottom: 10rem;
+  margin-bottom: 8rem;
 
   &:hover {
     transform: translateY(-0.5rem);
@@ -91,7 +88,6 @@ export const validate = (res) => {
   return book;
 };
 
-
 export default function BookItem({
   isbn,
   cover,
@@ -103,7 +99,13 @@ export default function BookItem({
   to,
 }) {
   return (
-    <BookLink to={to} state={{ isbn: isbn, percentageRead: percentageRead ? percentageRead : "0" }}>
+    <BookLink
+      to={to}
+      state={{
+        isbn: isbn,
+        percentageRead: percentageRead ? percentageRead : "0",
+      }}
+    >
       <Book>
         <img src={cover} alt="Book cover" className="cover" />
         <Info>
@@ -116,4 +118,3 @@ export default function BookItem({
     </BookLink>
   );
 }
-

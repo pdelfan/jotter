@@ -3,11 +3,6 @@ import styled from "styled-components";
 import Description from "./BookDescription";
 import Meta from "./BookMeta";
 import BookInfo from "./BookInfo";
-import AddToLibraryButton from "../Buttons/AddToLibraryButton";
-import AddToReadButton from "../Buttons/AddToReadButton";
-import ButtonContainer from "../Buttons/ButtonContainer";
-import MoveToLibraryButton from "../Buttons/MoveToLibraryButton";
-import DeleteBookButton from "../Buttons/DeleteBookButton";
 
 const Container = styled.div`
   display: flex;

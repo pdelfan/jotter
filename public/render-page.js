@@ -5524,7 +5524,9 @@ const App = ({
     redirect_uri: "http://localhost:8000",
     cacheLocation: "localstorage",
     onRedirectCallback: onRedirectCallback
-  }, element, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hot_toast__WEBPACK_IMPORTED_MODULE_2__.Toaster, null));
+  }, element, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hot_toast__WEBPACK_IMPORTED_MODULE_2__.Toaster, {
+    position: "top-right"
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
