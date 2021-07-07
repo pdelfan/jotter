@@ -4,7 +4,7 @@ import ButtonContainer from "../Buttons/ButtonContainer";
 import MoveToLibraryButton from "../Buttons/MoveToLibraryButton";
 import DeleteBookButton from "../Buttons/DeleteBookButton";
 import { addBookToLibrary, addBookToToRead } from "../../services/realm/API";
-import AddButton from "../Buttons/AddButton";
+import AddBookButton from "../Buttons/AddBookButton";
 
 const Container = styled.div`
   display: flex;
@@ -63,6 +63,7 @@ export default function BookInfo({
   moveButton,
   deleteButton,
   redirectAfterDelete,
+  redirectAfterMove,
 }) {
   return (
     <Container>
@@ -74,7 +75,7 @@ export default function BookInfo({
         <ButtonContainer>
           {addButtons && (
             <>
-              <AddButton
+              <AddBookButton
                 text={"Library"}
                 username={username}
                 title={title}
@@ -84,7 +85,7 @@ export default function BookInfo({
                 isbn={isbn}
                 addFunction={addBookToLibrary}
               />
-              <AddButton
+              <AddBookButton
                 type={"toRead"}
                 text={"To-read"}
                 username={username}
@@ -97,7 +98,13 @@ export default function BookInfo({
               />
             </>
           )}
-          {moveButton && <MoveToLibraryButton />}
+          {moveButton && (
+            <MoveToLibraryButton
+              username={username}
+              isbn={isbn}
+              redirectAfterMove={redirectAfterMove}
+            />
+          )}
           {deleteButton && (
             <DeleteBookButton
               username={username}

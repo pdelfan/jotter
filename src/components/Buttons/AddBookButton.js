@@ -26,7 +26,7 @@ const AddBtn = styled.button`
   }
 `;
 
-const AddButton = ({
+const AddBookButton = ({
   text,
   username,
   title,
@@ -84,4 +84,4 @@ const AddButton = ({
   );
 };
 
-export default AddButton;
+export default AddBookButton;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { addBookToToRead } from "../../services/realm/API";
+import { navigate } from "gatsby";
 import { MoveIcon } from "./Icons";
 import {
   warning,
@@ -8,7 +8,7 @@ import {
   generalError,
   specificError,
 } from "../Notification & Error/Notifications";
-
+import { moveBookToLibrary } from "../../services/realm/API";
 
 const MoveBtn = styled.button`
   display: flex;
@@ -26,39 +26,23 @@ const MoveBtn = styled.button`
   }
 `;
 
-const MoveToLibraryButton = ({
-  username,
-  title,
-  author,
-  date,
-  cover,
-  isbn,
-}) => {
+const MoveToLibraryButton = ({ username, isbn }) => {
   return (
     <MoveBtn
       onClick={() =>
-        addBookToToRead(
-          username,
-          title,
-          author,
-          date,
-          cover,
-          new Date(),
-          isbn
-        ).then(
+        moveBookToLibrary(username, isbn).then(
           (res) => {
-            if (res.inLibrary === true) {
-              warning("This book is already in your library.");
-            } else if (res.inToRead === true) {
-              warning("This book is already in your to-read.");
+            if (res.status === 200) {
+              success("Moved the book to your library.");
+              navigate("../library");
             } else {
-              success("Added book to your library.");
+              warning("Couldn't move this book to your library. Try again.");
             }
           },
           (error) => {
             if (error === 400) {
               generalError(
-                "Invalid request: Couldn't add this book to your to-read."
+                "Invalid request: Couldn't move this book to your library."
               );
             } else {
               specificError(

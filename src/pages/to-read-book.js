@@ -35,7 +35,7 @@ const Book = ({ location }) => {
             username={user.nickname}
             moveButton={true}
             deleteButton={true}
-            redirectAfterDelete={"/to-read"}
+            redirectAfterDelete={"/to-read"}            
           />
         )}
 
