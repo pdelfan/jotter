@@ -26,34 +26,34 @@ const MoveBtn = styled.button`
   }
 `;
 
+function handleMoveToLibrary(username, isbn) {
+  moveBookToLibrary(username, isbn).then(
+    (res) => {
+      if (res.status === 200) {
+        success("Moved the book to your library.");
+        navigate("../library");
+      } else {
+        warning("Couldn't move this book to your library. Try again.");
+      }
+    },
+    (error) => {
+      if (error === 400) {
+        generalError(
+          "Invalid request: Couldn't move this book to your library."
+        );
+      } else {
+        specificError(
+          error,
+          "Something went wrong. Check your internet connection and try again."
+        );
+      }
+    }
+  );
+}
+
 const MoveToLibraryButton = ({ username, isbn }) => {
   return (
-    <MoveBtn
-      onClick={() =>
-        moveBookToLibrary(username, isbn).then(
-          (res) => {
-            if (res.status === 200) {
-              success("Moved the book to your library.");
-              navigate("../library");
-            } else {
-              warning("Couldn't move this book to your library. Try again.");
-            }
-          },
-          (error) => {
-            if (error === 400) {
-              generalError(
-                "Invalid request: Couldn't move this book to your library."
-              );
-            } else {
-              specificError(
-                error,
-                "Something went wrong. Check your internet connection and try again."
-              );
-            }
-          }
-        )
-      }
-    >
+    <MoveBtn onClick={() => handleMoveToLibrary(username, isbn)}>
       <MoveIcon />
       Move to library
     </MoveBtn>

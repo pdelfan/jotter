@@ -32,7 +32,7 @@ const SearchedBook = ({ location }) => {
             ratings={book.ratings}
             language={book.language}
             isbn={book.isbn}
-            username={user.nickname}
+            username={user.email}
             addButtons={true}
           />
         )}

@@ -3544,7 +3544,7 @@ var plugins = [{
     "cache_busting_mode": "query",
     "crossOrigin": "anonymous",
     "include_favicon": true,
-    "cacheDigest": "53aa06cf17e4239d0dba6ffd09854e02"
+    "cacheDigest": "26ebc4d7703cee60b6efa5caf4f633c7"
   }
 }, {
   name: 'default-site-plugin',

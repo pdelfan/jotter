@@ -26,31 +26,33 @@ const DeleteBtn = styled.button`
   }
 `;
 
+function handleDeleteBook(username, isbn, redirectAfterDelete) {
+  deleteBook(username, isbn).then(
+    (res) => {
+      if (res.status === 200) {
+        success("Deleted the book.");
+        navigate(redirectAfterDelete);
+      } else {
+        warning("Couldn't delete this book. Try again.");
+      }
+    },
+    (error) => {
+      if (error === 400) {
+        generalError("Invalid request: Couldn't delete this book.");
+      } else {
+        specificError(
+          error,
+          "Something went wrong. Check your internet connection and try again."
+        );
+      }
+    }
+  );
+}
+
 const DeleteBookButton = ({ username, isbn, redirectAfterDelete }) => {
   return (
     <DeleteBtn
-      onClick={() => {
-        deleteBook(username, isbn).then(
-          (res) => {
-            if (res.status === 200) {
-              success("Deleted the book.");
-              navigate(redirectAfterDelete);
-            } else {
-              warning("Couldn't delete this book. Try again.");
-            }
-          },
-          (error) => {
-            if (error === 400) {
-              generalError("Invalid request: Couldn't delete this book.");
-            } else {
-              specificError(
-                error,
-                "Something went wrong. Check your internet connection and try again."
-              );
-            }
-          }
-        );
-      }}
+      onClick={() => handleDeleteBook(username, isbn, redirectAfterDelete)}
     >
       <DeleteIcon />
       Delete

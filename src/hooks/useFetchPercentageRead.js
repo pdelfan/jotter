@@ -11,7 +11,7 @@ const useFetchPercentageRead = (user, id) => {
       if (user) {
         try {
           setHasFetched(false);
-          let result = await getPercentageRead(user.nickname, id);
+          let result = await getPercentageRead(user.email, id);
           setData(result);
           setHasFetched(true);
         } catch (error) {

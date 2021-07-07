@@ -7,6 +7,7 @@ import { getLibrary } from "../services/realm/API";
 import { Wrapper, Loading } from "../components/Notification & Error/Loading";
 import useFetchMongoBooks from "../hooks/useFetchMongoBooks";
 import ErrorMessage from "../components/Notification & Error/ErrorMessage";
+// import SearchBar from "../components/Page/SearchBar";
 
 const Library = () => {
   const { user } = useAuth0();
@@ -16,11 +17,21 @@ const Library = () => {
     error,
   } = useFetchMongoBooks({ user: user, from: getLibrary });
 
+  // const [search, setSearch] = useState("");
+  // const handleSearch = (e) => {
+  //   setSearch(e.target.value);
+  // };
+
+  // const searchBook = (e) => {
+  //   e.preventDefault();
+  // };
+
   return (
     <Layout heading="Library" subheading="All your books in one place">
       {error && (
         <ErrorMessage message="Sorry, we ran into a problem while loading your library. Try again by refreshing this page." />
       )}
+      
       {libraryBooks && (
         <BookList>
           {libraryBooks.map((book) => {
@@ -37,7 +48,7 @@ const Library = () => {
                 percentageRead={book.percentageRead}
               />
             );
-          })}
+          })}          
         </BookList>
       )}
       {!hasFetched && (

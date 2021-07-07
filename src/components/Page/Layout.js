@@ -5,7 +5,6 @@ import { Heading, SubHeading, TopHeader } from "./Headings";
 import { RedirectToLogin } from "../Routing";
 import { useAuth0 } from "../../services/auth";
 
-
 const Main = styled.main`
   margin: 0 auto;
   max-width: 90rem;
@@ -30,7 +29,7 @@ const Layout = ({ children, heading, subheading }) => {
               <SubHeading>{subheading}</SubHeading>
             </div>
           </TopHeader>
-          {children}          
+          {children}
         </Main>
       </>
     );

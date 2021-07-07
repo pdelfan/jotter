@@ -26,6 +26,43 @@ const AddBtn = styled.button`
   }
 `;
 
+function handleAddBook(
+  username,
+  title,
+  author,
+  date,
+  cover,
+  isbn,
+  addFunction,
+  type
+) {
+  addFunction(username, title, author, date, cover, new Date(), isbn).then(
+    (res) => {
+      if (res.inLibrary === true) {
+        warning("This book is already in your library.");
+      } else if (res.inToRead === true) {
+        warning("This book is already in your to-read.");
+      } else {
+        type === "toRead"
+          ? success("Added book to your to-read.")
+          : success("Added book to your library.");
+      }
+    },
+    (error) => {
+      if (error === 400) {
+        generalError(
+          "Invalid request: Couldn't add this book to your library."
+        );
+      } else {
+        specificError(
+          error,
+          "Something went wrong. Check your internet connection and try again."
+        );
+      }
+    }
+  );
+}
+
 const AddBookButton = ({
   text,
   username,
@@ -42,38 +79,14 @@ const AddBookButton = ({
       <AddBtn
         type={type}
         onClick={() => {
-          addFunction(
+          handleAddBook(
             username,
             title,
             author,
             date,
             cover,
-            new Date(),
-            isbn
-          ).then(
-            (res) => {
-              if (res.inLibrary === true) {
-                warning("This book is already in your library.");
-              } else if (res.inToRead === true) {
-                warning("This book is already in your to-read.");
-              } else {
-                type === "toRead"
-                  ? success("Added book to your to-read.")
-                  : success("Added book to your library.");
-              }
-            },
-            (error) => {
-              if (error === 400) {
-                generalError(
-                  "Invalid request: Couldn't add this book to your library."
-                );
-              } else {
-                specificError(
-                  error,
-                  "Something went wrong. Check your internet connection and try again."
-                );
-              }
-            }
+            isbn,
+            addFunction
           );
         }}
       >

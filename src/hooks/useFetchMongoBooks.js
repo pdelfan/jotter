@@ -10,7 +10,7 @@ const useFetchMongoBooks = ({ user, from }) => {
       if (user) {
         try {
           setHasFetched(false);
-          let result = await from(user.nickname);
+          let result = await from(user.email);
           setData(result);
           setHasFetched(true);
         } catch (error) {
