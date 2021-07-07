@@ -20,7 +20,7 @@ const App = ({ element, location }) => {
       onRedirectCallback={onRedirectCallback}
     >
       {element}
-      <Toaster position="top-right" />
+      <Toaster position="top-left" />
     </Auth0Provider>
   );
 };

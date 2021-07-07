@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import AddToLibraryButton from "../Buttons/AddToLibraryButton";
-import AddToReadButton from "../Buttons/AddToReadButton";
 import ButtonContainer from "../Buttons/ButtonContainer";
 import MoveToLibraryButton from "../Buttons/MoveToLibraryButton";
 import DeleteBookButton from "../Buttons/DeleteBookButton";
+import { addBookToLibrary, addBookToToRead } from "../../services/realm/API";
+import AddButton from "../Buttons/AddButton";
 
 const Container = styled.div`
   display: flex;
@@ -74,21 +74,26 @@ export default function BookInfo({
         <ButtonContainer>
           {addButtons && (
             <>
-              <AddToLibraryButton
+              <AddButton
+                text={"Library"}
                 username={username}
                 title={title}
                 author={author}
                 date={date}
                 cover={cover}
                 isbn={isbn}
+                addFunction={addBookToLibrary}
               />
-              <AddToReadButton
+              <AddButton
+                type={"toRead"}
+                text={"To-read"}
                 username={username}
                 title={title}
                 author={author}
                 date={date}
                 cover={cover}
                 isbn={isbn}
+                addFunction={addBookToToRead}
               />
             </>
           )}

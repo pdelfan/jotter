@@ -8,7 +8,7 @@ export function warning(message) {
 }
 
 export function success(message) {
-  toast.success(`${message}.`, {
+  toast.success(`${message}`, {
     style: { border: "1px solid #c4c4c4" },
   });
 }
