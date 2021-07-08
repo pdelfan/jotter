@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Menu from "../Navbar/Menu";
 import { Heading, SubHeading, TopHeader } from "./Headings";
 import { RedirectToLogin } from "../Routing";
-import { useAuth0 } from "../../services/auth";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Main = styled.main`
   margin: 0 auto;

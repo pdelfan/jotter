@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../components/Page/Layout";
 import LoadingIcon from "../assets/loading.svg";
-import { useAuth0 } from "../services/auth";
+import { useAuth0 } from "@auth0/auth0-react";
 import BookItem, { BookList } from "../components/Book/Book";
 import { getLibrary } from "../services/realm/API";
 import { Wrapper, Loading } from "../components/Notification & Error/Loading";

@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/Page/Layout";
-import { useAuth0 } from "../services/auth";
+import { useAuth0 } from "@auth0/auth0-react";
 import LoadingIcon from "../assets/loading.svg";
 import PrivateRoute, { RedirectHome } from "../components/Routing";
 import Index from "../pages/index";
