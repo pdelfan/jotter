@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../components/Page/Layout";
-import { Heading, SubHeading, TopHeader } from "../components/Page/Headings";
+import Header from "../components/Page/Headings";
 import SearchBar from "../components/Page/SearchBar";
 import BookItem, { BookList, validate } from "../components/Book/Book";
 import LoadingIcon from "../assets/loading.svg";
@@ -32,18 +32,17 @@ const AddBook = () => {
 
   return (
     <Layout>
-      <TopHeader>
-        <div>
-          <Heading>Add Book</Heading>
-          <SubHeading>Find a book and add it to your collection</SubHeading>
-        </div>
+      <Header
+        header="Add Book"
+        subheader="Find a book and add it to your collection"
+      >
         <SearchBar
           searchBook={searchBook}
           handleSearch={handleSearch}
           placeholder="Search for books"
           submittable={true}
         />
-      </TopHeader>
+      </Header>
       <BookList>
         {loading && (
           <Loading

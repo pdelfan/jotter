@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/Page/Layout";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "../services/auth";
 import LoadingIcon from "../assets/loading.svg";
 import PrivateRoute, { RedirectHome } from "../components/Routing";
 import Index from "../pages/index";
@@ -8,6 +8,7 @@ import { Router } from "@reach/router";
 import { BookContainer } from "../components/Book/BookContainer";
 import { Wrapper, Loading } from "../components/Notification & Error/Loading";
 import useFetchGoogleBook from "../hooks/useFetchGoogleBook";
+import Header from "../components/Page/Headings";
 
 const SearchedBook = ({ location }) => {
   const { isAuthenticated, user } = useAuth0();
@@ -18,7 +19,8 @@ const SearchedBook = ({ location }) => {
     return <RedirectHome />;
   } else if (isAuthenticated && isbn !== null) {
     return (
-      <Layout heading="Book" subheading="From your search">
+      <Layout>
+        <Header header="Book" subheader="From your search" />
         {hasFetchedBook && (
           <BookContainer
             cover={book.cover}

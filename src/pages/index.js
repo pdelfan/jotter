@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import JotterLogo from "../assets/jotter-logo.svg";
 import LoadingIcon from "../assets/loading.svg";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "../services/auth";
 import Login from "../services/realm/userAuth";
 import { Router } from "@reach/router";
 import { RedirectToLibrary } from "../components/Routing";

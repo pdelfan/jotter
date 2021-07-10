@@ -1,18 +1,18 @@
-import React from 'react'
+import React from "react";
 import styled from "styled-components";
 
 const MainHeader = styled.h1`
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-`
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+`;
 
 const SubHeader = styled.h2`
-    font-weight: 600;   
-    margin-top: 0; 
-    margin-bottom: 0;
-`
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 0;
+`;
 
-const Header = styled.div`
+const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
@@ -20,18 +20,17 @@ const Header = styled.div`
   row-gap: 2rem;
 `;
 
-export function TopHeader(props) {
-    return <Header>{props.children}</Header>
-}
 
-export function Heading(props) {
-    return (
-       <MainHeader>{props.children}</MainHeader>
-    )
-}
+const Header = ({ header, subheader, children }) => {
+  return (
+    <Container>
+      <div>
+        <MainHeader>{header}</MainHeader>
+        <SubHeader>{subheader}</SubHeader>
+      </div>
+      {children}
+    </Container>
+  );
+};
 
-export function SubHeading(props) {
-    return (
-        <SubHeader>{props.children}</SubHeader>
-    )
-}
+export default Header;

@@ -8,10 +8,11 @@ const Book = styled.div`
     box-shadow: var(--book-shadow);
     border: var(--book-border);
     border-radius: var(--book-round);
-    max-height: 200px;
+    max-height: 180px;
   }
 
   h3 {
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--book-title);
     line-height: 1.5rem;

@@ -11,6 +11,21 @@
           "options": {}
         },
         {
+          "name": "babel-plugin-styled-components",
+          "stage": "develop",
+          "options": {
+            "plugins": [],
+            "displayName": true,
+            "fileName": true,
+            "minify": true,
+            "namespace": "",
+            "transpileTemplateLiterals": true,
+            "topLevelImportPaths": [],
+            "pure": false,
+            "ssr": false
+          }
+        },
+        {
           "name": "/Users/pouria/Documents/GitHub/jotter/node_modules/gatsby-plugin-image/dist/babel-plugin-parse-static-images.js",
           "options": {
             "cacheDir": "/Users/pouria/Documents/GitHub/jotter/.cache/caches/gatsby-plugin-image"
@@ -72,6 +87,21 @@
         {
           "name": "/Users/pouria/Documents/GitHub/jotter/node_modules/gatsby-plugin-typescript/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
           "options": {}
+        },
+        {
+          "name": "babel-plugin-styled-components",
+          "stage": "develop-html",
+          "options": {
+            "plugins": [],
+            "displayName": true,
+            "fileName": true,
+            "minify": true,
+            "namespace": "",
+            "transpileTemplateLiterals": true,
+            "topLevelImportPaths": [],
+            "pure": false,
+            "ssr": false
+          }
         }
       ],
       "presets": [
@@ -117,6 +147,21 @@
         {
           "name": "/Users/pouria/Documents/GitHub/jotter/node_modules/gatsby-plugin-typescript/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
           "options": {}
+        },
+        {
+          "name": "babel-plugin-styled-components",
+          "stage": "build-html",
+          "options": {
+            "plugins": [],
+            "displayName": true,
+            "fileName": true,
+            "minify": true,
+            "namespace": "",
+            "transpileTemplateLiterals": true,
+            "topLevelImportPaths": [],
+            "pure": false,
+            "ssr": true
+          }
         }
       ],
       "presets": [
@@ -162,6 +207,21 @@
         {
           "name": "/Users/pouria/Documents/GitHub/jotter/node_modules/gatsby-plugin-typescript/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
           "options": {}
+        },
+        {
+          "name": "babel-plugin-styled-components",
+          "stage": "build-javascript",
+          "options": {
+            "plugins": [],
+            "displayName": true,
+            "fileName": true,
+            "minify": true,
+            "namespace": "",
+            "transpileTemplateLiterals": true,
+            "topLevelImportPaths": [],
+            "pure": false,
+            "ssr": true
+          }
         }
       ],
       "presets": [

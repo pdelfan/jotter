@@ -10,7 +10,10 @@ module.exports = {
   ],
   plugins: [
     `gatsby-plugin-mdx`,
+    `gatsby-plugin-styled-components`,
+    'react-hot-toast',
     "gatsby-plugin-sass",
+    '@auth0/auth0-spa-js',
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
     `gatsby-plugin-image`,

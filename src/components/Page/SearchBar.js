@@ -18,7 +18,7 @@ const Form = styled.form`
 `;
 
 const Input = styled.input`
-  padding: 0.8rem 1rem;
+  padding: 0.7rem 1rem;
   border-radius: 15px;
   border: none;
   color: #949494;
@@ -32,7 +32,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  padding: 0.3rem 0.6rem;
+  padding: 0.1rem 0.4rem;
   border-radius: 15px;
   background-color: #bebebe;
   cursor: pointer;

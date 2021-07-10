@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "../../services/auth";
 import { Link } from "gatsby";
 import LoadingAvatar from "../../assets/loadingAvatar.png";
 
@@ -24,7 +24,7 @@ const Avatar = styled.img`
   transition: 0.2s;
 
   &:hover {
-    filter:brightness(80%);
+    filter: brightness(80%);
     transition: 0.2s;
   }
 
@@ -75,13 +75,17 @@ export default function Profile() {
     isAuthenticated,
     isLoading,
     logout,
-    // getAccessTokenSilently,
+    // getAccessTokenSilently
   } = useAuth0();
 
   if (isLoading || !user) {
     return (
       <ProfileContainer>
         <Avatar src={LoadingAvatar} />
+        <div>
+          <Username>Loading</Username>
+          <SignOut>Loading</SignOut>
+        </div>
       </ProfileContainer>
     );
   } else {

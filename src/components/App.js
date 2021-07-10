@@ -1,6 +1,6 @@
 import React from "react";
 import { Toaster } from "react-hot-toast";
-import { Auth0Provider } from "@auth0/auth0-react";
+import { Auth0Provider } from "../services/auth";
 
 const App = ({ element, location }) => {
   const onRedirectCallback = (appState) => {
@@ -14,10 +14,10 @@ const App = ({ element, location }) => {
   return (
     <Auth0Provider
       domain={process.env.AUTH0_DOMAIN}
-      clientId={process.env.AUTH0_CLIENT_ID}
-      redirectUri="http://localhost:8000"
+      client_id={process.env.AUTH0_CLIENT_ID}
+      redirect_uri="http://localhost:8000"
       cacheLocation="localstorage"
-      onRedirectCallback={onRedirectCallback}
+      onRedirectCallback={onRedirectCallback}      
     >
       {element}
       <Toaster position="top-left" />

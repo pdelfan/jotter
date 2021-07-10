@@ -3,6 +3,10 @@ var plugins = [{
       plugin: require('/Users/pouria/Documents/GitHub/jotter/node_modules/gatsby-plugin-mdx/gatsby-ssr'),
       options: {"plugins":[],"extensions":[".mdx"],"defaultLayouts":{},"gatsbyRemarkPlugins":[],"lessBabel":false,"remarkPlugins":[],"rehypePlugins":[],"mediaTypes":["text/markdown","text/x-markdown"],"root":"/Users/pouria/Documents/GitHub/jotter"},
     },{
+      name: 'gatsby-plugin-styled-components',
+      plugin: require('/Users/pouria/Documents/GitHub/jotter/node_modules/gatsby-plugin-styled-components/gatsby-ssr'),
+      options: {"plugins":[],"displayName":true,"fileName":true,"minify":true,"namespace":"","transpileTemplateLiterals":true,"topLevelImportPaths":[],"pure":false},
+    },{
       name: 'gatsby-plugin-image',
       plugin: require('/Users/pouria/Documents/GitHub/jotter/node_modules/gatsby-plugin-image/gatsby-ssr'),
       options: {"plugins":[]},

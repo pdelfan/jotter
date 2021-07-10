@@ -1,7 +1,6 @@
 import React from "react";
 import Layout from "../components/Page/Layout";
-import { Heading, SubHeading, TopHeader } from "../components/Page/Headings";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "../services/auth";
 import LoadingIcon from "../assets/loading.svg";
 import PrivateRoute, { RedirectHome } from "../components/Routing";
 import Index from "../pages/index";
@@ -11,6 +10,7 @@ import { Wrapper, Loading } from "../components/Notification & Error/Loading";
 import useFetchGoogleBook from "../hooks/useFetchGoogleBook";
 import useFetchPercentageRead from "../hooks/useFetchPercentageRead";
 import ReadingProgress from "../components/Book/ReadingProgress";
+import Header from "../components/Page/Headings";
 
 const Book = ({ location }) => {
   const { isAuthenticated, user } = useAuth0();
@@ -23,7 +23,9 @@ const Book = ({ location }) => {
     return <RedirectHome />;
   } else if (isAuthenticated && isbn !== null) {
     return (
-      <Layout heading="Book" subheading="In your library">
+      <Layout>
+        <Header header="Book" subheader="In your library" />
+
         {hasFetchedBook && fetchedPercentageRead && (
           <BookContainer
             cover={book.cover}
@@ -59,12 +61,7 @@ const Book = ({ location }) => {
             />
           </Wrapper>
         )}
-        <TopHeader>
-          <div>
-            <Heading>Notes</Heading>
-            <SubHeading>All your notes on this book</SubHeading>
-          </div>
-        </TopHeader>
+        <Header header="Notes" subheader="All your notes on this book" />
       </Layout>
     );
   } else {
