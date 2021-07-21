@@ -14,11 +14,13 @@ module.exports = {
     'react-hot-toast',
     "gatsby-plugin-sass",
     '@auth0/auth0-spa-js',
+    'draft-js',
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`, // Needed for dynamic images
+    `gatsby-plugin-fontawesome-css`,
     {
       resolve: "gatsby-plugin-manifest",
       options: {

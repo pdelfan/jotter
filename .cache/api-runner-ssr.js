@@ -15,6 +15,10 @@ var plugins = [{
       plugin: require('/Users/pouria/Documents/GitHub/jotter/node_modules/gatsby-plugin-react-helmet/gatsby-ssr'),
       options: {"plugins":[]},
     },{
+      name: 'gatsby-plugin-fontawesome-css',
+      plugin: require('/Users/pouria/Documents/GitHub/jotter/node_modules/gatsby-plugin-fontawesome-css/gatsby-ssr'),
+      options: {"plugins":[]},
+    },{
       name: 'gatsby-plugin-manifest',
       plugin: require('/Users/pouria/Documents/GitHub/jotter/node_modules/gatsby-plugin-manifest/gatsby-ssr'),
       options: {"plugins":[],"icon":"src/images/icon.png","legacy":true,"theme_color_in_head":true,"cache_busting_mode":"query","crossOrigin":"anonymous","include_favicon":true,"cacheDigest":"26ebc4d7703cee60b6efa5caf4f633c7"},

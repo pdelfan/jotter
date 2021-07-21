@@ -6,6 +6,7 @@ exports.components = {
   "component---src-pages-404-js": () => import("./../../../src/pages/404.js" /* webpackChunkName: "component---src-pages-404-js" */),
   "component---src-pages-account-js": () => import("./../../../src/pages/account.js" /* webpackChunkName: "component---src-pages-account-js" */),
   "component---src-pages-add-book-js": () => import("./../../../src/pages/add-book.js" /* webpackChunkName: "component---src-pages-add-book-js" */),
+  "component---src-pages-add-note-js": () => import("./../../../src/pages/add-note.js" /* webpackChunkName: "component---src-pages-add-note-js" */),
   "component---src-pages-book-js": () => import("./../../../src/pages/book.js" /* webpackChunkName: "component---src-pages-book-js" */),
   "component---src-pages-index-js": () => import("./../../../src/pages/index.js" /* webpackChunkName: "component---src-pages-index-js" */),
   "component---src-pages-library-js": () => import("./../../../src/pages/library.js" /* webpackChunkName: "component---src-pages-library-js" */),

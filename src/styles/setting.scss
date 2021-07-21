@@ -4,7 +4,8 @@
   
     // general
     --font: var(--san-serif);
-    --background: #F3F4F6;
+    // --background: #F3F4F6;
+    --background: #fff;
     --paragraph-color: #303030;
     --speed: 500ms;
     --nav-size: 60px;
@@ -13,8 +14,8 @@
     --white: white;
     --light-gray: #cfd4d8;
     --mid-gray: #7F8B99;
-    --gray: #727272;
-    --dark-gray: #15171a;
+    --gray: #aaa;
+    --dark-gray: #585858;
     --dark-blue: #212138;
     --light-pink: #f0f0fe;
     --mid-pink: #d1d1e4;
@@ -24,9 +25,8 @@
   
     // borders
     --book-border: 1px solid #c4c4c4;
-    --book-round: 5px;
-    --general-border: 2px solid #e6e6e6;    
-    --round: 25px;
+    --general-border: 2px solid #ccc;    
+    --round: 2px;
 
   
     // shadows

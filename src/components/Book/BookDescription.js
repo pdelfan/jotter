@@ -7,16 +7,14 @@ const ShowButton = styled.button`
   align-items: center;
   justify-content: space-between;
   column-gap: 0.3rem;
-  padding: 0.4rem 0.7rem;
-  border-radius: 0.9rem;
+  padding: 0.4rem 0.7rem;  
   background-color: #edf2f7;
   color: black;
   font-weight: 600;
   font-size: 0.9rem;
 
   &:hover {
-    background-color: var(--button-hover);
-    color: white;
+    background-color: #e3e8ec;    
   }
 `;
 

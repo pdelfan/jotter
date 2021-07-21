@@ -23,7 +23,7 @@ const Primary = styled.div`
   padding: 1.8rem;
   border: var(--general-border);
   border-radius: var(--round);
-  box-shadow: var(--general-shadow);
+  
 `;
 
 const Secondary = styled.div`

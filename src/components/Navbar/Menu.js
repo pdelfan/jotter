@@ -5,17 +5,15 @@ import DropdownButton from "./DropdownButton";
 import Profile from "./Profile";
 import JotterLogo from "../../assets/jotter-logo.inline.svg";
 import LibraryIcon from "../../assets/library.svg";
-import ToReadIcon from "../../assets/toRead.svg";
-import AddIcon from "../../assets/addBook.svg";
+import ToReadIcon from "../../assets/to-read.svg";
+import AddIcon from "../../assets/add-book.svg";
 import React from "react";
-import { Link } from "gatsby"
-
-
+import { Link } from "gatsby";
 
 const Header = styled.header`
   margin: auto;
   background-color: white;
-  box-shadow: 0px 0px 80px -20px rgba(0, 0, 0, 0.25);
+  border-bottom: 2px solid #ccc;
 `;
 
 const Navbar = styled.nav`
@@ -34,8 +32,11 @@ const Navbar = styled.nav`
 const Logo = styled(Link)`
   display: flex;
   height: 1.5rem;
-  margin-top: 0.3rem;
   object-fit: cover;
+
+  &:hover {
+    filter: brightness(50%);
+  }
 
   @media (max-width: 60rem) {
     order: 1;
@@ -58,7 +59,7 @@ const ItemContainer = styled.div`
 `;
 
 const Item = styled(Link)`
-  color: #7f8b99;
+  color: #999999;
   font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
@@ -72,7 +73,7 @@ const Item = styled(Link)`
   }
 
   &:hover {
-    filter: brightness(30%);
+    filter: brightness(50%);
   }
 `;
 

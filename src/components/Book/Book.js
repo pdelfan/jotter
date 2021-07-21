@@ -7,7 +7,7 @@ const Book = styled.div`
   .cover {
     box-shadow: var(--book-shadow);
     border: var(--book-border);
-    border-radius: var(--book-round);
+    border-radius: var(--round);
     max-height: 180px;
   }
 

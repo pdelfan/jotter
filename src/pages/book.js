@@ -11,6 +11,7 @@ import useFetchGoogleBook from "../hooks/useFetchGoogleBook";
 import useFetchPercentageRead from "../hooks/useFetchPercentageRead";
 import ReadingProgress from "../components/Book/ReadingProgress";
 import Header from "../components/Page/Headings";
+import AddNoteButton from "../components/Buttons/AddNoteButton";
 
 const Book = ({ location }) => {
   const { isAuthenticated, user } = useAuth0();
@@ -61,7 +62,9 @@ const Book = ({ location }) => {
             />
           </Wrapper>
         )}
-        <Header header="Notes" subheader="All your notes on this book" />
+        <Header header="Notes" subheader="All your notes on this book">
+          <AddNoteButton />
+        </Header>
       </Layout>
     );
   } else {

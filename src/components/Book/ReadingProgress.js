@@ -16,9 +16,7 @@ const Container = styled.div`
   align-items: center;
   background-color: white;
   padding: 0.8rem 1.8rem;
-  border: var(--general-border);
-  border-radius: var(--round);
-  box-shadow: var(--general-shadow);
+  border: var(--general-border);  
 `;
 
 const Info = styled.div`
@@ -35,8 +33,7 @@ const ProgressBar = styled.progress`
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  overflow: hidden;
-  border-radius: var(--round);
+  overflow: hidden;  
   height: 0.7rem;
   width: 100%;
   background-color: #c4f1d8; // firefox
@@ -66,8 +63,7 @@ const Modal = styled.div`
   background-color: white;
   padding: 0.8rem 1.8rem;
   margin-top: 0.5rem;
-  border: var(--general-border);
-  border-radius: var(--round);
+  border: var(--general-border);  
   box-shadow: var(--general-shadow);
   visibility: ${(props) => (props.out ? "hidden" : "visible")};
   animation: ${(props) => (props.out ? fadeOut : fadeIn)} 0.1s linear;
@@ -98,8 +94,7 @@ const fadeOut = keyframes`
   }
 `;
 
-const Input = styled.input`
-  border-radius: 10rem;
+const Input = styled.input`  
   border: var(--general-border);
   font-weight: 600;
   font-size: 1rem;
@@ -126,8 +121,7 @@ const UpdateButton = styled.button`
   color: #5a5c62;
   font-weight: 600;
   font-size: 1rem;
-  padding: 0.4rem 0.7rem;
-  border-radius: 0.9rem;
+  padding: 0.4rem 0.7rem;  
 
   &:hover {
     background-color: #d6dce0;
@@ -140,8 +134,7 @@ const Submit = styled.button`
   font-weight: 600;
   font-size: 1rem;
   padding: 0.4rem 0.7rem;
-  margin-left: 1rem;
-  border-radius: 0.9rem;
+  margin-left: 1rem;  
 
   &:hover {
     background-color: #37a556;

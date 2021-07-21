@@ -4,22 +4,21 @@ import SearchIcon from "../../assets/search.svg";
 
 const SearchArea = styled.div`
   display: flex;
-  justify-content: flex-end;
-  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
+  justify-content: flex-end;  
   background: white;
   border: var(--general-border);
-  border-radius: 15px;
+  border-radius: (--round);
 `;
 
 const Form = styled.form`
   display: flex;
-  border-radius: 15px;
+  border-radius: (--round);
   flex-grow: 0;
 `;
 
 const Input = styled.input`
   padding: 0.7rem 1rem;
-  border-radius: 15px;
+  border-radius: (--round);
   border: none;
   color: #949494;
   font-weight: 600;
@@ -33,7 +32,7 @@ const Input = styled.input`
 
 const Button = styled.button`
   padding: 0.1rem 0.4rem;
-  border-radius: 15px;
+  border-radius: (--round);
   background-color: #bebebe;
   cursor: pointer;
 

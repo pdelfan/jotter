@@ -18,7 +18,7 @@ const Container = styled.div`
 const Cover = styled.img`
   box-shadow: var(--book-shadow);
   border: var(--book-border);
-  border-radius: var(--book-round);
+  border-radius: var(--round);
   max-height: 200px;
   margin-bottom: 2rem;
 `;

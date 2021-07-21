@@ -6,8 +6,8 @@ import LoadingAvatar from "../../assets/loadingAvatar.png";
 
 const ProfileContainer = styled.div`
   display: flex;
+  align-items: center;
   max-width: 13rem;
-  line-height: 1rem;
 
   @media (max-width: 60rem) {
     order: 2;
@@ -15,11 +15,11 @@ const ProfileContainer = styled.div`
 `;
 
 const Avatar = styled.img`
-  border-radius: 50%;
+  display: flex;
   width: 2rem;
   height: 2rem;
-  margin-right: 0.5rem;
-  margin-bottom: -0.2rem;
+  align-self: center;
+  margin-right: 0.5rem;  
   object-fit: cover;
   transition: 0.2s;
 
@@ -69,6 +69,13 @@ const SignOut = styled.button`
   }
 `;
 
+const UserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+`;
+
 export default function Profile() {
   const {
     user,
@@ -82,10 +89,8 @@ export default function Profile() {
     return (
       <ProfileContainer>
         <Avatar src={LoadingAvatar} />
-        <div>
-          <Username>Loading</Username>
-          <SignOut>Loading</SignOut>
-        </div>
+        <Username>Loading</Username>
+        <SignOut>Loading</SignOut>
       </ProfileContainer>
     );
   } else {
@@ -95,10 +100,11 @@ export default function Profile() {
           <Link to="../../account">
             <Avatar src={user.picture} alt="Avatar" />
           </Link>
-          <div>
+          <UserInfo>
             <Username>{user.nickname}</Username>
+
             <SignOut onClick={() => logout()}>Sign Out</SignOut>
-          </div>
+          </UserInfo>
         </ProfileContainer>
       );
     }

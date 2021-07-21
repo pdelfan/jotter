@@ -14,7 +14,7 @@ const AddBtn = styled.button`
   justify-content: space-between;
   column-gap: 0.3rem;
   padding: 0.4rem 0.7rem;
-  border-radius: 2rem;
+  
   background-color: ${(props) =>
     props.type === "toRead" ? "#805AD5" : "#2D3748"};
   color: white;
