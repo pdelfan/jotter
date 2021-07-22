@@ -7,7 +7,7 @@ import { useAuth0 } from "../../services/auth";
 const Main = styled.main`
   margin: 0 auto;
   max-width: 90rem;
-  padding: 0 1rem;
+  padding: 3rem 1rem 0 1rem;
 `;
 
 const Layout = ({ children }) => {

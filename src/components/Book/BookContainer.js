@@ -19,7 +19,7 @@ const Primary = styled.div`
   flex-direction: column;
   flex: 1;
   flex-grow: 1;
-  background-color: white;
+  background-color: #fdfdfd;
   padding: 1.8rem;
   border: var(--general-border);
   border-radius: var(--round);

@@ -13,7 +13,7 @@ const Container = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   flex: 1;
-  background-color: white;
+  background-color: #fdfdfd;
   padding: 1.8rem;
   border: var(--general-border);
   border-radius: var(--round);
@@ -48,7 +48,7 @@ const Detail = styled.div`
     max-width: 10rem;
     margin: 0;
     text-align: center;
-    color: #afafb2;
+    color: #aaa;
   }
 
   p {

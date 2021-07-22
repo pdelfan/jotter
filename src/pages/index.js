@@ -25,15 +25,12 @@ const Greeting = styled.h1`
 
 const LoginBtn = styled.button`
   padding: 0.8rem 2rem;
-  background: transparent;
-  border: 0.2rem solid #d5d5d5;
-  color: #585858;
-  font-size: 1rem;
-  font-weight: 600;
+  background: #888;  
+  color: #fff;
+  font-size: 1rem;  
 
-  &:hover {
-    border: 0.2rem solid #050505;
-    color: #050505;
+  &:hover {    
+    background: #555;
   }
 `;
 

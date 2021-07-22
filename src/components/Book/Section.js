@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const SectionTitle = styled.h5`
   font-size: 1.3rem;
   text-align: ${(props) => (props.center ? "center" : "")};
-  color: #374151;
+  color: #333;
   margin-top: 0;
   margin-bottom: 1rem;
 `;

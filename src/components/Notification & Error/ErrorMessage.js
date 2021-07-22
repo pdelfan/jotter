@@ -3,8 +3,7 @@ import styled from "styled-components";
 
 const Error = styled.div`
   background-color: #fcebee;
-  border: 2px solid #e2516c;
-  border-radius: 0.9rem;
+  border: 2px solid #e2516c;  
   padding: 0.5rem 1rem;
   margin-top: 2rem;
 `;
@@ -12,8 +11,7 @@ const Button = styled.button`
   font-weight: 600;
   color: #e2516c;
   background-color: transparent;
-  border: 2px solid #e2516c;
-  border-radius: 0.9rem;
+  border: 2px solid #e2516c;  
   padding: 0.3rem 1rem;
   margin-top: 1rem;
 

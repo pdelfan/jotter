@@ -1,5 +1,6 @@
 import React from "react";
-import StyleButton from "../StyleButton/StyleButton";
+import StyleButton from "./StyleButton";
+import styled from "styled-components";
 
 const blockTypes = [
   { label: "faListOl", style: "ordered-list-item" },
@@ -8,9 +9,16 @@ const blockTypes = [
   { label: "faFileCode", style: "code-block" },
 ];
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+`;
+
 const BlockStyles = ({ activeBlock, toggleBlockType }) => {
   return (
-    <div className="block-styles">
+    <Wrapper>
       {blockTypes.map((blockType) => {
         return (
           <StyleButton
@@ -22,7 +30,7 @@ const BlockStyles = ({ activeBlock, toggleBlockType }) => {
           />
         );
       })}
-    </div>
+    </Wrapper>
   );
 };
 

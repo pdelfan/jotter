@@ -47,27 +47,10 @@ h2 {
 }
 /* Icon Button */
 .icon-button {
-  --button-size: calc(var(--nav-size) * 0.5);
-  width: var(--button-size);
-  height: var(--button-size);
-  background-color: #c4c4c4;
-  border-radius: 10px;
-  padding: 5px;
-  margin: 2px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: filter 300ms;
-}
-
-.icon-button:hover {
-  filter: brightness(1.1);
-}
-
-.icon-button svg {
-  fill: white;
-  width: 25px;
-  height: 25px;
 }
 
 /* Dropdown Menu */
@@ -78,9 +61,9 @@ h2 {
   width: 220px;
   transform: translateX(45%);
   background-color: white;
-  border-radius: var(--border-radius);
+  border: 2px solid #cccccc;
   padding: 1rem;
-  overflow: hidden;
+
   transition: height var(--speed) ease;
   -webkit-box-shadow: 0px 0px 25px -3px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 25px -3px rgba(0, 0, 0, 0.1);
@@ -102,12 +85,8 @@ h2 {
   margin-right: 0.5rem;
 }
 
-.menu-item .icon-button:hover {
-  filter: none;
-}
-
 .menu-item:hover {
-  background-color: #f3f5f9;
+  color: black;
 }
 
 .icon-right {

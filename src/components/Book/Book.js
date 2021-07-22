@@ -6,14 +6,13 @@ import NoCover from "../../assets/noCover.png";
 const Book = styled.div`
   .cover {
     box-shadow: var(--book-shadow);
-    border: var(--book-border);
-    border-radius: var(--round);
+    border: var(--book-border);    
     max-height: 180px;
   }
 
   h3 {
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--book-title);
     line-height: 1.5rem;
     margin-top: 0.5rem;
@@ -21,8 +20,8 @@ const Book = styled.div`
   }
 
   h4 {
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.85rem;
+    font-weight: 500;
     color: var(--book-author);
     margin-top: 0;
     margin-bottom: 0.5rem;
@@ -45,9 +44,9 @@ const BookLink = styled(Link)`
   flex: 0 1 17rem;
   margin-bottom: 8rem;
 
-  &:hover {
+  &:hover {    
     transform: translateY(-0.5rem);
-    transition: 0.2s;
+    transition: 0.2s;        
   }
 `;
 
@@ -111,8 +110,7 @@ export default function BookItem({
         <img src={cover} alt="Book cover" className="cover" />
         <Info>
           <h3>{title}</h3>
-          <h4>{author}</h4>
-          <h5>{date}</h5>
+          <h4>{author}</h4>          
         </Info>
         {children}
       </Book>

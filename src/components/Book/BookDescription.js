@@ -8,13 +8,12 @@ const ShowButton = styled.button`
   justify-content: space-between;
   column-gap: 0.3rem;
   padding: 0.4rem 0.7rem;  
-  background-color: #edf2f7;
-  color: black;
-  font-weight: 600;
+  background-color: #888;  
+  color: #fff;    
   font-size: 0.9rem;
 
   &:hover {
-    background-color: #e3e8ec;    
+    background-color: #555;    
   }
 `;
 

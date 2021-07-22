@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CaretIcon from "../../assets/more.inline.svg";
+import CaretIcon from "../../assets/dropdown.inline.svg";
 import DropdownMenu from "./DropdownMenu";
 import DropdownButton from "./DropdownButton";
 import Profile from "./Profile";
@@ -12,8 +12,11 @@ import { Link } from "gatsby";
 
 const Header = styled.header`
   margin: auto;
-  background-color: white;
+  background-color: #F8F8F8;
   border-bottom: 2px solid #ccc;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
 `;
 
 const Navbar = styled.nav`
@@ -22,7 +25,7 @@ const Navbar = styled.nav`
   justify-content: space-between;
   margin: 0 auto;
   max-width: 90rem;
-  padding: 0.7rem 0.8rem;
+  padding: 0.5rem 0.8rem;
 
   @media (max-width: 60rem) {
     justify-content: space-between;

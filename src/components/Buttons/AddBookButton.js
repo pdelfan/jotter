@@ -16,13 +16,13 @@ const AddBtn = styled.button`
   padding: 0.4rem 0.7rem;
   
   background-color: ${(props) =>
-    props.type === "toRead" ? "#805AD5" : "#2D3748"};
+    props.type === "toRead" ? "#999" : "#333"};
   color: white;
   font-size: 0.9rem;
 
   &:hover {
     background-color: ${(props) =>
-      props.type === "toRead" ? "#704eb9" : "#1d2430"};
+      props.type === "toRead" ? "#777" : "#111"};
   }
 `;
 

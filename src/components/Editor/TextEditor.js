@@ -4,16 +4,12 @@ import styled from "styled-components";
 import Toolbar from "./Toolbar";
 import { useEditor } from "../../hooks/useEditor";
 import "draft-js/dist/Draft.css";
-import { styleMap } from "./InlineStyles";
-
-const Wrapper = styled.div`
-  max-width: 50rem;
-  margin: 5rem auto 0 auto;
-  min-height: 50vh;
-`;
+import { styleMap } from "./Styles";
+import SaveNoteButton from "../Buttons/SaveNoteButton";
 
 const EditorWrapper = styled.div`
-  margin-top: 2rem;
+  padding-top: 6rem;
+  padding-bottom: 5rem;
   .DraftEditor-root {
     font-family: Arial;
     font-size: 1.05rem;
@@ -21,6 +17,9 @@ const EditorWrapper = styled.div`
     line-height: 24px;
     -webkit-font-smoothing: antialiased;
   }
+  max-width: 50rem;
+  margin: 0.7rem auto 0 auto;
+  min-height: 50vh;
 `;
 
 const TextEditor = () => {
@@ -37,23 +36,27 @@ const TextEditor = () => {
   }
 
   return (
-    <Wrapper>
+    <section>
       <Toolbar
         editorState={editor.editorState}
         setEditorState={editor.setEditorState}
         RichUtils={RichUtils}
         toggleInlineStyle={editor.toggleInlineStyle}
+        toggleBlockType={editor.toggleBlockType}
       />
+
       <EditorWrapper>
+        <SaveNoteButton />
         <Editor
           editorState={editor.editorState}
           onChange={editor.setEditorState}
           handleKeyCommand={(cmd) => handleKeyCommand(cmd)}
           placeholder="Start typing..."
           customStyleMap={styleMap}
+          spellCheck={true}
         />
       </EditorWrapper>
-    </Wrapper>
+    </section>
   );
 };
 

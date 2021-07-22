@@ -14,9 +14,10 @@ const Container = styled.div`
   flex-grow: 1;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: #fdfdfd;
   padding: 0.8rem 1.8rem;
-  border: var(--general-border);  
+  border: var(--general-border);
+  border-radius: var(--round);
 `;
 
 const Info = styled.div`
@@ -33,7 +34,7 @@ const ProgressBar = styled.progress`
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  overflow: hidden;  
+  overflow: hidden;
   height: 0.7rem;
   width: 100%;
   background-color: #c4f1d8; // firefox
@@ -60,10 +61,10 @@ const Modal = styled.div`
   display: flex;
   justify-content: space-between;
   float: right;
-  background-color: white;
+  background-color: #fdfdfd;
   padding: 0.8rem 1.8rem;
   margin-top: 0.5rem;
-  border: var(--general-border);  
+  border: var(--general-border);
   box-shadow: var(--general-shadow);
   visibility: ${(props) => (props.out ? "hidden" : "visible")};
   animation: ${(props) => (props.out ? fadeOut : fadeIn)} 0.1s linear;
@@ -94,7 +95,7 @@ const fadeOut = keyframes`
   }
 `;
 
-const Input = styled.input`  
+const Input = styled.input`
   border: var(--general-border);
   font-weight: 600;
   font-size: 1rem;
@@ -117,14 +118,13 @@ const Label = styled.label`
 `;
 
 const UpdateButton = styled.button`
-  background-color: #e9edf1;
-  color: #5a5c62;
-  font-weight: 600;
+  background-color: #888;
+  color: #fff;
   font-size: 1rem;
-  padding: 0.4rem 0.7rem;  
+  padding: 0.4rem 0.7rem;
 
   &:hover {
-    background-color: #d6dce0;
+    background-color: #555;
   }
 `;
 
@@ -134,7 +134,7 @@ const Submit = styled.button`
   font-weight: 600;
   font-size: 1rem;
   padding: 0.4rem 0.7rem;
-  margin-left: 1rem;  
+  margin-left: 1rem;
 
   &:hover {
     background-color: #37a556;

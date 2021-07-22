@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Link } from "gatsby";
 
 const NavLink = styled(Link)`
-  color: #7f8b99;
+  color: #585858;
   font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
@@ -14,7 +14,7 @@ const NavLink = styled(Link)`
 
 const SignOut = styled.button`
   background-color: transparent;
-  color: #7f8b99;
+  color: #585858;
   font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
@@ -37,7 +37,9 @@ export default function DropdownMenu() {
       <DropdownLink link="/library">Library</DropdownLink>
       <DropdownLink link="/to-read">To-read</DropdownLink>
       <DropdownLink link="/add-book">Add Book</DropdownLink>
-      <SignOut onClick={() => logout()} className="menu-item">Sign Out</SignOut>
+      <SignOut onClick={() => logout()} className="menu-item">
+        Sign Out
+      </SignOut>
     </div>
   );
 }

@@ -28,13 +28,17 @@ const icons = {
 };
 
 const Button = styled.button`
-border-radius: 0.5rem;
+  border-radius: 0.5rem;
   background-color: transparent;
-  color: #7F8B99;
+  color: #888;
   ${({ active }) =>
     active &&
-    `color: black;`}
+    `color: black;
+    `}
   font-size: 1.2rem;
+  &:hover {
+    color: #555;
+  }
 `;
 
 const StyleButton = (props) => {
