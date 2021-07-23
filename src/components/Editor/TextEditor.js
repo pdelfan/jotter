@@ -5,7 +5,8 @@ import Toolbar from "./Toolbar";
 import { useEditor } from "../../hooks/useEditor";
 import "draft-js/dist/Draft.css";
 import { styleMap } from "./Styles";
-import SaveNoteButton from "../Buttons/SaveNoteButton";
+import AddNoteButton from "../Buttons/AddNoteButton";
+import { converter } from "./Converter";
 
 const EditorWrapper = styled.div`
   padding-top: 6rem;
@@ -22,7 +23,7 @@ const EditorWrapper = styled.div`
   min-height: 50vh;
 `;
 
-const TextEditor = () => {
+const TextEditor = ({ username, bookID }) => {
   const editor = useEditor();
 
   function handleKeyCommand(command) {
@@ -46,7 +47,18 @@ const TextEditor = () => {
       />
 
       <EditorWrapper>
-        <SaveNoteButton />
+        <AddNoteButton
+          username={username}
+          title={"Sample title"}
+          content={JSON.stringify(converter.toContent(editor.editorState))}
+          date={new Date().toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+          bookID={bookID}
+          redirectAfterAdd={"/library"}
+        />
         <Editor
           editorState={editor.editorState}
           onChange={editor.setEditorState}

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { baseurl } from "../../../gatsby-browser";
+import { BSON } from "realm-web";
 
 export const getLibrary = async (username) => {
   try {
@@ -123,6 +124,42 @@ export const moveBookToLibrary = async (username, isbn) => {
       },
     });
     return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const addNote = async (
+  username,
+  addDate,
+  noteTitle,
+  content,
+  bookID
+) => {
+  try {
+    let response = await axios.post(`${baseurl}add-note`, null, {
+      params: {
+        user: username,
+        date: addDate,
+        title: noteTitle,
+        content: content,
+        noteID: new BSON.ObjectID(),
+        bookID: bookID,
+      },
+    });
+
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const getNotes = async (username, bookID) => {
+  try {
+    const books = await axios.get(
+      `${baseurl}get-notes?user=${username}&bookID=${bookID}`
+    );
+    return books.data[0].library[0].notes;
   } catch (error) {
     throw new Error(error);
   }

@@ -8,17 +8,42 @@ import { Router } from "@reach/router";
 import { BookContainer } from "../components/Book/BookContainer";
 import { Wrapper, Loading } from "../components/Notification & Error/Loading";
 import useFetchGoogleBook from "../hooks/useFetchGoogleBook";
-import useFetchPercentageRead from "../hooks/useFetchPercentageRead";
+import useFetchMongoField from "../hooks/useFetchMongoField";
+import { getPercentageRead, getNotes } from "../services/realm/API";
 import ReadingProgress from "../components/Book/ReadingProgress";
 import Header from "../components/Page/Headings";
-import AddNoteButton from "../components/Buttons/AddNoteButton";
+import { Link } from "gatsby";
+import styled from "styled-components";
+import Note, {NoteContainer} from "../components/Note/Note";
+
+const AddNoteButton = styled(Link)`
+  background-color: white;
+  color: black;
+  padding: 0.5rem 1rem;
+  border: var(--general-border);
+  box-shadow: var(--general-shadow);
+
+  &:hover {
+    border: 2px solid #555;
+  }
+`;
 
 const Book = ({ location }) => {
   const { isAuthenticated, user } = useAuth0();
   const isbn = location.state ? location.state.isbn : "";
-  const { data: book, hasFetched: hasFetchedBook } = useFetchGoogleBook(isbn);
-  const { data: read, hasFetched: fetchedPercentageRead } =
-    useFetchPercentageRead(user, isbn);
+  const { data: book, hasFetched: fetchedBook } = useFetchGoogleBook(isbn);
+  const { data: read, hasFetched: fetchedPercentageRead } = useFetchMongoField(
+    user,
+    isbn,
+    getPercentageRead
+  );
+  const { data: notes, hasFetched: fetchedNotes } = useFetchMongoField(
+    user,
+    isbn,
+    getNotes
+  );
+
+  
 
   if (location.state === null) {
     return <RedirectHome />;
@@ -27,7 +52,7 @@ const Book = ({ location }) => {
       <Layout>
         <Header header="Book" subheader="In your library" />
 
-        {hasFetchedBook && fetchedPercentageRead && (
+        {fetchedBook && fetchedPercentageRead && (
           <BookContainer
             cover={book.cover}
             title={book.title}
@@ -52,7 +77,7 @@ const Book = ({ location }) => {
           </BookContainer>
         )}
 
-        {!hasFetchedBook && (
+        {!fetchedBook && (
           <Wrapper minHeight="50vh">
             <Loading
               minHeight="30vh"
@@ -63,8 +88,25 @@ const Book = ({ location }) => {
           </Wrapper>
         )}
         <Header header="Notes" subheader="All your notes on this book">
-          <AddNoteButton />
+          <AddNoteButton
+            to="/add-note"
+            state={{
+              isbn: isbn,
+              user: user,
+            }}
+          >
+            Add Note
+          </AddNoteButton>
         </Header>
+        {fetchedNotes && (
+          <NoteContainer>
+            {notes.map((note) => {
+              return (
+                <Note title={note.noteTitle} date={note.date} key={note.date} />
+              );
+            })}
+          </NoteContainer>
+        )}
       </Layout>
     );
   } else {

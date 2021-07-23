@@ -19,13 +19,11 @@ const Avatar = styled.img`
   width: 2rem;
   height: 2rem;
   align-self: center;
-  margin-right: 0.5rem;  
+  margin-right: 0.5rem;
   object-fit: cover;
-  transition: 0.2s;
 
   &:hover {
     filter: brightness(80%);
-    transition: 0.2s;
   }
 
   @media (max-width: 60rem) {
@@ -43,14 +41,6 @@ const Username = styled.h4`
     display: none;
   }
 `;
-
-// const Email = styled.h4`
-//   color: #9ca7bc;
-//   font-size: 0.7rem;
-//   font-weight: 600;
-//   margin: 0;
-
-// `;
 
 const SignOut = styled.button`
   color: var(--mid-gray);

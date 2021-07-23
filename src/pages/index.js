@@ -25,20 +25,21 @@ const Greeting = styled.h1`
 
 const LoginBtn = styled.button`
   padding: 0.8rem 2rem;
-  background: #888;  
+  background: #888;
   color: #fff;
-  font-size: 1rem;  
+  font-size: 1rem;
 
-  &:hover {    
+  &:hover {
     background: #555;
   }
 `;
 
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
+
   const handleSignIn = () => {
     loginWithRedirect({});
-    Login();
+    Login();    
   };
 
   return <LoginBtn onClick={() => handleSignIn()}>Sign in</LoginBtn>;
