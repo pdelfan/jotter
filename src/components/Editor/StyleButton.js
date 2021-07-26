@@ -10,8 +10,7 @@ import {
   faCode,
   faListOl,
   faListUl,
-  faQuoteRight,
-  faFileCode,
+  faQuoteRight,  
 } from "@fortawesome/free-solid-svg-icons";
 
 const icons = {
@@ -23,8 +22,7 @@ const icons = {
   faCode,
   faListOl,
   faListUl,
-  faQuoteRight,
-  faFileCode,
+  faQuoteRight,  
 };
 
 const Button = styled.button`  

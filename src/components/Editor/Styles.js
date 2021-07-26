@@ -5,7 +5,7 @@ import styled from "styled-components";
 const blockTypes = [
   { label: "faListOl", style: "ordered-list-item" },
   { label: "faListUl", style: "unordered-list-item" },
-  { label: "faQuoteRight", style: "blockquote" },  
+  { label: "faQuoteRight", style: "blockquote" },
 ];
 
 const inlineTypes = [
@@ -21,7 +21,7 @@ export const styleMap = {
   CODE: {
     fontFamily: "monospace",
     borderRadius: "2px",
-    padding: "3px 5px",
+    padding: "5px",    
   },
   HIGHLIGHT: {
     // background: "#FFFF00",
@@ -36,11 +36,18 @@ export const styleMap = {
   },
 };
 
+export function myBlockStyleFn(contentBlock) {
+  const type = contentBlock.getType();
+  if (type === "blockquote") {
+    return "blockquote";
+  }
+}
+
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
 `;
 
 const Styles = ({
