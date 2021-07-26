@@ -44,19 +44,21 @@ const Detail = styled.div`
 
   h6 {
     font-size: 0.95rem;
-    font-weight: 600;
+    font-weight: 700;
     max-width: 10rem;
-    margin: 0;
+    margin-top: 0.1rem;
+    margin-bottom: 0;
     text-align: center;
     color: #aaa;
   }
 
   p {
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 700;
     max-width: 12rem;
     text-align: center;
-    margin: 0;
+    margin-top: 0.5rem;
+    color: #333;
   }
 `;
 

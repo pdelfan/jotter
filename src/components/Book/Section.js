@@ -11,5 +11,8 @@ export const SectionTitle = styled.h5`
 export const Text = styled.div`
   p {
     margin-top: 0rem;
+    line-height: 1.5rem;    
+    font-size: 1.1rem;    
+    color: rgb(88, 88, 88);
   }
 `;

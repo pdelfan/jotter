@@ -7,18 +7,18 @@ const SearchArea = styled.div`
   justify-content: flex-end;  
   background: white;
   border: var(--general-border);
-  border-radius: (--round);
+  border-radius: var(--round);
 `;
 
 const Form = styled.form`
   display: flex;
-  border-radius: (--round);
+  border-radius: var(--round);
   flex-grow: 0;
 `;
 
 const Input = styled.input`
   padding: 0.7rem 1rem;
-  border-radius: (--round);
+  border-radius: var(--round);
   border: none;
   color: #949494;
   font-weight: 600;
@@ -32,7 +32,7 @@ const Input = styled.input`
 
 const Button = styled.button`
   padding: 0.1rem 0.4rem;
-  border-radius: (--round);
+  border-radius: var(--round);
   background-color: #bebebe;
   cursor: pointer;
 

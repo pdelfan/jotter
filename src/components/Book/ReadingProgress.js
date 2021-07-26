@@ -12,6 +12,7 @@ const Container = styled.div`
   flex-wrap: wrap;
   flex: 1;
   flex-grow: 1;
+  row-gap: 1rem;
   justify-content: space-between;
   align-items: center;
   background-color: #fdfdfd;
@@ -38,6 +39,8 @@ const ProgressBar = styled.progress`
   height: 0.7rem;
   width: 100%;
   background-color: #c4f1d8; // firefox
+  border-radius: var(--round);
+    
   &::-webkit-progress-bar {
     background-color: #c4f1d8;
   }
@@ -53,8 +56,9 @@ const ProgressBar = styled.progress`
 
 const Description = styled.p`
   color: #3aae5b;
-  font-weight: 500;
-  margin: 0;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
 `;
 
 const Modal = styled.div`

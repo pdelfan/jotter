@@ -12,7 +12,7 @@ import { Link } from "gatsby";
 
 const Header = styled.header`
   margin: auto;
-  background-color: #F8F8F8;
+  background-color: white;
   border-bottom: 2px solid #ccc;
   position: fixed;
   width: 100%;
@@ -33,10 +33,6 @@ const Navbar = styled.nav`
 `;
 
 const Logo = styled(Link)`
-  display: flex;
-  height: 1.5rem;
-  object-fit: cover;
-
   &:hover {
     filter: brightness(50%);
   }

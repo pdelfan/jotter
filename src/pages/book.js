@@ -14,7 +14,7 @@ import ReadingProgress from "../components/Book/ReadingProgress";
 import Header from "../components/Page/Headings";
 import { Link } from "gatsby";
 import styled from "styled-components";
-import Note, {NoteContainer} from "../components/Note/Note";
+import Note, { NoteContainer } from "../components/Note/Note";
 
 const AddNoteButton = styled(Link)`
   background-color: white;
@@ -42,8 +42,6 @@ const Book = ({ location }) => {
     isbn,
     getNotes
   );
-
-  
 
   if (location.state === null) {
     return <RedirectHome />;
@@ -102,7 +100,15 @@ const Book = ({ location }) => {
           <NoteContainer>
             {notes.map((note) => {
               return (
-                <Note title={note.noteTitle} date={note.date} key={note.date} />
+                <Note
+                  title={note.noteTitle}
+                  date={note.date}
+                  key={note._noteID}
+                  noteID={note._noteID}
+                  content={note.content}
+                  user={user}
+                  bookID={isbn}
+                />
               );
             })}
           </NoteContainer>

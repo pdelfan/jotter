@@ -24,6 +24,7 @@ const Greeting = styled.h1`
 `;
 
 const LoginBtn = styled.button`
+  border-radius: var(--round);
   padding: 0.8rem 2rem;
   background: #888;
   color: #fff;
@@ -39,7 +40,7 @@ const LoginButton = () => {
 
   const handleSignIn = () => {
     loginWithRedirect({});
-    Login();    
+    Login();
   };
 
   return <LoginBtn onClick={() => handleSignIn()}>Sign in</LoginBtn>;

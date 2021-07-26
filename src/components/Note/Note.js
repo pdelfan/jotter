@@ -9,7 +9,7 @@ export const NoteContainer = styled.div`
   gap: 1rem;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled(Link)`
   background-color: #fdfdfd;
   padding: 1rem;
   border: var(--general-border);
@@ -33,15 +33,24 @@ const Date = styled.h6`
   margin: 0;
 `;
 
-const Note = ({ title, date }) => {
+const UpdateNoteButton = ({ title, date, noteID, bookID, content, user }) => {
   return (
-    <Wrapper>
-      <Link to="/note">
-        <Title>{title}</Title>
-        <Date>{date}</Date>
-      </Link>
+    <Wrapper
+      to="/note"
+      state={{
+        bookID: bookID,
+        noteID: noteID,        
+        content: content,
+        title: title,
+        date: date,     
+        user: user,   
+        readOnly: true,
+      }}
+    >
+      <Title>{title}</Title>
+      <Date>{date}</Date>
     </Wrapper>
   );
 };
 
-export default Note;
+export default UpdateNoteButton;

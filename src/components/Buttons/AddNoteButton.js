@@ -28,9 +28,10 @@ function handleAddNote(
   content,
   date,
   bookID,
+  noteID,
   redirectAfterAdd
 ) {
-  addNote(username, date, title, content, bookID).then(
+  addNote(username, date, title, content, bookID, noteID).then(
     (res) => {
       if (res.status === 200) {
         success("Added the note to your book.");
@@ -58,15 +59,24 @@ export default function AddNoteButton({
   content,
   date,
   bookID,
+  noteID,
   redirectAfterAdd,
 }) {
   return (
     <AddButton
       onClick={() =>
-        handleAddNote(username, title, content, date, bookID, redirectAfterAdd)
+        handleAddNote(
+          username,
+          title,
+          content,
+          date,
+          bookID,
+          noteID,
+          redirectAfterAdd
+        )
       }
     >
-      Save Note
+      Add Note
     </AddButton>
   );
 }

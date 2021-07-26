@@ -12,11 +12,11 @@ const Items = styled.div`
   background-color: white;
   border: 2px solid #ccc;
   border-radius: var(--round);
-  margin: 1rem auto 0 auto;
-  max-width: 50rem;
+  margin: 3rem auto 0 auto;
+  max-width: inherit;
   position: fixed;
-  right: 1rem;
-  left: 1rem;
+  right: 0;
+  left: 0;
   z-index: 100;
 `;
 

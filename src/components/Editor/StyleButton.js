@@ -27,8 +27,7 @@ const icons = {
   faFileCode,
 };
 
-const Button = styled.button`
-  border-radius: 0.5rem;
+const Button = styled.button`  
   background-color: transparent;
   color: #888;
   ${({ active }) =>

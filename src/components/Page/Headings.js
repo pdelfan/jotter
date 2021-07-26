@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 const MainHeader = styled.h1`
-  font-size: 3rem;
+  font-size: 3rem;  
   margin-bottom: 0.5rem;
 `;
 
 const SubHeader = styled.h2`
-  font-weight: 600;
+  font-weight: 700;
   margin-top: 0;
   margin-bottom: 0;
 `;

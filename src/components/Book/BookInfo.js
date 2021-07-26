@@ -27,7 +27,7 @@ const MainInfo = styled.div`
 
   h3 {
     font-size: 1.8rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--book-title);
     line-height: 2rem;
     word-wrap: break-word;
@@ -37,7 +37,7 @@ const MainInfo = styled.div`
 
   h4 {
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--book-author);
     margin-top: 0;
     margin-bottom: 0.5rem;
@@ -45,7 +45,7 @@ const MainInfo = styled.div`
 
   h5 {
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 700;
     color: var(--book-date);
     margin-top: 0;
   }
