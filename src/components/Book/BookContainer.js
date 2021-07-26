@@ -17,20 +17,19 @@ const Container = styled.div`
 const Primary = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex: 0.5;
   flex-grow: 1;
   background-color: #fdfdfd;
   padding: 1.8rem;
   border: var(--general-border);
   border-radius: var(--round);
-  
 `;
 
 const Secondary = styled.div`
   display: flex;
   flex-direction: column;
   flex: 0.5;
-  flex-grow: 0.7;
+  flex-grow: 1;
   row-gap: 2rem;
 
   @media only screen and (max-width: 1200px) {
