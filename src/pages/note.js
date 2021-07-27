@@ -3,16 +3,19 @@ import Layout from "../components/Page/Layout";
 import { RedirectHome } from "../components/Routing";
 import { convertFromRaw } from "draft-js";
 import TextEditor from "../components/Editor/TextEditor";
+import { useAuth0 } from "../services/auth";
 
-const Note = ({ location }) => {
-  const username = location ? location.state.user.email : "";
-  const bookID = location ? location.state.bookID : "";
-  const content = location ? location.state.content : "";  
-  const noteID = location ? location.state.noteID : "";
+const Note = () => {
+  const { user } = useAuth0();
+  const username = user.email;
+  const bookID = localStorage.getItem("bookID");
+  const content = localStorage.getItem("content");
+  const noteID = localStorage.getItem("noteID");
+  const title = localStorage.getItem("title");
 
   const current = convertFromRaw(JSON.parse(content));
 
-  if (location.state === null) {
+  if (bookID === null) {
     return <RedirectHome />;
   } else {
     return (
@@ -23,7 +26,7 @@ const Note = ({ location }) => {
           noteID={noteID}
           editMode={true}
           initialContent={current}
-          location={location}
+          noteTitle={title}
         />
       </Layout>
     );

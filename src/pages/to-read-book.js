@@ -10,12 +10,12 @@ import { Wrapper, Loading } from "../components/Notification & Error/Loading";
 import useFetchGoogleBook from "../hooks/useFetchGoogleBook";
 import Header from "../components/Page/Headings";
 
-const Book = ({ location }) => {
+const Book = () => {
   const { isAuthenticated, user } = useAuth0();
-  const isbn = location.state ? location.state.isbn : "";
+  const isbn = localStorage.getItem("isbn");
   const { data: book, hasFetched: hasFetchedBook } = useFetchGoogleBook(isbn);
 
-  if (location.state === null) {
+  if (isbn === null) {
     return <RedirectHome />;
   } else if (isAuthenticated && isbn !== null) {
     return (

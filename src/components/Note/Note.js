@@ -37,14 +37,14 @@ const UpdateNoteButton = ({ title, date, noteID, bookID, content, user }) => {
   return (
     <Wrapper
       to="/note"
-      state={{
-        bookID: bookID,
-        noteID: noteID,        
-        content: content,
-        title: title,
-        date: date,     
-        user: user,   
-        readOnly: true,
+      onClick={() => {
+        localStorage.setItem("bookID", bookID);
+        localStorage.setItem("noteID", noteID);
+        localStorage.setItem("content", content);
+        localStorage.setItem("title", title);
+        localStorage.setItem("date", date);
+        localStorage.setItem("user", user);
+        localStorage.setItem("readOnly", true);
       }}
     >
       <Title>{title}</Title>

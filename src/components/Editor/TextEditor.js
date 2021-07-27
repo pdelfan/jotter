@@ -80,10 +80,10 @@ const TextEditor = ({
   noteID,
   editMode,
   initialContent,
-  location,
+  noteTitle,
 }) => {
   const editor = useEditor(initialContent);
-  const title = location ? location.state.title : "";
+  const title = noteTitle;
 
   function handleKeyCommand(command) {
     const newState = RichUtils.handleKeyCommand(editor.editorState, command);

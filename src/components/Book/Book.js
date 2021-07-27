@@ -6,7 +6,7 @@ import NoCover from "../../assets/noCover.png";
 const Book = styled.div`
   .cover {
     box-shadow: var(--book-shadow);
-    border: var(--book-border);    
+    border: var(--book-border);
     max-height: 160px;
   }
 
@@ -44,9 +44,9 @@ const BookLink = styled(Link)`
   flex: 0 1 17rem;
   margin-bottom: 8rem;
 
-  &:hover {    
+  &:hover {
     transform: translateY(-0.5rem);
-    transition: 0.2s;        
+    transition: 0.2s;
   }
 `;
 
@@ -100,17 +100,16 @@ export default function BookItem({
 }) {
   return (
     <BookLink
-      to={to}
-      state={{
-        isbn: isbn,
-        percentageRead: percentageRead ? percentageRead : "0",
+      to={to} 
+      onClick={() => {
+        localStorage.setItem("isbn", isbn);
       }}
     >
       <Book>
         <img src={cover} alt="Book cover" className="cover" />
         <Info>
           <h3>{title}</h3>
-          <h4>{author}</h4>          
+          <h4>{author}</h4>
         </Info>
         {children}
       </Book>

@@ -28,9 +28,9 @@ const AddNoteButton = styled(Link)`
   }
 `;
 
-const Book = ({ location }) => {
+const Book = () => {
   const { isAuthenticated, user } = useAuth0();
-  const isbn = location.state ? location.state.isbn : "";
+  const isbn = localStorage.getItem("isbn");
   const { data: book, hasFetched: fetchedBook } = useFetchGoogleBook(isbn);
   const { data: read, hasFetched: fetchedPercentageRead } = useFetchMongoField(
     user,
@@ -43,7 +43,7 @@ const Book = ({ location }) => {
     getNotes
   );
 
-  if (location.state === null) {
+  if (isbn === null) {
     return <RedirectHome />;
   } else if (isAuthenticated && isbn !== null) {
     return (

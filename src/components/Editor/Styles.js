@@ -21,13 +21,13 @@ export const styleMap = {
   CODE: {
     fontFamily: "monospace",
     borderRadius: "2px",
-    padding: "5px",    
+    padding: "5px",
   },
   HIGHLIGHT: {
     // background: "#FFFF00",
     // color: "#574101",
     background: "#FFA184",
-    color: "#5F362C",
+    color: "#42251e",
     padding: "1px 2px",
   },
   STRIKETHROUGH: {
