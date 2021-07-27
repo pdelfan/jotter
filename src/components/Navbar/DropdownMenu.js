@@ -34,7 +34,7 @@ export default function DropdownMenu() {
   }
   return (
     <div className="dropdown">
-      <DropdownLink link="/library">Library</DropdownLink>
+      <DropdownLink link="/">Library</DropdownLink>
       <DropdownLink link="/to-read">To-read</DropdownLink>
       <DropdownLink link="/add-book">Add Book</DropdownLink>
       <SignOut onClick={() => logout()} className="menu-item">

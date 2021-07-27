@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import { useAuth0 } from "../services/auth";
+import { useAuth0 } from "@auth0/auth0-react";
 import { navigate } from "gatsby";
-import Library from "../pages/library";
-import Index from "../pages/index";
+import Library from "../pages/index";
+import Login from "../pages/login";
 
 // redirect
 export const RedirectHome = ({ component: Component, ...rest }) => {
-  navigate("/library");
+  navigate("/");
   return <Library />;
 };
 
@@ -15,24 +15,10 @@ export const RedirectToLogin = () => {
   if (loading || isAuthenticated) {
     return null;
   }
-  navigate("/");
-  return <Index />;
+  navigate("/login");
+  return <Login />;
 };
 
-// redirect if user isn't logged in (authenticated)
-
-export const RedirectToLibrary = ({ component: Component, path, ...rest }) => {
-  const { loading, isAuthenticated, loginWithRedirect } = useAuth0();
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      return;
-    }
-    navigate("/library");
-  }, [loading, isAuthenticated, loginWithRedirect, path]);
-
-  return isAuthenticated === true ? <Component {...rest} /> : null;
-};
 
 const PrivateRoute = ({ component: Component, path, ...rest }) => {
   const { loading, isAuthenticated, loginWithRedirect } = useAuth0();

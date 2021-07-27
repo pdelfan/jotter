@@ -1,10 +1,7 @@
 import React from "react";
 import Layout from "../components/Page/Layout";
-import { useAuth0 } from "../services/auth";
+import { useAuth0 } from "@auth0/auth0-react";
 import LoadingIcon from "../assets/loading.svg";
-import PrivateRoute, { RedirectHome } from "../components/Routing";
-import Index from "../pages/index";
-import { Router } from "@reach/router";
 import { BookContainer } from "../components/Book/BookContainer";
 import { Wrapper, Loading } from "../components/Notification & Error/Loading";
 import useFetchGoogleBook from "../hooks/useFetchGoogleBook";
@@ -15,6 +12,7 @@ import Header from "../components/Page/Headings";
 import { Link } from "gatsby";
 import styled from "styled-components";
 import Note, { NoteContainer } from "../components/Note/Note";
+import { RedirectHome } from "../components/Routing";
 
 const AddNoteButton = styled(Link)`
   background-color: white;
@@ -29,7 +27,7 @@ const AddNoteButton = styled(Link)`
 `;
 
 const Book = () => {
-  const { isAuthenticated, user } = useAuth0();
+  const { user } = useAuth0();
   const isbn = localStorage.getItem("isbn");
   const { data: book, hasFetched: fetchedBook } = useFetchGoogleBook(isbn);
   const { data: read, hasFetched: fetchedPercentageRead } = useFetchMongoField(
@@ -45,83 +43,76 @@ const Book = () => {
 
   if (isbn === null) {
     return <RedirectHome />;
-  } else if (isAuthenticated && isbn !== null) {
-    return (
-      <Layout>
-        <Header header="Book" subheader="In your library" />
-
-        {fetchedBook && fetchedPercentageRead && (
-          <BookContainer
-            cover={book.cover}
-            title={book.title}
-            author={book.author}
-            date={book.date}
-            desc={book.desc}
-            category={book.category}
-            length={book.length}
-            avgRating={book.avgRating}
-            ratings={book.ratings}
-            language={book.language}
-            isbn={book.isbn}
-            username={user.email}
-            deleteButton={true}
-            redirectAfterDelete={"/library"}
-          >
-            <ReadingProgress
-              percentage={read}
-              isbn={book.isbn}
-              user={user.email}
-            />
-          </BookContainer>
-        )}
-
-        {!fetchedBook && (
-          <Wrapper minHeight="50vh">
-            <Loading
-              minHeight="30vh"
-              src={LoadingIcon}
-              alt="Loading icon"
-              className="rotating"
-            />
-          </Wrapper>
-        )}
-        <Header header="Notes" subheader="All your notes on this book">
-          <AddNoteButton
-            to="/add-note"
-            state={{
-              isbn: isbn,
-              user: user,
-            }}
-          >
-            Add Note
-          </AddNoteButton>
-        </Header>
-        {fetchedNotes && (
-          <NoteContainer>
-            {notes.map((note) => {
-              return (
-                <Note
-                  title={note.noteTitle}
-                  date={note.date}
-                  key={note._noteID}
-                  noteID={note._noteID}
-                  content={note.content}
-                  user={user}
-                  bookID={isbn}
-                />
-              );
-            })}
-          </NoteContainer>
-        )}
-      </Layout>
-    );
-  } else {
-    return (
-      <Router>
-        <PrivateRoute path="/book" component={Index} />
-      </Router>
-    );
   }
+  return (
+    <Layout>
+      <Header header="Book" subheader="In your library" />
+
+      {fetchedBook && fetchedPercentageRead && (
+        <BookContainer
+          cover={book.cover}
+          title={book.title}
+          author={book.author}
+          date={book.date}
+          desc={book.desc}
+          category={book.category}
+          length={book.length}
+          avgRating={book.avgRating}
+          ratings={book.ratings}
+          language={book.language}
+          isbn={book.isbn}
+          username={user.email}
+          deleteButton={true}
+          redirectAfterDelete={"/"}
+        >
+          <ReadingProgress
+            percentage={read}
+            isbn={book.isbn}
+            user={user.email}
+          />
+        </BookContainer>
+      )}
+
+      {!fetchedBook && (
+        <Wrapper minHeight="50vh">
+          <Loading
+            minHeight="30vh"
+            src={LoadingIcon}
+            alt="Loading icon"
+            className="rotating"
+          />
+        </Wrapper>
+      )}
+      <Header header="Notes" subheader="All your notes on this book">
+        <AddNoteButton
+          to="/add-note"
+          state={{
+            isbn: isbn,
+            user: user,
+          }}
+        >
+          Add Note
+        </AddNoteButton>
+      </Header>
+      {fetchedNotes && (
+        <NoteContainer>
+          {notes.map((note) => {
+            return (
+              <Note
+                title={note.noteTitle}
+                date={note.date}
+                key={note._noteID}
+                noteID={note._noteID}
+                content={note.content}
+                user={user.email}
+                bookID={isbn}
+              />
+            );
+          })}
+        </NoteContainer>
+      )}
+    </Layout>
+  );
 };
 
 export default Book;

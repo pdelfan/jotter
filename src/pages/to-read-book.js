@@ -1,9 +1,9 @@
 import React from "react";
 import Layout from "../components/Page/Layout";
-import { useAuth0 } from "../services/auth";
+import { useAuth0 } from "@auth0/auth0-react";
 import LoadingIcon from "../assets/loading.svg";
 import PrivateRoute, { RedirectHome } from "../components/Routing";
-import Index from "../pages/index";
+import Login from "../pages/login";
 import { Router } from "@reach/router";
 import { BookContainer } from "../components/Book/BookContainer";
 import { Wrapper, Loading } from "../components/Notification & Error/Loading";
@@ -56,7 +56,7 @@ const Book = () => {
   } else {
     return (
       <Router>
-        <PrivateRoute path="/to-read-book" component={Index} />
+        <PrivateRoute path="/to-read-book" component={Login} />
       </Router>
     );
   }

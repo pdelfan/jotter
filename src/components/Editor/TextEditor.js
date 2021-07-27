@@ -141,7 +141,7 @@ const TextEditor = ({
                 )}
                 bookID={bookID}
                 noteID={noteID}
-                redirectAfterAdd={"/library"}
+                redirectAfterAdd={"/"}
               />
             </Wrapper>
           </ButtonContainer>
@@ -178,7 +178,7 @@ const TextEditor = ({
             })}
             bookID={bookID}
             noteID={BSON.ObjectId()}
-            redirectAfterAdd={"/library"}
+            redirectAfterAdd={"/"}
           />
 
           <Editor

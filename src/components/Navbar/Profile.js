@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useAuth0 } from "../../services/auth";
+import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "gatsby";
 import LoadingAvatar from "../../assets/loadingAvatar.png";
 
