@@ -189,3 +189,25 @@ export const updateNote = async (
     throw new Error(error);
   }
 };
+
+
+
+export const deleteNote = async (
+  user,  
+  bookID,
+  noteID
+) => {
+  try {
+    let response = await axios.post(`${baseurl}delete-note`, null, {
+      params: {
+        user: user,               
+        bookID: bookID,
+        noteID: noteID,
+      },
+    });
+
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};

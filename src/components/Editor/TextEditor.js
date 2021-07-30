@@ -10,6 +10,7 @@ import UpdateNoteButton from "../Buttons/UpdateNoteButton";
 import { converter } from "./Converter";
 import { BSON } from "realm-web";
 import { myBlockStyleFn } from "./Styles";
+import DeleteNoteButton from "../Buttons/DeleteNoteButton";
 
 const EditorWrapper = styled.div`
   padding-top: 4rem;
@@ -141,7 +142,13 @@ const TextEditor = ({
                 )}
                 bookID={bookID}
                 noteID={noteID}
-                redirectAfterAdd={"/"}
+                redirectAfterAdd={`/book?id=${bookID}`}
+              />
+              <DeleteNoteButton
+                username={username}
+                bookID={bookID}
+                noteID={noteID}
+                redirectAfterDelete={`/book?id=${bookID}`}
               />
             </Wrapper>
           </ButtonContainer>
@@ -178,7 +185,7 @@ const TextEditor = ({
             })}
             bookID={bookID}
             noteID={BSON.ObjectId()}
-            redirectAfterAdd={"/"}
+            redirectAfterAdd={`/book?id=${bookID}`}
           />
 
           <Editor
