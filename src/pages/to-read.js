@@ -57,7 +57,7 @@ export default function ToRead() {
               return (
                 <BookItem
                   key={book.bookTitle + book.cover}
-                  to="/to-read-book/"
+                  to={`/to-read-book?id=${book.isbn}`}
                   isbn={book.isbn}
                   cover={book.cover}
                   title={book.bookTitle}
@@ -69,9 +69,9 @@ export default function ToRead() {
         </BookList>
       )}
       {!hasFetched && (
-        <Wrapper minHeight="50vh">
+        <Wrapper minHeight="40vh">
           <Loading
-            minHeight="60vh"
+            minHeight="50vh"
             src={LoadingIcon}
             alt="Loading icon"
             className="rotating"

@@ -2,22 +2,21 @@ import React from "react";
 import Layout from "../components/Page/Layout";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoadingIcon from "../assets/loading.svg";
-import PrivateRoute, { RedirectHome } from "../components/Routing";
-import Login from "../pages/login";
-import { Router } from "@reach/router";
+import { RedirectHome } from "../components/Routing";
 import { BookContainer } from "../components/Book/BookContainer";
 import { Wrapper, Loading } from "../components/Notification & Error/Loading";
 import useFetchGoogleBook from "../hooks/useFetchGoogleBook";
 import Header from "../components/Page/Headings";
+import * as queryString from "query-string";
 
-const Book = () => {
-  const { isAuthenticated, user } = useAuth0();
-  const isbn = localStorage.getItem("isbn");
+const Book = ({ location }) => {
+  const { user } = useAuth0();
+  const isbn = queryString.parse(location.search).id;
   const { data: book, hasFetched: hasFetchedBook } = useFetchGoogleBook(isbn);
 
   if (isbn === null) {
     return <RedirectHome />;
-  } else if (isAuthenticated && isbn !== null) {
+  } else {
     return (
       <Layout>
         <Header header="Book" subheader="In your to-read, for later" />
@@ -52,12 +51,6 @@ const Book = () => {
           </Wrapper>
         )}
       </Layout>
-    );
-  } else {
-    return (
-      <Router>
-        <PrivateRoute path="/to-read-book" component={Login} />
-      </Router>
     );
   }
 };

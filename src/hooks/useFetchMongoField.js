@@ -1,25 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const useFetchMongoField = (user, id, fetchFunction) => {
   const [hasFetched, setHasFetched] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (user) {
-        try {
-          let result = await fetchFunction(user.email, id);
-          setData(result);
-          setHasFetched(true);
-        } catch (error) {
-          console.log(error.message);
-          setError(error.message);
-        }
+  const fetchData = useCallback(async () => {
+    if (user) {
+      try {        
+        let result = await fetchFunction(user.email, id);
+        setData(result);
+        setHasFetched(true);
+      } catch (error) {
+        setError(error.message);
       }
-    };
+    }
+  }, [fetchFunction, id, user]);
+
+  useEffect(() => {
     fetchData();
-  }, [data, user, id, fetchFunction]);
+  }, [fetchData]);
 
   return { data, hasFetched, error };
 };

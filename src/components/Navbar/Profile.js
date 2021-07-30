@@ -20,7 +20,7 @@ const Avatar = styled.img`
   height: 2rem;
   align-self: center;
   margin-right: 0.5rem;
-  object-fit: cover;  
+  object-fit: cover;
 
   &:hover {
     filter: brightness(80%);
@@ -78,9 +78,13 @@ export default function Profile() {
   if (isLoading || !user) {
     return (
       <ProfileContainer>
-        <Avatar src={LoadingAvatar} />
-        <Username>Loading</Username>
-        <SignOut>Loading</SignOut>
+        <Link to="/">
+          <Avatar src={LoadingAvatar} />
+        </Link>
+        <UserInfo>
+          <Username>Loading...</Username>
+          <SignOut>Loading...</SignOut>
+        </UserInfo>
       </ProfileContainer>
     );
   } else {

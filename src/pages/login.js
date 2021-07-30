@@ -47,7 +47,7 @@ const LoginButton = () => {
 const Index = () => {
   const { isAuthenticated, isLoading } = useAuth0();
 
-  if (!isAuthenticated && !isLoading) {
+  if (!isLoading && !isAuthenticated) {
     return (
       <Wrapper minHeight="100vh">
         <Logo src={JotterLogo} alt="Jotter logo" />

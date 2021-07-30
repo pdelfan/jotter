@@ -59,14 +59,14 @@ const Library = () => {
               return (
                 <BookItem
                   key={book.bookTitle + book.cover}
-                  to="/book"
+                  to={`/book?id=${book.isbn}`}
                   isbn={book.isbn}
                   shouldHover={true}
                   cover={book.cover}
                   title={book.bookTitle}
                   author={book.author.join(", ")}
                   date={book.year}
-                  percentageRead={book.percentageRead}
+                  percentageRead={book.percentageRead}                  
                 />
               );
             })}

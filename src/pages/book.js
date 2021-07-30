@@ -13,6 +13,7 @@ import { Link } from "gatsby";
 import styled from "styled-components";
 import Note, { NoteContainer } from "../components/Note/Note";
 import { RedirectHome } from "../components/Routing";
+import * as queryString from "query-string";
 
 const AddNoteButton = styled(Link)`
   background-color: white;
@@ -26,9 +27,10 @@ const AddNoteButton = styled(Link)`
   }
 `;
 
-const Book = () => {
+const Book = ({ location }) => {
   const { user } = useAuth0();
-  const isbn = localStorage.getItem("isbn");
+  const isbn = queryString.parse(location.search).id;
+
   const { data: book, hasFetched: fetchedBook } = useFetchGoogleBook(isbn);
   const { data: read, hasFetched: fetchedPercentageRead } = useFetchMongoField(
     user,

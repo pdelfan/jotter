@@ -6,13 +6,12 @@ import TextEditor from "../components/Editor/TextEditor";
 
 const Note = () => {
   const user = localStorage.getItem("user");
-
   const bookID = localStorage.getItem("bookID");
   const content = localStorage.getItem("content");
   const noteID = localStorage.getItem("noteID");
   const title = localStorage.getItem("title");
-
   const current = convertFromRaw(JSON.parse(content));
+
 
   if (bookID === null) {
     return <RedirectHome />;

@@ -25,6 +25,7 @@ const Title = styled.h5`
   font-size: 1.3rem;
   font-weight: 600;
   margin: 0;
+  max-width: 25rem;
 `;
 const Date = styled.h6`
   color: var(--book-author);
@@ -42,9 +43,16 @@ const UpdateNoteButton = ({ title, date, noteID, bookID, content, user }) => {
         localStorage.setItem("noteID", noteID);
         localStorage.setItem("content", content);
         localStorage.setItem("title", title);
-        localStorage.setItem("date", date);
         localStorage.setItem("user", user);
         localStorage.setItem("readOnly", true);
+      }}
+      state={{
+        bookID: bookID,
+        noteID: noteID,
+        content: content,
+        title: title,
+        user: user,
+        readOnly: true,
       }}
     >
       <Title>{title}</Title>

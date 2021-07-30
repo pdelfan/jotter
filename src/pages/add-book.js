@@ -58,7 +58,7 @@ const AddBook = () => {
             return (
               <BookItem
                 key={i}
-                to="/searched-book"
+                to={`/searched-book?id=${book.isbn}`}
                 isbn={book.isbn}
                 cover={book.cover}
                 title={book.title}

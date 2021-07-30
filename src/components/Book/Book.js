@@ -88,19 +88,10 @@ export const validate = (res) => {
   return book;
 };
 
-export default function BookItem({
-  isbn,
-  cover,
-  title,
-  author,
-  date,
-  percentageRead,
-  children,
-  to,
-}) {
+export default function BookItem({ isbn, cover, title, author, children, to }) {
   return (
     <BookLink
-      to={to} 
+      to={to}
       onClick={() => {
         localStorage.setItem("isbn", isbn);
       }}
