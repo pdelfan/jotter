@@ -27,8 +27,9 @@ const Info = styled.div`
 
 const Title = styled.h5`
   font-size: 1.3rem;
-  color: #374151;
-  margin: 0;
+  color: #333;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
 `;
 
 const ProgressBar = styled.progress`
@@ -40,7 +41,7 @@ const ProgressBar = styled.progress`
   width: 100%;
   background-color: #c4f1d8; // firefox
   border-radius: var(--round);
-    
+
   &::-webkit-progress-bar {
     background-color: #c4f1d8;
   }
@@ -101,10 +102,10 @@ const fadeOut = keyframes`
 
 const Input = styled.input`
   border: var(--general-border);
-  font-weight: 600;
+  font-weight: bold;
   font-size: 1rem;
   text-align: center;
-  width: 5rem;
+  max-width: 5rem;
   color: gray;
 
   ::placeholder {
@@ -122,26 +123,31 @@ const Label = styled.label`
 `;
 
 const UpdateButton = styled.button`
-  background-color: #888;
-  color: #fff;
+  background-color: transparent;
+  border: 2px solid #888;
+  color: #888;
   font-size: 1rem;
+  font-weight: bold;
   padding: 0.4rem 0.7rem;
 
   &:hover {
-    background-color: #555;
+    border: 2px solid #555;
+    color: #555;
   }
 `;
 
 const Submit = styled.button`
-  background-color: #3aae5b;
-  color: white;
-  font-weight: 600;
+  background-color: transparent;
+  border: 2px solid #3aae5b;
+  color: #3aae5b;
+  font-weight: bold;
   font-size: 1rem;
   padding: 0.4rem 0.7rem;
   margin-left: 1rem;
 
   &:hover {
-    background-color: #37a556;
+    border: 2px solid #31944d;
+    color: #31944d;
   }
 `;
 

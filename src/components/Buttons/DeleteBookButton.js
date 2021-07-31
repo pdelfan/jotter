@@ -16,12 +16,15 @@ const DeleteBtn = styled.button`
   justify-content: space-between;
   column-gap: 0.3rem;
   padding: 0.4rem 0.7rem;  
-  background-color: #ff3333;
-  color: white;
+  background-color: transparent;
+  color: #ff3333;
+  border: 2px solid #ff3333;
   font-size: 0.9rem;
+  font-weight: bold;
 
   &:hover {
-    background-color: #f12f2f;
+    border: 2px solid #db2b2b;
+    color: #db2b2b;
   }
 `;
 

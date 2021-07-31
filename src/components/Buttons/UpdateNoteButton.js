@@ -10,13 +10,16 @@ import { updateNote } from "../../services/realm/API";
 import { navigate } from "gatsby";
 
 const UpdateButton = styled.button`
-  background-color: #555;
-  color: white;
-  padding: 0.5rem 1rem;  
+  background-color: transparent;
+  font-weight: bold;
+  border: 2px solid #3aae5b;
+  color: #3aae5b;
+  padding: 0.5rem 1rem;
   bottom: 1rem;
-  z-index: 1000;    
+  z-index: 1000;
   &:hover {
-    background-color: #333;
+    border: 2px solid #31944d;
+    color: #31944d;
   }
 `;
 
@@ -71,7 +74,7 @@ export default function UpdateNoteButton({
         )
       }
     >
-      Update Note
+      Save
     </UpdateButton>
   );
 }

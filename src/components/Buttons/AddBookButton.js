@@ -19,6 +19,8 @@ const AddBtn = styled.button`
     props.type === "toRead" ? "#999" : "#333"};
   color: white;
   font-size: 0.9rem;
+  font-weight: bold;
+  
 
   &:hover {
     background-color: ${(props) =>

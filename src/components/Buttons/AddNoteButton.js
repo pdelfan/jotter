@@ -10,15 +10,16 @@ import { addNote } from "../../services/realm/API";
 import { navigate } from "gatsby";
 
 const AddButton = styled.button`
-  background-color: #555;
-  color: white;
-  padding: 0.5rem 1rem;
-  position: fixed;
-  bottom: 2rem;
-  z-index: 1000;
+  background-color: transparent;
+  color: #555;
+  font-weight: bold;
+  border: 2px solid #555;
+  padding: 0.5rem 1rem;  
+  bottom: 2rem;  
 
   &:hover {
-    background-color: #333;
+    border: 2px solid #333;
+    color: #333;
   }
 `;
 

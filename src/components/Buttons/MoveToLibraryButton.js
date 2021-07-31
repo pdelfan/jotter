@@ -16,12 +16,15 @@ const MoveBtn = styled.button`
   justify-content: space-between;
   column-gap: 0.3rem;
   padding: 0.4rem 0.7rem;
-  background-color: #756d6d;
-  color: white;
+  background-color: transparent;
+  border: 2px solid #756d6d;
+  color: #756d6d;
   font-size: 0.9rem;
+  font-weight: bold;
 
   &:hover {
-    background-color: #6b6363;
+    border: 2px solid #474242;
+    color: #474242;
   }
 `;
 
@@ -53,7 +56,7 @@ function handleMoveToLibrary(username, isbn) {
 const MoveToLibraryButton = ({ username, isbn }) => {
   return (
     <MoveBtn onClick={() => handleMoveToLibrary(username, isbn)}>
-      <MoveIcon />
+      <MoveIcon color="#756d6d" />
       Move to library
     </MoveBtn>
   );

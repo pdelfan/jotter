@@ -12,7 +12,6 @@ const Note = () => {
   const title = localStorage.getItem("title");
   const current = convertFromRaw(JSON.parse(content));
 
-
   if (bookID === null) {
     return <RedirectHome />;
   } else {
@@ -22,9 +21,10 @@ const Note = () => {
           username={user}
           bookID={bookID}
           noteID={noteID}
-          editMode={true}
           initialContent={current}
           noteTitle={title}
+          existingNote={true}
+          editMode={false}
         />
       </Layout>
     );

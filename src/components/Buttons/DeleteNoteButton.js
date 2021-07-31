@@ -10,13 +10,17 @@ import { deleteNote } from "../../services/realm/API";
 import { navigate } from "gatsby";
 
 const DeleteButton = styled.button`
-  background-color: #ff3333;
-  color: white;
+  background-color: transparent;
+  color: #ff3333;
+  border: 2px solid #ff3333;
+  font-weight: bold;
   padding: 0.5rem 1rem;
   bottom: 1rem;
+  margin-left: auto;
   z-index: 1000;
   &:hover {
-    background-color: #f12f2f;
+    border: 2px solid #db2b2b;
+    color: #db2b2b;
   }
 `;
 
@@ -55,7 +59,7 @@ export default function DeleteNoteButton({
         handleDeleteNote(username, bookID, noteID, redirectAfterDelete)
       }
     >
-      Update Note
+      Delete
     </DeleteButton>
   );
 }

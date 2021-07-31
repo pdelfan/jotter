@@ -12,18 +12,25 @@ import Header from "../components/Page/Headings";
 import { Link } from "gatsby";
 import styled from "styled-components";
 import Note, { NoteContainer } from "../components/Note/Note";
+import { AddIcon } from "../components/Buttons/Icons";
 import { RedirectHome } from "../components/Routing";
 import * as queryString from "query-string";
 
 const AddNoteButton = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 0.3rem;
   background-color: white;
-  color: black;
+  color: #6b6b6b;
+  font-weight: bold;
   padding: 0.5rem 1rem;
   border: var(--general-border);
   box-shadow: var(--general-shadow);
 
   &:hover {
     border: 2px solid #555;
+    color: #555;
   }
 `;
 
@@ -93,6 +100,7 @@ const Book = ({ location }) => {
             user: user,
           }}
         >
+          <AddIcon color="#6b6b6b" />
           Add Note
         </AddNoteButton>
       </Header>

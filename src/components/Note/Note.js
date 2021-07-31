@@ -9,8 +9,7 @@ export const NoteContainer = styled.div`
   gap: 1rem;
 `;
 
-const Wrapper = styled(Link)`
-  background-color: #fdfdfd;
+const Wrapper = styled(Link)`  
   padding: 1rem;
   border: var(--general-border);
   border-radius: var(--round);

@@ -8,12 +8,15 @@ const ShowButton = styled.button`
   justify-content: space-between;
   column-gap: 0.3rem;
   padding: 0.4rem 0.7rem;  
-  background-color: #888;  
-  color: #fff;    
+  background-color: transparent;  
+  border: 2px solid #6f828a;  
+  color: #6f828a;    
   font-size: 0.9rem;
+  font-weight: bold;
 
   &:hover {
-    background-color: #555;    
+    border: 2px solid #424f53;    
+    color: #424f53;
   }
 `;
 

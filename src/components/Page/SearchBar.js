@@ -31,7 +31,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  padding: 0.1rem 0.4rem;
+  padding: 0.2rem 0.4rem;
   border-radius: var(--round);
   background-color: #bebebe;
   cursor: pointer;

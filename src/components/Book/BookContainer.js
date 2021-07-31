@@ -8,7 +8,7 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-top: 3rem;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
   justify-content: space-between;
   align-items: flex-start;
   gap: 2rem;

@@ -11,6 +11,7 @@ import { converter } from "./Converter";
 import { BSON } from "realm-web";
 import { myBlockStyleFn } from "./Styles";
 import DeleteNoteButton from "../Buttons/DeleteNoteButton";
+import TextareaAutosize from "react-autosize-textarea";
 
 const EditorWrapper = styled.div`
   padding-top: 4rem;
@@ -33,20 +34,53 @@ const EditorWrapper = styled.div`
   min-height: 50vh;
 `;
 
-const Input = styled.input`
-  display: flex;
-  flex-wrap: wrap;
+const EditButton = styled.button`
+  background-color: transparent;
+  color: #555;
+  font-weight: bold;
+  border: 2px solid #555;
+  padding: 0.5rem 1rem;
+  margin-bottom: 2rem;
+
+  &:hover {
+    border: 2px solid #333;
+    color: #333;
+  }
+`;
+
+const CancelButton = styled.button`
+  background-color: transparent;
+  font-weight: bold;
+  border: 2px solid #555;
+  color: #555;
+  padding: 0.5rem 1rem;
+  bottom: 1rem;
+  z-index: 1000;
+
+  &:hover {
+    border: 2px solid #333;
+    color: #333;
+  }
+`;
+
+const Input = styled(TextareaAutosize)`
   max-width: 50rem;
   width: 100%;
   margin-bottom: 3rem;
   border: none;
   color: #555;
+  font-family: arial;
   font-size: 2rem;
   font-weight: 600;
-  background: white;
+  background: transparent;
+  resize: none;
+  vertical-align: middle;
+
+  & :focus {
+    outline: none;
+  }
 
   ::placeholder {
-    padding: 1rem 0 0 0;
     color: #bebebe;
     font-size: 2rem;
     font-weight: 600;
@@ -72,18 +106,20 @@ const Wrapper = styled.div`
   padding: 0 1rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem;
 `;
 
 const TextEditor = ({
   username,
   bookID,
   noteID,
-  editMode,
+  existingNote,
   initialContent,
   noteTitle,
+  editMode,
 }) => {
   const editor = useEditor(initialContent);
+  const [isEditing, setIsEditing] = useState(editMode);
   const title = noteTitle;
 
   function handleKeyCommand(command) {
@@ -102,58 +138,102 @@ const TextEditor = ({
     setInput(e.target.value);
   };
 
-  if (editMode) {
+  if (existingNote) {
     return (
-      <section>
-        <Toolbar
-          editorState={editor.editorState}
-          setEditorState={editor.setEditorState}
-          RichUtils={RichUtils}
-          toggleInlineStyle={editor.toggleInlineStyle}
-          toggleBlockType={editor.toggleBlockType}
-        />
+      <>
+        {isEditing && (
+          <section>
+            <Toolbar
+              editorState={editor.editorState}
+              setEditorState={editor.setEditorState}
+              RichUtils={RichUtils}
+              toggleInlineStyle={editor.toggleInlineStyle}
+              toggleBlockType={editor.toggleBlockType}
+            />
 
-        <EditorWrapper>
-          <Input
-            type="text"
-            name=""
-            id=""
-            onChange={handleType}
-            placeholder="Title..."
-            value={input}
-          />
+            <EditorWrapper>
+              <Input
+                type="text"
+                name=""
+                id=""
+                onChange={handleType}
+                placeholder="Title..."
+                value={input}
+              />
 
-          <Editor
-            editorState={editor.editorState}
-            onChange={editor.setEditorState}
-            handleKeyCommand={(cmd) => handleKeyCommand(cmd)}
-            placeholder="Start typing..."
-            customStyleMap={styleMap}
-            spellCheck={true}
-            blockStyleFn={myBlockStyleFn}
-          />
-          <ButtonContainer>
-            <Wrapper>
-              <UpdateNoteButton
-                username={username}
-                title={input !== "" ? input : "Untitled"}
-                content={JSON.stringify(
-                  converter.toContent(editor.editorState)
-                )}
-                bookID={bookID}
-                noteID={noteID}
-                redirectAfterAdd={`/book?id=${bookID}`}
+              <Editor
+                editorState={editor.editorState}
+                onChange={editor.setEditorState}
+                handleKeyCommand={(cmd) => handleKeyCommand(cmd)}
+                placeholder="Start typing..."
+                customStyleMap={styleMap}
+                spellCheck={true}
+                blockStyleFn={myBlockStyleFn}
               />
-              <DeleteNoteButton
-                username={username}
-                bookID={bookID}
-                noteID={noteID}
-                redirectAfterDelete={`/book?id=${bookID}`}
+              <ButtonContainer>
+                <Wrapper>
+                  <UpdateNoteButton
+                    username={username}
+                    title={input !== "" ? input : "Untitled"}
+                    content={JSON.stringify(
+                      converter.toContent(editor.editorState)
+                    )}
+                    bookID={bookID}
+                    noteID={noteID}
+                    redirectAfterAdd={`/book?id=${bookID}`}
+                  />
+                  <CancelButton
+                    onClick={() => {
+                      setIsEditing(false);
+                    }}
+                  >
+                    Cancel
+                  </CancelButton>
+                  <DeleteNoteButton
+                    username={username}
+                    bookID={bookID}
+                    noteID={noteID}
+                    redirectAfterDelete={`/book?id=${bookID}`}
+                  />
+                </Wrapper>
+              </ButtonContainer>
+            </EditorWrapper>
+          </section>
+        )}
+        {!isEditing && (
+          <section>
+            <EditorWrapper>
+              <EditButton
+                onClick={() => {
+                  setIsEditing(true);
+                }}
+              >
+                Edit
+              </EditButton>
+              <Input
+                type="text"
+                name=""
+                id=""
+                onChange={handleType}
+                placeholder="Title..."
+                value={input}
+                readOnly
               />
-            </Wrapper>
-          </ButtonContainer>
-        </EditorWrapper>
-      </section>
+
+              <Editor
+                editorState={editor.editorState}
+                onChange={editor.setEditorState}
+                handleKeyCommand={(cmd) => handleKeyCommand(cmd)}
+                placeholder="Start typing..."
+                customStyleMap={styleMap}
+                spellCheck={true}
+                blockStyleFn={myBlockStyleFn}
+                readOnly={true}
+              />
+            </EditorWrapper>
+          </section>
+        )}
+      </>
     );
   } else {
     return (
@@ -174,19 +254,25 @@ const TextEditor = ({
             onChange={handleType}
             placeholder="Title..."
           />
-          <AddNoteButton
-            username={username}
-            title={input !== "" ? input : "Untitled"}
-            content={JSON.stringify(converter.toContent(editor.editorState))}
-            date={new Date().toLocaleDateString(undefined, {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-            bookID={bookID}
-            noteID={BSON.ObjectId()}
-            redirectAfterAdd={`/book?id=${bookID}`}
-          />
+          <ButtonContainer>
+            <Wrapper>
+              <AddNoteButton
+                username={username}
+                title={input !== "" ? input : "Untitled"}
+                content={JSON.stringify(
+                  converter.toContent(editor.editorState)
+                )}
+                date={new Date().toLocaleDateString(undefined, {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+                bookID={bookID}
+                noteID={BSON.ObjectId()}
+                redirectAfterAdd={`/book?id=${bookID}`}
+              />
+            </Wrapper>
+          </ButtonContainer>
 
           <Editor
             editorState={editor.editorState}

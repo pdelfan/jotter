@@ -19,7 +19,6 @@ export const RedirectToLogin = () => {
   return <Login />;
 };
 
-
 const PrivateRoute = ({ component: Component, path, ...rest }) => {
   const { loading, isAuthenticated, loginWithRedirect } = useAuth0();
 

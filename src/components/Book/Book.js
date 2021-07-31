@@ -41,7 +41,7 @@ const Info = styled.div`
 
 const BookLink = styled(Link)`
   transition: 0.2s;
-  flex: 0 1 17rem;
+  flex: 0 1 16rem;
   margin-bottom: 8rem;
 
   &:hover {
