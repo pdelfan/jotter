@@ -34,7 +34,7 @@ const Book = styled.div`
   }
 
   h5 {
-    font-weight: 500;
+    font-weight: bold;
     color: var(--book-date);
     margin-top: 0;
   }

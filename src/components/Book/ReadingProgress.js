@@ -17,7 +17,7 @@ const Container = styled.div`
   align-items: center;
   background-color: #fdfdfd;
   padding: 0.8rem 1.8rem;
-  border: var(--general-border);
+  border: var(--gray-border);
   border-radius: var(--round);
 `;
 
@@ -69,7 +69,7 @@ const Modal = styled.div`
   background-color: #fdfdfd;
   padding: 0.8rem 1.8rem;
   margin-top: 0.5rem;
-  border: var(--general-border);
+  border: var(--gray-border);
   box-shadow: var(--general-shadow);
   visibility: ${(props) => (props.out ? "hidden" : "visible")};
   animation: ${(props) => (props.out ? fadeOut : fadeIn)} 0.1s linear;
@@ -101,7 +101,7 @@ const fadeOut = keyframes`
 `;
 
 const Input = styled.input`
-  border: var(--general-border);
+  border: var(--gray-border);
   font-weight: bold;
   font-size: 1rem;
   text-align: center;

@@ -4,9 +4,9 @@ import SearchIcon from "../../assets/search.svg";
 
 const SearchArea = styled.div`
   display: flex;
-  justify-content: flex-end;  
+  justify-content: flex-end;
   background: white;
-  border: var(--general-border);
+  border: var(--gray-border);
   border-radius: var(--round);
 `;
 
@@ -27,6 +27,10 @@ const Input = styled.input`
 
   ::placeholder {
     color: #bebebe;
+  }
+
+  :focus {
+    outline: none;
   }
 `;
 

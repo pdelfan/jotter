@@ -45,7 +45,7 @@ const MainInfo = styled.div`
 
   h5 {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: bold;
     color: var(--book-date);
     margin-top: 0;
   }

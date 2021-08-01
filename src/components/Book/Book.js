@@ -12,7 +12,7 @@ const Book = styled.div`
 
   h3 {
     font-size: 1.1rem;
-    font-weight: 700;
+    font-weight: bold;
     color: var(--book-title);
     line-height: 1.5rem;
     margin-top: 0.5rem;
@@ -21,14 +21,15 @@ const Book = styled.div`
 
   h4 {
     font-size: 0.85rem;
-    font-weight: 700;
+    font-weight: bold;
     color: var(--book-author);
     margin-top: 0;
     margin-bottom: 0.5rem;
+    max-width: 12rem;
   }
 
   h5 {
-    font-weight: 700;
+    font-weight: bold;
     color: var(--book-date);
     margin-top: 0;
   }

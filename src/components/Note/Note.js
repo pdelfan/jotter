@@ -11,26 +11,27 @@ export const NoteContainer = styled.div`
 
 const Wrapper = styled(Link)`  
   padding: 1rem;
-  border: var(--general-border);
+  border: var(--purple-border);
   border-radius: var(--round);
 
   &:hover {
-    border: 2px solid #4c4c4c;
+    border: var(--purple-border-hover);
   }
 `;
 
 const Title = styled.h5`
-  color: black;
+  color: #4C3E67;
   font-size: 1.3rem;
   font-weight: 600;
   margin: 0;
   max-width: 25rem;
 `;
 const Date = styled.h6`
-  color: var(--book-author);
-  font-size: 0.8rem;
-  font-weight: 600;
-  margin: 0;
+  color: #4C3E67;
+  font-size: 0.9rem;
+  font-weight: normal;
+  margin-top: 1rem;
+  margin-bottom: 0;
 `;
 
 const UpdateNoteButton = ({ title, date, noteID, bookID, content, user }) => {

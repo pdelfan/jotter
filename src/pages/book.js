@@ -25,13 +25,20 @@ const AddNoteButton = styled(Link)`
   color: #6b6b6b;
   font-weight: bold;
   padding: 0.5rem 1rem;
-  border: var(--general-border);
+  border: var(--gray-border);
   box-shadow: var(--general-shadow);
 
   &:hover {
-    border: 2px solid #555;
+    border: var(--gray-border-hover);
     color: #555;
   }
+`;
+
+const NoNotesMessage = styled.h3`
+  color: #888;
+  font-weight: normal;
+  font-size: 1.3rem;
+  margin: 2rem auto;
 `;
 
 const Book = ({ location }) => {
@@ -119,6 +126,12 @@ const Book = ({ location }) => {
               />
             );
           })}
+          {console.log(notes)}
+          {notes.length === 0 && (
+            <NoNotesMessage>
+              You don't have any notes for this book yet.
+            </NoNotesMessage>
+          )}
         </NoteContainer>
       )}
     </Layout>

@@ -9,6 +9,7 @@ import useFetchMongoBooks from "../hooks/useFetchMongoBooks";
 import ErrorMessage from "../components/Notification & Error/ErrorMessage";
 import Header from "../components/Page/Headings";
 import SearchBar from "../components/Page/SearchBar";
+import { NoContentMessage } from "../components/Notification & Error/NoContentMessage";
 
 const Library = () => {
   const { user } = useAuth0();
@@ -66,7 +67,7 @@ const Library = () => {
                   title={book.bookTitle}
                   author={book.author.join(", ")}
                   date={book.year}
-                  percentageRead={book.percentageRead}                  
+                  percentageRead={book.percentageRead}
                 />
               );
             })}
@@ -81,6 +82,11 @@ const Library = () => {
             className="rotating"
           />
         </Wrapper>
+      )}
+      {hasFetched && libraryBooks.length === 0 && (
+        <NoContentMessage>
+          You don't have any books in your library yet.
+        </NoContentMessage>
       )}
     </Layout>
   );

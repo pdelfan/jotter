@@ -21,7 +21,7 @@ const Primary = styled.div`
   flex-grow: 1;
   background-color: #fdfdfd;
   padding: 1.8rem;
-  border: var(--general-border);
+  border: var(--gray-border);
   border-radius: var(--round);
 `;
 

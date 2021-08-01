@@ -25,7 +25,7 @@ const EditorWrapper = styled.div`
   }
 
   .blockquote {
-    border-left: var(--general-border);
+    border-left: var(--gray-border);
     padding-left: 1rem;
   }
 
@@ -48,20 +48,6 @@ const EditButton = styled.button`
   }
 `;
 
-const CancelButton = styled.button`
-  background-color: transparent;
-  font-weight: bold;
-  border: 2px solid #555;
-  color: #555;
-  padding: 0.5rem 1rem;
-  bottom: 1rem;
-  z-index: 1000;
-
-  &:hover {
-    border: 2px solid #333;
-    color: #333;
-  }
-`;
 
 const Input = styled(TextareaAutosize)`
   max-width: 50rem;
@@ -182,13 +168,7 @@ const TextEditor = ({
                     noteID={noteID}
                     redirectAfterAdd={`/book?id=${bookID}`}
                   />
-                  <CancelButton
-                    onClick={() => {
-                      setIsEditing(false);
-                    }}
-                  >
-                    Cancel
-                  </CancelButton>
+          
                   <DeleteNoteButton
                     username={username}
                     bookID={bookID}

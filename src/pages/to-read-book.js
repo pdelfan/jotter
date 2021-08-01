@@ -49,7 +49,7 @@ const Book = ({ location }) => {
               className="rotating"
             />
           </Wrapper>
-        )}
+        )}        
       </Layout>
     );
   }

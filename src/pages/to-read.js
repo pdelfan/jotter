@@ -9,6 +9,7 @@ import ErrorMessage from "../components/Notification & Error/ErrorMessage";
 import BookItem, { BookList } from "../components/Book/Book";
 import Header from "../components/Page/Headings";
 import SearchBar from "../components/Page/SearchBar";
+import { NoContentMessage } from "../components/Notification & Error/NoContentMessage";
 
 export default function ToRead() {
   const { user } = useAuth0();
@@ -77,6 +78,11 @@ export default function ToRead() {
             className="rotating"
           />
         </Wrapper>
+      )}
+      {hasFetched && toReadBooks.length === 0 && (
+        <NoContentMessage>
+          You don't have any books in your to-read yet.
+        </NoContentMessage>
       )}
     </Layout>
   );

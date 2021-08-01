@@ -15,7 +15,7 @@ const Container = styled.div`
   flex: 1;
   background-color: #fdfdfd;
   padding: 1.8rem;
-  border: var(--general-border);
+  border: var(--gray-border);
   border-radius: var(--round);
   
 `;
@@ -101,7 +101,7 @@ export default function Meta({
         </div>
         <div>
           <img src={BarcodeIcon} alt="Barcode icon" />
-          <h6>Identifier</h6>
+          <h6>Google Books ID</h6>
           <p>{isbn}</p>
         </div>
       </Detail>

@@ -156,10 +156,10 @@ export const addNote = async (
 
 export const getNotes = async (username, bookID) => {
   try {
-    const books = await axios.get(
+    let book = await axios.get(
       `${baseurl}get-notes?user=${username}&bookID=${bookID}`
     );
-    return books.data[0].library[0].notes;
+    return book.data[0].library[0].notes;
   } catch (error) {
     throw new Error(error);
   }
