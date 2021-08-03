@@ -37,23 +37,7 @@ const Date = styled.h6`
 const UpdateNoteButton = ({ title, date, noteID, bookID, content, user }) => {
   return (
     <Wrapper
-      to="/note"
-      onClick={() => {
-        localStorage.setItem("bookID", bookID);
-        localStorage.setItem("noteID", noteID);
-        localStorage.setItem("content", content);
-        localStorage.setItem("title", title);
-        localStorage.setItem("user", user);
-        localStorage.setItem("readOnly", true);
-      }}
-      state={{
-        bookID: bookID,
-        noteID: noteID,
-        content: content,
-        title: title,
-        user: user,
-        readOnly: true,
-      }}
+      to={`/note?book=${bookID}&note=${noteID}`}
     >
       <Title>{title}</Title>
       <Date>{date}</Date>

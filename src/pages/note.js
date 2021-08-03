@@ -3,29 +3,32 @@ import Layout from "../components/Page/Layout";
 import { RedirectHome } from "../components/Routing";
 import { convertFromRaw } from "draft-js";
 import TextEditor from "../components/Editor/TextEditor";
+import * as queryString from "query-string";
+import { useAuth0 } from "@auth0/auth0-react";
+import useFetchNote from "../hooks/useFetchNote";
 
-const Note = () => {
-  const user = localStorage.getItem("user");
-  const bookID = localStorage.getItem("bookID");
-  const content = localStorage.getItem("content");
-  const noteID = localStorage.getItem("noteID");
-  const title = localStorage.getItem("title");
-  const current = convertFromRaw(JSON.parse(content));
+const Note = ({ location }) => {
+  const { user } = useAuth0();
+  const bookID = queryString.parse(location.search).book;
+  const noteID = queryString.parse(location.search).note;
+  const { note, hasFetchedNote } = useFetchNote(user, bookID, noteID);
 
   if (bookID === null) {
     return <RedirectHome />;
   } else {
     return (
       <Layout>
-        <TextEditor
-          username={user}
-          bookID={bookID}
-          noteID={noteID}
-          initialContent={current}
-          noteTitle={title}
-          existingNote={true}
-          editMode={false}
-        />
+        {hasFetchedNote && (
+          <TextEditor
+            username={user}
+            bookID={bookID}
+            noteID={noteID}
+            initialContent={convertFromRaw(JSON.parse(note.content))}
+            noteTitle={note.noteTitle}
+            existingNote={true}
+            editMode={false}
+          />
+        )}
       </Layout>
     );
   }

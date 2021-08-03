@@ -3,9 +3,11 @@ import styled from "styled-components";
 import JotterLogo from "../assets/jotter-logo.svg";
 import LoadingIcon from "../assets/loading.svg";
 import { useAuth0 } from "@auth0/auth0-react";
-import Login from "../services/realm/userAuth";
 import { RedirectHome } from "../components/Routing";
 import { Wrapper, Loading } from "../components/Notification & Error/Loading";
+import SignInButton from "../components/Buttons/Auth/SignInButton";
+import SignUpButton from "../components/Buttons/Auth/SignUpButton";
+import { AuthButtonContainer } from "../components/Buttons/Auth/AuthButton";
 
 const Logo = styled.img`
   width: 12rem;
@@ -21,31 +23,7 @@ const Greeting = styled.h1`
   text-align: center;
 `;
 
-const LoginBtn = styled.button`
-  border-radius: var(--round);
-  padding: 0.8rem 2rem;
-  background: transparent;
-  color: #888;
-  border: var(--dark-gray-border);
-  font-size: 1rem;
-  font-weight: bold;
 
-  &:hover {
-    color: #555;
-    border: var(--gray-border-hover);
-  }
-`;
-
-const LoginButton = () => {
-  const { loginWithRedirect } = useAuth0();
-
-  const handleSignIn = () => {
-    loginWithRedirect({});
-    Login();
-  };
-
-  return <LoginBtn onClick={() => handleSignIn()}>Sign in</LoginBtn>;
-};
 
 const Index = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -55,7 +33,10 @@ const Index = () => {
       <Wrapper minHeight="100vh">
         <Logo src={JotterLogo} alt="Jotter logo" />
         <Greeting>Write and keep notes on your favourite books. </Greeting>
-        <LoginButton />
+        <AuthButtonContainer>
+          <SignInButton />
+          <SignUpButton />
+        </AuthButtonContainer>
       </Wrapper>
     );
   } else if (isLoading) {

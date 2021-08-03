@@ -165,18 +165,11 @@ export const getNotes = async (username, bookID) => {
   }
 };
 
-
-export const updateNote = async (
-  user,
-  title,
-  content,  
-  bookID,
-  noteID
-) => {
+export const updateNote = async (user, title, content, bookID, noteID) => {
   try {
     let response = await axios.post(`${baseurl}update-note`, null, {
       params: {
-        user: user,        
+        user: user,
         title: title,
         content: content,
         bookID: bookID,
@@ -190,23 +183,28 @@ export const updateNote = async (
   }
 };
 
-
-
-export const deleteNote = async (
-  user,  
-  bookID,
-  noteID
-) => {
+export const deleteNote = async (user, bookID, noteID) => {
   try {
     let response = await axios.post(`${baseurl}delete-note`, null, {
       params: {
-        user: user,               
+        user: user,
         bookID: bookID,
         noteID: noteID,
       },
     });
 
     return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const getNote = async (username, bookID, noteID) => {
+  try {
+    let book = await axios.get(
+      `${baseurl}get-note?user=${username}&bookID=${bookID}&noteID=${noteID}`
+    );
+    return book.data[0].library.notes;
   } catch (error) {
     throw new Error(error);
   }
