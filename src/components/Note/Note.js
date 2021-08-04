@@ -34,7 +34,7 @@ const Date = styled.h6`
   margin-bottom: 0;
 `;
 
-const UpdateNoteButton = ({ title, date, noteID, bookID, content, user }) => {
+const NoteBlock = ({ title, date, noteID, bookID }) => {
   return (
     <Wrapper
       to={`/note?book=${bookID}&note=${noteID}`}
@@ -45,4 +45,4 @@ const UpdateNoteButton = ({ title, date, noteID, bookID, content, user }) => {
   );
 };
 
-export default UpdateNoteButton;
+export default NoteBlock;

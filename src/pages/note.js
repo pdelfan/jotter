@@ -20,7 +20,7 @@ const Note = ({ location }) => {
       <Layout>
         {hasFetchedNote && (
           <TextEditor
-            username={user}
+            username={user.email}
             bookID={bookID}
             noteID={noteID}
             initialContent={convertFromRaw(JSON.parse(note.content))}

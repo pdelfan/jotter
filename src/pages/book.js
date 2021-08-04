@@ -11,7 +11,7 @@ import ReadingProgress from "../components/Book/ReadingProgress";
 import Header from "../components/Page/Headings";
 import { Link } from "gatsby";
 import styled from "styled-components";
-import Note, { NoteContainer } from "../components/Note/Note";
+import NoteBlock, { NoteContainer } from "../components/Note/Note";
 import { AddIcon } from "../components/Buttons/Icons";
 import { RedirectHome } from "../components/Routing";
 import * as queryString from "query-string";
@@ -115,13 +115,11 @@ const Book = ({ location }) => {
         <NoteContainer>
           {notes.map((note) => {
             return (
-              <Note
+              <NoteBlock
                 title={note.noteTitle}
                 date={note.date}
                 key={note._noteID}
                 noteID={note._noteID}
-                content={note.content}
-                user={user.email}
                 bookID={isbn}
               />
             );
