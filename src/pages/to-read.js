@@ -12,12 +12,13 @@ import SearchBar from "../components/Page/SearchBar";
 import { NoContentMessage } from "../components/Notification & Error/NoContentMessage";
 
 export default function ToRead() {
-  const { user } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   const {
     data: toReadBooks,
     hasFetched,
     error,
-  } = useFetchMongoBooks({ user: user, from: getToRead });
+    loading
+  } = useFetchMongoBooks({ isAuthenticated:isAuthenticated, from: getToRead });
 
   const [search, setSearch] = useState("");
   const handleSearch = (e) => {
@@ -40,7 +41,7 @@ export default function ToRead() {
       {error && (
         <ErrorMessage message="Sorry, we ran into a problem while loading your to-read books. Try again by refreshing this page." />
       )}
-      {toReadBooks && (
+      {hasFetched && (
         <BookList>
           {toReadBooks
             .filter((book) => {
@@ -66,10 +67,10 @@ export default function ToRead() {
                   date={book.year}
                 />
               );
-            })}
+            })}          
         </BookList>
       )}
-      {!hasFetched && (
+      {loading && (
         <Wrapper minHeight="40vh">
           <Loading
             minHeight="50vh"

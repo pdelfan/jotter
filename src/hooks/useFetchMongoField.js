@@ -1,27 +1,37 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
-const useFetchMongoField = (user, id, fetchFunction) => {
+const useFetchMongoField = (id, fetchFunction, isAuthenticated) => {
   const [hasFetched, setHasFetched] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const { user } = useAuth0();
 
-  const fetchData = useCallback(async () => {
-    if (user) {
-      try {        
+  useEffect(() => {
+    const fetchData = async () => {
+      setHasFetched(false);
+      setLoading(true);
+      try {
         let result = await fetchFunction(user.email, id);
         setData(result);
         setHasFetched(true);
+        console.log(`fetched ${fetchFunction}`);
       } catch (error) {
         setError(error.message);
       }
+      setLoading(false);
+    };
+    if (!isAuthenticated) {
+      setLoading(true);
+      return;
     }
-  }, [fetchFunction, id, user]);
+    if (user?.email) {
+      fetchData();
+    }
+  }, [fetchFunction, id, isAuthenticated, user?.email]);
 
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
-  return { data, hasFetched, error };
+  return { data, hasFetched, error, loading };
 };
 
 export default useFetchMongoField;

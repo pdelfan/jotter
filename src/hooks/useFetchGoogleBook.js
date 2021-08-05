@@ -67,7 +67,6 @@ const useFetchGoogleBook = (id) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setHasFetched(false);
       try {
         let result = await fetchGoogleBooks(id);
         let book = await result.json();
@@ -79,7 +78,7 @@ const useFetchGoogleBook = (id) => {
     };
 
     fetchData();
-  }, [id]);
+  }, [id, data]);
 
   return { data, hasFetched, error };
 };

@@ -12,12 +12,13 @@ import SearchBar from "../components/Page/SearchBar";
 import { NoContentMessage } from "../components/Notification & Error/NoContentMessage";
 
 const Library = () => {
-  const { user } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   const {
     data: libraryBooks,
     hasFetched,
     error,
-  } = useFetchMongoBooks({ user: user, from: getLibrary });
+    loading,
+  } = useFetchMongoBooks({ from: getLibrary, isAuthenticated:isAuthenticated });
 
   const [search, setSearch] = useState("");
   const handleSearch = (e) => {
@@ -42,7 +43,7 @@ const Library = () => {
         <ErrorMessage message="Sorry, we ran into a problem while loading your library. Try again by refreshing this page." />
       )}
 
-      {libraryBooks && (
+      {hasFetched && (
         <BookList>
           {libraryBooks
             .filter((book) => {
@@ -71,9 +72,14 @@ const Library = () => {
                 />
               );
             })}
+          {libraryBooks.length === 0 && (
+            <NoContentMessage>
+              You don't have any books in your library yet.
+            </NoContentMessage>
+          )}
         </BookList>
       )}
-      {!hasFetched && (
+      {loading && (
         <Wrapper minHeight="60vh">
           <Loading
             minHeight="50vh"
@@ -82,11 +88,6 @@ const Library = () => {
             className="rotating"
           />
         </Wrapper>
-      )}
-      {hasFetched && libraryBooks.length === 0 && (
-        <NoContentMessage>
-          You don't have any books in your library yet.
-        </NoContentMessage>
       )}
     </Layout>
   );

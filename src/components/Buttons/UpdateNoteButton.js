@@ -34,8 +34,7 @@ function handleUpdateNote(
   updateNote(username, title, content, bookID, noteID).then(
     (res) => {
       if (res.status === 200) {
-        success("Updated the note.");    
-        console.log(content);
+        success("Updated the note.");            
         navigate(redirectAfterAdd);
       } else {
         warning("Couldn't update this note. Try again.");

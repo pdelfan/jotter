@@ -9265,36 +9265,10 @@ const App = ({
     redirectUri: "http://localhost:8000",
     onRedirectCallback: onRedirectCallback,
     cacheLocation: "localstorage"
-  }, element, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hot_toast__WEBPACK_IMPORTED_MODULE_2__.Toaster, {
-    position: "top-left"
-  }));
+  }, element, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hot_toast__WEBPACK_IMPORTED_MODULE_2__.Toaster, null));
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App); // import React from "react";
-// import { Toaster } from "react-hot-toast";
-// import { Auth0Provider } from "../services/auth";
-// const App = ({ element, location }) => {
-//   const onRedirectCallback = (appState) => {
-//     location.navigate(
-//       appState && appState.targetUrl
-//         ? appState.targetUrl
-//         : window.location.pathname
-//     );
-//   };
-//   return (
-//     <Auth0Provider
-//       domain={process.env.AUTH0_DOMAIN}
-//       client_id={process.env.AUTH0_CLIENT_ID}
-//       redirect_uri="http://localhost:8000/"
-//       onRedirectCallback={onRedirectCallback}
-//       useRefreshTokens={true}
-//     >
-//       {element}
-//       <Toaster position="top-left" />
-//     </Auth0Provider>
-//   );
-// };
-// export default App;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 
 /***/ }),
 

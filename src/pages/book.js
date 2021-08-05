@@ -40,21 +40,20 @@ const NoNotesMessage = styled.h3`
   font-size: 1.3rem;
   margin: 2rem auto;
 `;
-
 const Book = ({ location }) => {
-  const { user } = useAuth0();
   const isbn = queryString.parse(location.search).id;
+  const { isAuthenticated, user } = useAuth0();
 
   const { data: book, hasFetched: fetchedBook } = useFetchGoogleBook(isbn);
   const { data: read, hasFetched: fetchedPercentageRead } = useFetchMongoField(
-    user,
     isbn,
-    getPercentageRead
+    getPercentageRead,
+    isAuthenticated
   );
   const { data: notes, hasFetched: fetchedNotes } = useFetchMongoField(
-    user,
     isbn,
-    getNotes
+    getNotes,
+    isAuthenticated
   );
 
   if (isbn === null) {
@@ -64,7 +63,7 @@ const Book = ({ location }) => {
     <Layout>
       <Header header="Book" subheader="In your library" />
 
-      {fetchedBook && fetchedPercentageRead && (
+      {fetchedBook && (
         <BookContainer
           cover={book.cover}
           title={book.title}
@@ -81,11 +80,13 @@ const Book = ({ location }) => {
           deleteButton={true}
           redirectAfterDelete={"/"}
         >
-          <ReadingProgress
-            percentage={read}
-            isbn={book.isbn}
-            user={user.email}
-          />
+          {fetchedPercentageRead && (
+            <ReadingProgress
+              percentage={read}
+              isbn={book.isbn}
+              user={user.email}
+            />
+          )}
         </BookContainer>
       )}
 
@@ -124,7 +125,6 @@ const Book = ({ location }) => {
               />
             );
           })}
-          {console.log(notes)}
           {notes.length === 0 && (
             <NoNotesMessage>
               You don't have any notes for this book yet.
