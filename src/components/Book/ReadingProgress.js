@@ -5,6 +5,7 @@ import {
   generalError,
   specificError,
   success,
+  warning,
 } from "../Notification & Error/Notifications";
 
 const Container = styled.div`
@@ -154,33 +155,42 @@ const Submit = styled.button`
 const ReadingProgress = ({ percentage, user, isbn }) => {
   const [isOpen, setIsOpen] = useState(false);
   const outside = useRef();
-  const [progress, setProgress] = useState(percentage);
+  const [progress, setProgress] = useState(parseInt(percentage));
   const [inputValue, setInputValue] = useState("");
   const onChange = (e) => {
-    setInputValue(e.target.value);
+    if (!e.target.validity.patternMismatch) {
+      setInputValue(e.target.value);
+    }
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    updatePercentageRead(user, isbn, inputValue).then(
-      () => {
-        setIsOpen(false);
-        setProgress(inputValue);
-        setInputValue("");
-        success("Your reading progress has been updated");
-      },
-      (error) => {
-        if (error === 400) {
-          generalError(
-            "Invalid request: Couldn't update your reading progress."
-          );
-        } else {
-          specificError(
-            error,
-            "Something went wrong. Check your internet connection and try again."
-          );
+    if (inputValue === "") {
+      warning("You must enter a number before submitting.");
+    }
+    else if (inputValue < 0 || inputValue > 100) {
+      warning("Make sure your input is a number and between 0 to 100.");
+    } else {
+      updatePercentageRead(user, isbn, inputValue).then(
+        () => {
+          setIsOpen(false);
+          setProgress(parseInt(inputValue));
+          setInputValue("");
+          success("Your reading progress has been updated");
+        },
+        (error) => {
+          if (error === 400) {
+            generalError(
+              "Invalid request: Couldn't update your reading progress."
+            );
+          } else {
+            specificError(
+              error,
+              "Something went wrong. Check your internet connection and try again."
+            );
+          }
         }
-      }
-    );
+      );
+    }
   };
 
   useEffect(() => {
@@ -194,9 +204,9 @@ const ReadingProgress = ({ percentage, user, isbn }) => {
   }, [outside, progress]);
 
   function handlePercentage(progress) {
-    if (progress === "0") {
+    if (progress === 0) {
       return "Not read";
-    } else if (progress === "100") {
+    } else if (progress === 100) {
       return "Completed";
     } else {
       return `${progress}% read`;
@@ -213,9 +223,16 @@ const ReadingProgress = ({ percentage, user, isbn }) => {
         <UpdateButton onClick={() => setIsOpen(!isOpen)}>Update</UpdateButton>
       </Container>
       <Modal out={!isOpen}>
-        <Input placeholder={progress} onChange={onChange} value={inputValue} />
+      
+        <Input
+          type="text"
+          pattern="^[0-9]*$"
+          placeholder={progress}
+          onChange={onChange}
+          value={inputValue}          
+        />
         <Label>%</Label>
-        <Submit onClick={handleSubmit}>Submit</Submit>
+        <Submit onClick={handleSubmit}>Submit</Submit>        
       </Modal>
     </div>
   );

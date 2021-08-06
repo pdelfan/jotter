@@ -11,12 +11,11 @@ const useFetchMongoBooks = ({ isAuthenticated, from }) => {
   useEffect(() => {
     const fetchData = async () => {
       setHasFetched(false);
-      setLoading(true);            
-      try {        
+      setLoading(true);
+      try {
         let result = await from(user.email);
         setData(result);
-        setHasFetched(true);
-        console.log("fetched data");
+        setHasFetched(true);        
       } catch (error) {
         setError(error.message);
       }

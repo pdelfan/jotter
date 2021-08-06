@@ -14,17 +14,16 @@ const AddBtn = styled.button`
   justify-content: space-between;
   column-gap: 0.3rem;
   padding: 0.4rem 0.7rem;
-  
-  background-color: ${(props) =>
-    props.type === "toRead" ? "#999" : "#333"};
-  color: white;
+  background-color: transparent;
+
+  color: #888;
   font-size: 0.9rem;
   font-weight: bold;
-  
+  border: 2px solid #888;
 
   &:hover {
-    background-color: ${(props) =>
-      props.type === "toRead" ? "#777" : "#111"};
+    color: #333;
+    border: 2px solid #333;
   }
 `;
 
@@ -73,13 +72,11 @@ const AddBookButton = ({
   date,
   cover,
   isbn,
-  addFunction,
-  type,
+  addFunction,  
 }) => {
   return (
     <>
-      <AddBtn
-        type={type}
+      <AddBtn        
         onClick={() => {
           handleAddBook(
             username,
@@ -92,7 +89,7 @@ const AddBookButton = ({
           );
         }}
       >
-        <AddIcon color="white" />
+        <AddIcon color="#888" />
         {text}
       </AddBtn>
     </>

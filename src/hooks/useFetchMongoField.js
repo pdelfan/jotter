@@ -15,8 +15,7 @@ const useFetchMongoField = (id, fetchFunction, isAuthenticated) => {
       try {
         let result = await fetchFunction(user.email, id);
         setData(result);
-        setHasFetched(true);
-        console.log(`fetched ${fetchFunction}`);
+        setHasFetched(true);        
       } catch (error) {
         setError(error.message);
       }

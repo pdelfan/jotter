@@ -16,8 +16,7 @@ const useFetchNote = (bookID, noteID, isAuthenticated) => {
       try {
         let result = await getNote(user.email, bookID, noteID);
         setNote(result);
-        setHasFetchedNote(true);
-        console.log("fetched note");
+        setHasFetchedNote(true);        
       } catch (error) {
         setError(error.message);
       }

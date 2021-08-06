@@ -84,8 +84,7 @@ export default function BookInfo({
                 isbn={isbn}
                 addFunction={addBookToLibrary}
               />
-              <AddBookButton
-                type={"toRead"}
+              <AddBookButton                
                 text={"To-read"}
                 username={username}
                 title={title}

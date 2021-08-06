@@ -93,8 +93,8 @@ export const getPercentageRead = async (username, isbn) => {
   try {
     const percentageRead = await axios.get(
       `${baseurl}get-percentage-read?user=${username}&bookID=${isbn}`
-    );
-    return percentageRead.data;
+    );            
+    return (percentageRead.data.$numberInt);
   } catch (error) {
     console.error("getToRead error:", error);
   }
