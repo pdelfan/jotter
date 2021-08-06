@@ -60,7 +60,7 @@ const Book = ({ location }) => {
     return <RedirectHome />;
   }
   return (
-    <Layout>
+    <Layout title={"Library — Book"}>
       <Header header="Book" subheader="In your library" />
 
       {fetchedBook && (

@@ -13,7 +13,7 @@ const NotFound = styled.div`
 
 const NotFoundPage = () => {
   return (
-    <Layout>
+    <Layout title="404 Not Found">
       <NotFound>
         <title>Not found</title>
         <h1>Page not found</h1>

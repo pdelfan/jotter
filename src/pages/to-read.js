@@ -30,7 +30,7 @@ export default function ToRead() {
   };
 
   return (
-    <Layout>
+    <Layout title="To-read">
       <Header header="To-read" subheader="The books you want to read later">
         <SearchBar
           searchBook={searchBook}

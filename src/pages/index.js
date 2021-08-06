@@ -34,7 +34,7 @@ const Library = () => {
   };
 
   return (
-    <Layout>
+    <Layout title="Library">
       <Header header="Library" subheader="All your books in one place">
         <SearchBar
           searchBook={searchBook}

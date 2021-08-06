@@ -5,7 +5,7 @@ module.exports = {
   proxy: [
     {
       prefix: "/",
-      url: "http://localhost:8000",
+      url: "https://jotter.site",
     },
   ],
   plugins: [

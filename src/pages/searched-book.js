@@ -19,7 +19,7 @@ const SearchedBook = ({ location }) => {
     return <RedirectHome />;
   } else {
     return (
-      <Layout>
+      <Layout title="Searched Book">
         <Header header="Book" subheader="From your search" />
         {hasFetchedBook && (
           <BookContainer

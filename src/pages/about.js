@@ -7,6 +7,7 @@ import bookShot from "../assets/book-screenshot.png";
 import SignUpButton from "../components/Buttons/Auth/SignUpButton";
 import SignInButton from "../components/Buttons/Auth/SignInButton";
 import JotterLogo from "../assets/jotter-logo.svg";
+import { Helmet } from "react-helmet";
 
 const Main = styled.main`
   margin: 0 auto 1rem auto;
@@ -145,6 +146,10 @@ const Info = styled.section`
 const About = () => {
   return (
     <Main>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>About</title>
+      </Helmet>
       <Hero>
         <IntroText>
           <Logo src={JotterLogo} alt="Jotter logo" />

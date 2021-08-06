@@ -5,7 +5,7 @@ import Header from "../components/Page/Headings";
 
 const Account = () => {
   return (
-    <Layout>
+    <Layout title="Account">
       <Header header="Your profile" subheader="Welcome back" />
       <AccountView />      
     </Layout>

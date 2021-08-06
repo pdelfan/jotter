@@ -31,7 +31,7 @@ const AddBook = () => {
   };
 
   return (
-    <Layout>
+    <Layout title="Add Book">
       <Header
         header="Add Book"
         subheader="Find a book and add it to your collection"

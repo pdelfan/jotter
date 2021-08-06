@@ -15,7 +15,7 @@ const App = ({ element, location }) => {
     <Auth0Provider
       domain={process.env.AUTH0_DOMAIN}
       clientId={process.env.AUTH0_CLIENT_ID}
-      redirectUri="http://localhost:8000"
+      redirectUri="https://jotter.site"
       onRedirectCallback={onRedirectCallback}
       cacheLocation="localstorage"
     >

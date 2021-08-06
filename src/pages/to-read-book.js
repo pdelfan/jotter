@@ -18,7 +18,7 @@ const Book = ({ location }) => {
     return <RedirectHome />;
   } else {
     return (
-      <Layout>
+      <Layout title={"To-read — Book"}>
         <Header header="Book" subheader="In your to-read, for later" />
         {hasFetchedBook && (
           <BookContainer

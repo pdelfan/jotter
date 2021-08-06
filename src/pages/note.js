@@ -23,7 +23,7 @@ const Note = ({ location }) => {
     return <RedirectHome />;
   } else {
     return (
-      <Layout>
+      <Layout title="Note">
         {hasFetchedNote && (
           <TextEditor
             username={user.email}

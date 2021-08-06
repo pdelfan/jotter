@@ -5,6 +5,7 @@ import { RedirectToLogin } from "../Routing";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Wrapper } from "../Notification & Error/Loading";
 import JotterLogo from "../../assets/jotter-logo.svg";
+import { Helmet } from "react-helmet";
 
 const Main = styled.main`
   margin: 0 auto 1rem auto;
@@ -38,7 +39,7 @@ const LogoutBtn = styled.button`
   }
 `;
 
-const Layout = ({ children }) => {
+const Layout = ({ children, title }) => {
   const { isAuthenticated, isLoading, user, logout } = useAuth0();
 
   if (!isLoading && !isAuthenticated) {
@@ -57,6 +58,14 @@ const Layout = ({ children }) => {
   } else {
     return (
       <>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <meta
+            name="description"
+            content="Jotter: Your reading notebook. Add your books, track your reading progress, and write down your ideas—all in one place."
+          />
+          <title>{title}</title>
+        </Helmet>
         <Menu />
         <Main>{children}</Main>
       </>

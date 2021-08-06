@@ -13,7 +13,7 @@ const AddNote = ({ location }) => {
   };
 
   return (
-    <Layout>
+    <Layout title="New Note">
       <TextEditor
         username={username}
         bookID={isbn}
