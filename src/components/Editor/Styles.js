@@ -26,7 +26,7 @@ export const styleMap = {
   HIGHLIGHT: {
     // background: "#FFFF00",
     // color: "#574101",
-    background: "#FFA184",
+    background: "#ffac92",
     color: "#42251e",
     padding: "1px 2px",
   },

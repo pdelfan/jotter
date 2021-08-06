@@ -15,7 +15,7 @@ export const RedirectToLogin = () => {
   if (loading || isAuthenticated) {
     return null;
   }
-  navigate("/login");
+  navigate("/about/");
   return <Login />;
 };
 

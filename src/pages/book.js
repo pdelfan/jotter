@@ -7,7 +7,7 @@ import { Wrapper, Loading } from "../components/Notification & Error/Loading";
 import useFetchGoogleBook from "../hooks/useFetchGoogleBook";
 import useFetchMongoField from "../hooks/useFetchMongoField";
 import { getPercentageRead, getNotes } from "../services/realm/API";
-import ReadingProgress from "../components/Book/ReadingProgress";
+import ReadingProgress from "../components/Book/ReadingProgress/ReadingProgress";
 import Header from "../components/Page/Headings";
 import { Link } from "gatsby";
 import styled from "styled-components";

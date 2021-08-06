@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 export function warning(message) {
   toast(`${message}`, {
     icon: "📣",
-    style: { borderRadius:"0", background:'#222', color:"white" },
+    style: { borderRadius:"0", background:'#fff45e', color:"black" },
   });
 }
 

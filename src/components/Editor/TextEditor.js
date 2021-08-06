@@ -40,7 +40,7 @@ const EditButton = styled.button`
   font-weight: bold;
   border: 2px solid #555;
   padding: 0.5rem 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2rem;  
 
   &:hover {
     border: 2px solid #333;
@@ -174,7 +174,7 @@ const TextEditor = ({
                     bookID={bookID}
                     noteID={noteID}
                     redirectAfterDelete={`/book?id=${bookID}`}
-                  />
+                  />               
                 </Wrapper>
               </ButtonContainer>
             </EditorWrapper>

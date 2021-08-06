@@ -10,6 +10,7 @@ import ErrorMessage from "../components/Notification & Error/ErrorMessage";
 import Header from "../components/Page/Headings";
 import SearchBar from "../components/Page/SearchBar";
 import { NoContentMessage } from "../components/Notification & Error/NoContentMessage";
+import { ProgressBar } from "../components/Book/ReadingProgress/ProgressBar";
 
 const Library = () => {
   const { isAuthenticated } = useAuth0();
@@ -18,7 +19,10 @@ const Library = () => {
     hasFetched,
     error,
     loading,
-  } = useFetchMongoBooks({ from: getLibrary, isAuthenticated:isAuthenticated });
+  } = useFetchMongoBooks({
+    from: getLibrary,
+    isAuthenticated: isAuthenticated,
+  });
 
   const [search, setSearch] = useState("");
   const handleSearch = (e) => {
@@ -62,14 +66,23 @@ const Library = () => {
                 <BookItem
                   key={book.bookTitle + book.cover}
                   to={`/book?id=${book.isbn}`}
-                  isbn={book.isbn}
                   shouldHover={true}
                   cover={book.cover}
                   title={book.bookTitle}
                   author={book.author.join(", ")}
                   date={book.year}
                   percentageRead={book.percentageRead}
-                />
+                >
+                  {book.percentageRead.$numberInt > 0 &&
+                    book.percentageRead.$numberInt < 100 && (
+                      <ProgressBar
+                        thin
+                        short
+                        value={book.percentageRead.$numberInt}
+                        max="100"
+                      />
+                    )}
+                </BookItem>
               );
             })}
           {libraryBooks.length === 0 && (

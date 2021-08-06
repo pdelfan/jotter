@@ -89,21 +89,23 @@ export const validate = (res) => {
   return book;
 };
 
-export default function BookItem({ isbn, cover, title, author, children, to }) {
+export default function BookItem({
+  cover,
+  title,
+  author,
+  percentageRead,
+  children,
+  to,
+}) {
   return (
-    <BookLink
-      to={to}
-      onClick={() => {
-        localStorage.setItem("isbn", isbn);
-      }}
-    >
+    <BookLink to={to}>
       <Book>
         <img src={cover} alt="Book cover" className="cover" />
         <Info>
           <h3>{title}</h3>
           <h4>{author}</h4>
         </Info>
-        {children}
+        {children}   
       </Book>
     </BookLink>
   );

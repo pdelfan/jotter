@@ -41,7 +41,9 @@ const LogoutBtn = styled.button`
 const Layout = ({ children }) => {
   const { isAuthenticated, isLoading, user, logout } = useAuth0();
 
-  if (user && user.email_verified === false) {
+  if (!isLoading && !isAuthenticated) {
+    return <RedirectToLogin />;
+  } else if (user && user.email_verified === false) {
     return (
       <Wrapper minHeight="100vh">
         <Logo src={JotterLogo} alt="Jotter logo" />
@@ -52,8 +54,6 @@ const Layout = ({ children }) => {
         <LogoutBtn onClick={() => logout()}>Log out</LogoutBtn>
       </Wrapper>
     );
-  } else if (!isLoading && !isAuthenticated) {
-    return <RedirectToLogin />;
   } else {
     return (
       <>

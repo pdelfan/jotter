@@ -20,7 +20,7 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`, // Needed for dynamic images
+    `gatsby-transformer-sharp`, 
     `gatsby-plugin-fontawesome-css`,
     {
       resolve: "gatsby-plugin-manifest",

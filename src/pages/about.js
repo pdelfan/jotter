@@ -180,6 +180,13 @@ const About = () => {
           <p>Add notes on your books and revisit them later.</p>
           <FeatureImage src={addNoteShot} />
         </Feature>
+        <Feature>
+          <h3>And more</h3>
+          <p>
+            We are continuously working to add useful features and create a
+            better experience.
+          </p>
+        </Feature>
       </Features>
       <Info>
         <h4>
