@@ -9,7 +9,7 @@ module.exports = {
   proxy: [
     {
       prefix: "/",
-      url: "https://jotter.site",
+      url: "https://www.jotter.site",
     },
   ],
   plugins: [

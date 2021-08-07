@@ -15,7 +15,7 @@ const App = ({ element, location }) => {
     <Auth0Provider
       domain={process.env.GATSBY_AUTH0_DOMAIN}
       clientId={process.env.GATSBY_AUTH0_CLIENT_ID}
-      redirectUri="https://jotter.site"
+      redirectUri="https://www.jotter.site"
       onRedirectCallback={onRedirectCallback}
       cacheLocation="localstorage"
     >
