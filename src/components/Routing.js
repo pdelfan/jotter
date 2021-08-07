@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { navigate } from "gatsby";
 import Library from "../pages/index";
-import Login from "../pages/login";
+import About from "../pages/about";
 
 // redirect
 export const RedirectHome = ({ component: Component, ...rest }) => {
@@ -16,7 +16,7 @@ export const RedirectToLogin = () => {
     return null;
   }
   navigate("/about/");
-  return <Login />;
+  return <About />;
 };
 
 const PrivateRoute = ({ component: Component, path, ...rest }) => {

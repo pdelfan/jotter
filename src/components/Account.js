@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Wrapper, Loading } from "./Notification & Error/Loading";
+import LoadingIcon from "../assets/loading.svg";
+
 
 const Container = styled.section`
   margin: 2rem auto;
@@ -46,7 +49,16 @@ const Account = () => {
       </Container>
     );
   } else {
-    return <h1>aw</h1>;
+    return (
+      <Wrapper minHeight="60vh">
+        <Loading
+          minHeight="50vh"
+          src={LoadingIcon}
+          alt="Loading icon"
+          className="rotating"
+        />
+      </Wrapper>
+    );
   }
 };
 
