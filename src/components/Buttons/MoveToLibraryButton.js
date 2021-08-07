@@ -33,7 +33,7 @@ function handleMoveToLibrary(username, isbn) {
     (res) => {
       if (res.status === 200) {
         success("Moved the book to your library.");
-        navigate("../library");
+        navigate("/");
       } else {
         warning("Couldn't move this book to your library. Try again.");
       }
