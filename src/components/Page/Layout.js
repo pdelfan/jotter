@@ -47,7 +47,7 @@ const Layout = ({ children, title }) => {
     return <RedirectToLogin />;
   } else if (isLoading) {
     return (
-      <Wrapper minHeight="60vh">
+      <Wrapper minHeight="100vh">
         <Loading
           minHeight="50vh"
           src={LoadingIcon}
