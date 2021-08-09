@@ -6,13 +6,17 @@ export const SectionTitle = styled.h5`
   color: #333;
   margin-top: 0;
   margin-bottom: 1rem;
+
+  @media only screen and (max-width: 1200px) {
+    font-size: 1.1rem;
+  }
 `;
 
 export const Text = styled.div`
   p {
     margin-top: 0rem;
-    line-height: 1.5rem;    
-    font-size: 1.05rem;    
+    line-height: 1.5rem;
+    font-size: 1.05rem;
     color: rgb(88, 88, 88);
   }
 `;

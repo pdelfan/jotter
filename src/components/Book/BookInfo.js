@@ -17,7 +17,7 @@ const Container = styled.div`
 `;
 const Cover = styled.img`
   box-shadow: var(--book-shadow);
-  border: var(--book-border);  
+  border: var(--book-border);
   max-height: 200px;
   margin-bottom: 2rem;
 `;
@@ -48,6 +48,12 @@ const MainInfo = styled.div`
     font-weight: bold;
     color: var(--book-date);
     margin-top: 0;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    h1 {
+      font-size: 1.5rem;
+    }
   }
 `;
 
@@ -84,7 +90,7 @@ export default function BookInfo({
                 isbn={isbn}
                 addFunction={addBookToLibrary}
               />
-              <AddBookButton                
+              <AddBookButton
                 text={"To-read"}
                 username={username}
                 title={title}

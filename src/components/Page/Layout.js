@@ -3,7 +3,8 @@ import styled from "styled-components";
 import Menu from "../Navbar/Menu";
 import { RedirectToLogin } from "../Routing";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Wrapper } from "../Notification & Error/Loading";
+import { Wrapper, Loading } from "../Notification & Error/Loading";
+import LoadingIcon from "../../assets/loading.svg";
 import JotterLogo from "../../assets/jotter-logo.svg";
 import { Helmet } from "react-helmet";
 
@@ -44,6 +45,17 @@ const Layout = ({ children, title }) => {
 
   if (!isLoading && !isAuthenticated) {
     return <RedirectToLogin />;
+  } else if (isLoading) {
+    return (
+      <Wrapper minHeight="60vh">
+        <Loading
+          minHeight="50vh"
+          src={LoadingIcon}
+          alt="Loading icon"
+          className="rotating"
+        />
+      </Wrapper>
+    );
   } else if (user && user.email_verified === false) {
     return (
       <Wrapper minHeight="100vh">
