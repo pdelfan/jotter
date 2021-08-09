@@ -92,8 +92,7 @@ export const validate = (res) => {
 export default function BookItem({
   cover,
   title,
-  author,
-  percentageRead,
+  author,  
   children,
   to,
 }) {
